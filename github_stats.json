@@ -1,0 +1,555 @@
+{
+  "Biostats": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 97
+  },
+  "DrugMind": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [
+      "ai-pharma",
+      "clinical-trial",
+      "digital-twin",
+      "drug-discovery",
+      "open-source",
+      "pharma-collaboration",
+      "pharmaceutical-ai",
+      "rwd",
+      "rwd-analysis",
+      "second-me"
+    ],
+    "size_kb": 285
+  },
+  "Harmes-Agent": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 23
+  },
+  "KnowHealth": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 87
+  },
+  "KnowHealth-iOS": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Swift",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 82
+  },
+  "LabMind--": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 42
+  },
+  "MediGuard--": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 45
+  },
+  "PharmaSim": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 9062
+  },
+  "agri-mind": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 42
+  },
+  "ai4s-cns-agent": {
+    "stars": 0,
+    "forks": 0,
+    "language": null,
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 0
+  },
+  "ai4s-drug-agent": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 5
+  },
+  "ai4s-rna-protein": {
+    "stars": 0,
+    "forks": 0,
+    "language": null,
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 0
+  },
+  "chronicdiseasemanagement": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-27",
+    "topics": [
+      "chronic-disease",
+      "clinical-workflow",
+      "digital-health",
+      "disease-management",
+      "fastapi",
+      "healthcare-ai",
+      "hospital-management",
+      "nphr",
+      "open-source",
+      "react"
+    ],
+    "size_kb": 5549
+  },
+  "cloud-memorial": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [
+      "ai-companion",
+      "ai-memorial",
+      "digital-memorial",
+      "emotional-ai",
+      "family-memory",
+      "grief-therapy",
+      "mental-health",
+      "nextjs",
+      "open-source",
+      "typescript"
+    ],
+    "size_kb": 9890
+  },
+  "darwin-framework": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 37
+  },
+  "digital-sage": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [
+      "ai-mentorship",
+      "ai-socrates",
+      "education-ai",
+      "knowledge-management",
+      "knowledge-platform",
+      "open-source",
+      "philosopher-chat",
+      "philosophy-ai",
+      "socratic-dialogue"
+    ],
+    "size_kb": 16648
+  },
+  "drugclip-agent": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 27
+  },
+  "drugclip-benchmark": {
+    "stars": 0,
+    "forks": 0,
+    "language": null,
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 0
+  },
+  "drugclip-paper": {
+    "stars": 0,
+    "forks": 0,
+    "language": null,
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 0
+  },
+  "drugclip-platform": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 4
+  },
+  "evox": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 62
+  },
+  "global-aging-data-to-lancet-global-health": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 252
+  },
+  "global-clinical-trials-insight-and-commentary-platform-overview": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 175
+  },
+  "health-know": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Shell",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 29
+  },
+  "healthguard-opc": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 168
+  },
+  "heor-modeling-platform": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 8261
+  },
+  "kondratiev-wave": {
+    "stars": 0,
+    "forks": 0,
+    "language": "HTML",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 237
+  },
+  "lancet-research-platform": {
+    "stars": 0,
+    "forks": 0,
+    "language": null,
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 0
+  },
+  "med-research-collab": {
+    "stars": 0,
+    "forks": 0,
+    "language": "HTML",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 427
+  },
+  "medi-pharma": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [
+      "admet-prediction",
+      "ai-pharma",
+      "biostatistics",
+      "chembl",
+      "clinical-trial-design",
+      "compound-generation",
+      "digital-twin",
+      "drug-discovery",
+      "lead-optimization",
+      "open-source",
+      "opentargets",
+      "pharmaceutical-ai",
+      "target-screening"
+    ],
+    "size_kb": 204
+  },
+  "medi-slim": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 103339
+  },
+  "medical-harness": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 107
+  },
+  "medical-multiagent": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 40
+  },
+  "medichat-rd": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-26",
+    "topics": [
+      "clinical-reasoning",
+      "crewai",
+      "diagnostic-assistant",
+      "medical-ai",
+      "medical-chatbot",
+      "medical-nlp",
+      "multi-agent",
+      "open-source",
+      "rare-disease",
+      "react-native"
+    ],
+    "size_kb": 80387
+  },
+  "medintel-cloud": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 150
+  },
+  "medivisual-artist": {
+    "stars": 0,
+    "forks": 0,
+    "language": "HTML",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 87713
+  },
+  "medroundtable": {
+    "stars": 1,
+    "forks": 0,
+    "language": "HTML",
+    "updated": "2026-04-26",
+    "topics": [],
+    "size_kb": 9560
+  },
+  "meta-analysis-figures": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 1337
+  },
+  "metaforge": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 175
+  },
+  "minder": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 234
+  },
+  "mingevidence": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 1844
+  },
+  "narrowgate": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 5502
+  },
+  "nhanes-to-lancet": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 88
+  },
+  "opc-alliance": {
+    "stars": 0,
+    "forks": 0,
+    "language": "JavaScript",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 98
+  },
+  "opc-legends": {
+    "stars": 0,
+    "forks": 0,
+    "language": "JavaScript",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 86
+  },
+  "opc-marketplace": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 189
+  },
+  "opc-platform": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 1511
+  },
+  "opcplatform": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-26",
+    "topics": [],
+    "size_kb": 245
+  },
+  "openclaw-medical-harness": {
+    "stars": 1,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [
+      "agent-framework",
+      "drug-discovery",
+      "healthcare-ai",
+      "llm",
+      "mcp",
+      "medical-ai",
+      "medical-diagnosis",
+      "open-source",
+      "python",
+      "rare-disease"
+    ],
+    "size_kb": 294
+  },
+  "pharmaspark": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 32199
+  },
+  "pilot-stone-prediction": {
+    "stars": 0,
+    "forks": 0,
+    "language": "TypeScript",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 795
+  },
+  "ponder-knowledge-platform": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 1237
+  },
+  "searxng": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Shell",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 34
+  },
+  "seer-data-to-top-oncology-journal": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-22",
+    "topics": [],
+    "size_kb": 16
+  },
+  "tianyan": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [
+      "agent-based-model",
+      "ai-forecasting",
+      "business-forecasting",
+      "china-market",
+      "consumer-behavior",
+      "market-prediction",
+      "multi-agent-simulation",
+      "open-source",
+      "population-modeling"
+    ],
+    "size_kb": 7794
+  },
+  "virtual-cell": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 157
+  },
+  "voiceHealth-miniprogram": {
+    "stars": 0,
+    "forks": 0,
+    "language": "JavaScript",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 67
+  },
+  "voicehealth": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Python",
+    "updated": "2026-04-27",
+    "topics": [],
+    "size_kb": 998
+  }
+}
