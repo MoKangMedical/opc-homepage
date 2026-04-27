@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoKangMedical — AI-Powered Medical Innovation Ecosystem</title>
+<meta name="description" content="68 AI projects across drug discovery, clinical research, digital health, and solo entrepreneur ecosystem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090b;--bg2:#111113;--bg3:#18181b;--bg4:#27272a;
+  --text:#fafafa;--text2:#a1a1aa;--text3:#71717a;
+  --border:#27272a;--border2:#3f3f46;
+  --accent:#6366f1;--accent2:#818cf8;
+  --green:#10b981;--pink:#ec4899;--amber:#f59e0b;--purple:#8b5cf6;--cyan:#06b6d4;
+  --radius:12px;
+}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif}
+body{background:var(--bg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:800;font-size:18px;letter-spacing:-.5px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px;font-size:13px;font-weight:500;color:var(--text2)}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff;padding:6px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+.nav-mobile{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:20px}
+
+/* HERO */
+.hero{padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px;font-size:13px;color:var(--text2);margin-bottom:24px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(36px,6vw,72px);font-weight:900;letter-spacing:-2px;line-height:1.05;max-width:900px;margin:0 auto 20px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--pink),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;color:var(--text2);max-width:640px;margin:0 auto 40px;line-height:1.7}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:36px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--text),var(--text2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stat .label{font-size:13px;color:var(--text3);margin-top:4px}
+
+/* SECTIONS */
+.section{max-width:1280px;margin:0 auto;padding:80px 24px}
+.section-header{text-align:center;margin-bottom:56px}
+.section-header .tag{display:inline-block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:6px;margin-bottom:16px}
+.section-header h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.section-header p{font-size:16px;color:var(--text2);max-width:560px;margin:0 auto}
+
+/* FLYWHEEL */
+.flywheels{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.flywheel-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:border-color .2s,transform .2s}
+.flywheel-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.fw-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.flywheel-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.flywheel-card .fw-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.fw-meta{display:flex;gap:16px;font-size:12px;color:var(--text3)}
+.fw-meta span{background:var(--bg3);padding:4px 10px;border-radius:6px}
+
+/* SEGMENT */
+.segment{padding:80px 0}
+.segment-header{display:flex;align-items:center;gap:16px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.segment-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.segment-header h2{font-size:28px;font-weight:800;letter-spacing:-.5px}
+.segment-header .seg-tag{font-size:13px;color:var(--text3);margin-left:auto}
+
+/* PROJECT CARDS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .2s;position:relative;overflow:hidden}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.proj-card .tier{position:absolute;top:16px;right:16px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:3px 8px;border-radius:4px}
+.tier-cash-cow{background:rgba(16,185,129,.15);color:var(--green)}
+.tier-growth{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tier-pipeline{background:rgba(245,158,11,.15);color:var(--amber)}
+.tier-moat{background:rgba(139,92,246,.15);color:var(--purple)}
+.tier-support{background:rgba(113,113,122,.1);color:var(--text3)}
+.tier-niche{background:rgba(6,182,212,.15);color:var(--cyan)}
+.proj-name{font-size:16px;font-weight:700;margin-bottom:8px;padding-right:60px}
+.proj-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.proj-footer{display:flex;align-items:center;justify-content:space-between}
+.proj-status{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:6px}
+.proj-status .dot-sm{width:5px;height:5px;border-radius:50%}
+.status-live .dot-sm{background:var(--green)}
+.status-live{color:var(--green)}
+.status-dev .dot-sm{background:var(--amber)}
+.status-dev{color:var(--amber)}
+.proj-link{font-size:12px;color:var(--text3);transition:color .2s}
+.proj-link:hover{color:var(--accent2)}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.team-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start}
+.team-priority{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 8px;border-radius:4px;flex-shrink:0}
+.p-urgent{background:rgba(239,68,68,.15);color:#ef4444}
+.p-important{background:rgba(245,158,11,.15);color:var(--amber)}
+.team-card h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.team-card p{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:6px}
+.team-type{font-size:11px;color:var(--text3)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:48px 24px;text-align:center}
+footer p{font-size:13px;color:var(--text3)}
+footer a{color:var(--accent2)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-mobile{display:block}
+  .hero-stats{gap:24px}
+  .hero-stat .num{font-size:28px}
+  .projects-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .flywheels{grid-template-columns:1fr}
+  .segment-header{flex-wrap:wrap}
+  .segment-header .seg-tag{margin-left:0;margin-top:8px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:32px}
+  .hero p{font-size:15px}
+  .section{padding:48px 16px}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+  <a href="#" class="nav-logo">MoKang<span>Medical</span></a>
+  <div class="nav-links">
+    <a href="#flywheels">Flywheels</a>
+    <a href="#research">Research</a>
+    <a href="#pharma">Pharma</a>
+    <a href="#clinical">Clinical</a>
+    <a href="#digital">Digital Human</a>
+    <a href="#infra">Infrastructure</a>
+    <a href="#platform">OPC Ecosystem</a>
+    <a href="#team">Team</a>
+  </div>
+  <a href="https://github.com/MoKangMedical" class="nav-cta" target="_blank">GitHub</a>
+  <button class="nav-mobile" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">&#9776;</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> 68 Projects Active</div>
+  <h1>AI-Powered<br><span class="gradient">Medical Innovation</span><br>Ecosystem</h1>
+  <p>From drug discovery to clinical trials, from academic publishing to digital health — a complete AI-powered medical platform. Six business verticals. Five revenue flywheels. One vision.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">68</div><div class="label">Projects</div></div>
+    <div class="hero-stat"><div class="num">6</div><div class="label">Verticals</div></div>
+    <div class="hero-stat"><div class="num">5</div><div class="label">Flywheels</div></div>
+    <div class="hero-stat"><div class="num">$2M+</div><div class="label">Revenue Potential</div></div>
+  </div>
+</section>
+
+<!-- FLYWHEELS -->
+<section class="section" id="flywheels">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(99,102,241,.1);color:var(--accent2)">Business Model</div>
+  <h2>Five Revenue Flywheels</h2>
+  <p>Each flywheel is self-reinforcing — projects within amplify each other's growth and revenue.</p>
+</div>
+<div class="flywheels reveal">
+  <div class="flywheel-card">
+    <div class="fw-icon" style="background:rgba(99,102,241,.15);color:var(--accent2)">&#128300;</div>
+    <h3>Research Full Chain</h3>
+    <div class="fw-desc">Evidence mining &rarr; Statistical analysis &rarr; Paper writing &rarr; Collaboration. Serving 3,000+ hospitals and 500+ medical schools.</div>
+    <div class="fw-meta"><span>ARPU: $400-1,400/mo</span><span>4 core projects</span></div>
+  </div>
+  <div class="flywheel-card">
+    <div class="fw-icon" style="background:rgba(236,72,153,.15);color:var(--pink)">&#129516;</div>
+    <h3>Drug Development Pipeline</h3>
+    <div class="fw-desc">Target discovery &rarr; Virtual screening &rarr; Simulation &rarr; Health economics &rarr; Safety monitoring. Serving 5,000+ pharma companies.</div>
+    <div class="fw-meta"><span>ARPU: $28K-70K/project</span><span>5 core projects</span></div>
+  </div>
+  <div class="flywheel-card">
+    <div class="fw-icon" style="background:rgba(16,185,129,.15);color:var(--green)">&#128131;</div>
+    <h3>Health C-End Gateway</h3>
+    <div class="fw-desc">Free screening &rarr; Knowledge &rarr; Management &rarr; Premium consultation. 1.4 billion population health market.</div>
+    <div class="fw-meta"><span>ARPU: $7-280/user</span><span>3 core projects</span></div>
+  </div>
+  <div class="flywheel-card">
+    <div class="fw-icon" style="background:rgba(6,182,212,.15);color:var(--cyan)">&#127793;</div>
+    <h3>OPC Ecosystem</h3>
+    <div class="fw-desc">Learn &rarr; Build &rarr; Sell &rarr; Scale globally. Empowering 10M+ solo entrepreneurs from $0 to $100K.</div>
+    <div class="fw-meta"><span>ARPU: $14-700/member</span><span>3 core projects</span></div>
+  </div>
+  <div class="flywheel-card">
+    <div class="fw-icon" style="background:rgba(245,158,11,.15);color:var(--amber)">&#10024;</div>
+    <h3>Digital Eternity</h3>
+    <div class="fw-desc">Memory preservation &rarr; AI companionship &rarr; Eternal connection. Blue ocean emotional AI market with highest retention.</div>
+    <div class="fw-meta"><span>ARPU: $7-28/mo</span><span>3 core projects</span></div>
+  </div>
+</div>
+</section>
+
+<!-- SEGMENTS -->
+<section class="section">
+
+<div class="segment reveal" id="research">
+  <div class="segment-header">
+    <div class="segment-dot" style="background:#6366f1"></div>
+    <h2>Medical Research AI</h2>
+    <span class="seg-tag">医学科研AI &middot; 12 projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">MetaForge</div>
+      <div class="proj-desc">AI Meta-analysis platform — 6 Agents reduce 45-day reviews to 1 hour</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/metaforge" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">Biostats</div>
+      <div class="proj-desc">AI biostatistics for clinical trials — publication-grade results</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/Biostats" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">MingEvidence</div>
+      <div class="proj-desc">Clinical evidence mining — PICO search → GRADE-ranked summaries</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/mingevidence" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">MedRoundTable</div>
+      <div class="proj-desc">14-Agent research collaboration — from question to publication</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/medroundtable" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">Lancet Research Platform</div>
+      <div class="proj-desc">Local research OS for NHANES, MIMIC, GBD studies</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/lancet-research-platform" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">NHANES → Lancet</div>
+      <div class="proj-desc">Automated NHANES analysis → top journal submission</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/nhanes-to-lancet" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">SEER → Oncology</div>
+      <div class="proj-desc">US cancer data → top oncology journal pipeline</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/seer-data-to-top-oncology-journal" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">Global Aging → Lancet</div>
+      <div class="proj-desc">Global aging demographics → Lancet Global Health</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/global-aging-data-to-lancet-global-health" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">Clinical Trials Insight</div>
+      <div class="proj-desc">Global clinical trial analysis and commentary platform</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/global-clinical-trials-insight-and-commentary-platform-overview" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-support">Support</div>
+      <div class="proj-name">Meta-Analysis Figures</div>
+      <div class="proj-desc">Publication-quality figures for systematic reviews</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/meta-analysis-figures" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">LabMind</div>
+      <div class="proj-desc">Smart lab notebook — experiment recording + knowledge management</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/LabMind--" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">Med Research Collab</div>
+      <div class="proj-desc">AI-powered medical research collaboration platform</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/med-research-collab" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="segment reveal" id="pharma">
+  <div class="segment-header">
+    <div class="segment-dot" style="background:#ec4899"></div>
+    <h2>Drug Discovery & Development</h2>
+    <span class="seg-tag">药物研发AI &middot; 13 projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">DrugMind</div>
+      <div class="proj-desc">Digital twin for drug development — full pipeline collaboration</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/DrugMind" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">DrugClip Platform</div>
+      <div class="proj-desc">AI virtual screening — high-throughput molecular filtering</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/drugclip-platform" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">MediPharma</div>
+      <div class="proj-desc">ChEMBL 2.4M compounds + OpenTargets — AI drug activity prediction</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/medi-pharma" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">PharmaSim</div>
+      <div class="proj-desc">Full lifecycle drug simulation — target to approval</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/PharmaSim" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">PharmaSpark</div>
+      <div class="proj-desc">3D Gaussian Splatting for pharmaceutical visualization</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/pharmaspark" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">Harmes Agent</div>
+      <div class="proj-desc">Drug safety AI — adverse reaction monitoring + compliance</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/Harmes-Agent" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">HEOR Modeling</div>
+      <div class="proj-desc">Health economics & outcomes research — cost-effectiveness analysis</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/heor-modeling-platform" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">AI4S Drug Agent</div>
+      <div class="proj-desc">CNS challenge — targeted molecular design agent</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/ai4s-drug-agent" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">AI4S CNS Agent</div>
+      <div class="proj-desc">CNS drug synthesis planning agent</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/ai4s-cns-agent" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">AI4S RNA-Protein</div>
+      <div class="proj-desc">RNA-protein interaction prediction</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/ai4s-rna-protein" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-support">Support</div>
+      <div class="proj-name">DrugClip Benchmark</div>
+      <div class="proj-desc">AI4S competition — virtual screening optimization</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/drugclip-benchmark" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-support">Support</div>
+      <div class="proj-name">DrugClip Paper</div>
+      <div class="proj-desc">Research paper for DrugClip methodology</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/drugclip-paper" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">DrugClip Agent</div>
+      <div class="proj-desc">Autonomous DrugClip optimization agent</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/drugclip-agent" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="segment reveal" id="clinical">
+  <div class="segment-header">
+    <div class="segment-dot" style="background:#10b981"></div>
+    <h2>Clinical & Health AI</h2>
+    <span class="seg-tag">临床健康AI &middot; 12 projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">VoiceHealth</div>
+      <div class="proj-desc">30-second voice → 25 disease early screening — biomarker AI</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/voicehealth" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">VoiceHealth Mini Program</div>
+      <div class="proj-desc">WeChat mini program for voice health detection</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/voiceHealth-miniprogram" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">KnowHealth</div>
+      <div class="proj-desc">Cross-border medical second opinion — AI + global specialists</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/KnowHealth" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">KnowHealth iOS</div>
+      <div class="proj-desc">Native iOS app for cross-border medical consultation</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/KnowHealth-iOS" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">MediChat-RD</div>
+      <div class="proj-desc">Rare disease AI diagnosis — 66 skills, multi-agent system</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/medichat-rd" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">Chronic Disease Mgmt</div>
+      <div class="proj-desc">HIS-integrated chronic disease management — risk stratification</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/chronicdiseasemanagement" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">HealthGuard OPC</div>
+      <div class="proj-desc">Outpatient population health management platform</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/healthguard-opc" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">HealthKnow</div>
+      <div class="proj-desc">AI health knowledge Q&A platform</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/health-know" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">MediSlim</div>
+      <div class="proj-desc">Consumer medical — AI body assessment + med-spa recommendations</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/medi-slim" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">MedIntel Cloud</div>
+      <div class="proj-desc">Full-stack medical AI — diagnosis, treatment, follow-up</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/medintel-cloud" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">MediGuard</div>
+      <div class="proj-desc">Medical safety monitoring system</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/MediGuard--" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-niche">Niche</div>
+      <div class="proj-name">Pilot Stone Prediction</div>
+      <div class="proj-desc">AI risk prediction for pilot urolithiasis — aviation medicine</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/pilot-stone-prediction" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="segment reveal" id="digital">
+  <div class="segment-header">
+    <div class="segment-dot" style="background:#f59e0b"></div>
+    <h2>Digital Human & Emotional AI</h2>
+    <span class="seg-tag">数字人/情感AI &middot; 5 projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">念念 Eterna</div>
+      <div class="proj-desc">AI digital memorial — voice, face, personality, memory preservation</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/念念-Eterna" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">Digital Sage</div>
+      <div class="proj-desc">Converse with history's 100 greatest minds — AI intellectual salon</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/digital-sage" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">Cloud Memorial</div>
+      <div class="proj-desc">AI platform for preserving memories of loved ones</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/cloud-memorial" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">Minder</div>
+      <div class="proj-desc">AI-powered personal knowledge management</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/minder" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">NarrowGate</div>
+      <div class="proj-desc">AI soul evolution — 30-day courses, meditation, achievement system</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/narrowgate" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="segment reveal" id="infra">
+  <div class="segment-header">
+    <div class="segment-dot" style="background:#8b5cf6"></div>
+    <h2>Infrastructure & Frameworks</h2>
+    <span class="seg-tag">基础设施/框架 &middot; 9 projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">Darwin Framework</div>
+      <div class="proj-desc">Universal evolution framework — auto-improve any project</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/darwin-framework" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">EvoX</div>
+      <div class="proj-desc">Triple-layer evolution engine — Darwin + EvoPrompt + SEW</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/evox" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">Medical Harness</div>
+      <div class="proj-desc">Medical AI agent orchestration framework</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/medical-harness" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">OpenClaw Medical</div>
+      <div class="proj-desc">5-step harness pipeline + MCP tools + multi-agent</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/openclaw-medical-harness" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">Medical MultiAgent</div>
+      <div class="proj-desc">Multi-agent medical research platform</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/medical-multiagent" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">Virtual Cell</div>
+      <div class="proj-desc">Single-cell foundation model benchmark — 15 models × 26 datasets</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/virtual-cell" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">Global App Starter</div>
+      <div class="proj-desc">Industrialized go-global template — Next.js + i18n + Stripe + CI/CD</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/global-app-starter" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-moat">Open Source Moat</div>
+      <div class="proj-name">Ponder Knowledge</div>
+      <div class="proj-desc">Medical knowledge engineering — graph construction + management</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/ponder-knowledge-platform" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-support">Support</div>
+      <div class="proj-name">SearXNG</div>
+      <div class="proj-desc">Private search engine deployment</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/searxng" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="segment reveal" id="platform">
+  <div class="segment-header">
+    <div class="segment-dot" style="background:#06b6d4"></div>
+    <h2>OPC Ecosystem & Platform</h2>
+    <span class="seg-tag">OPC生态平台 &middot; 9 projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">OPC Platform</div>
+      <div class="proj-desc">20 courses, 312 lessons — complete solo entrepreneur education</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/opc-platform" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">OPC Marketplace</div>
+      <div class="proj-desc">Two-sided platform — connecting demand with OPC supply</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/opc-marketplace" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">OPC Alliance</div>
+      <div class="proj-desc">Solo entrepreneur community — networking + collaboration</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/opc-alliance" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-support">Support</div>
+      <div class="proj-name">OPC Legends</div>
+      <div class="proj-desc">Hall of fame — successful OPC entrepreneurs worldwide</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/opc-legends" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">OPC Platform v2</div>
+      <div class="proj-desc">Full learning path — 6 courses, 38 modules, 15+ templates</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/opcplatform" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-cash-cow">Cash Cow</div>
+      <div class="proj-name">天眼 Tianyan</div>
+      <div class="proj-desc">10,000+ virtual consumers — market behavior simulation</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/tianyan" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-growth">Growth</div>
+      <div class="proj-name">Kondratiev Wave</div>
+      <div class="proj-desc">Economic cycle investment prediction — long wave theory</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/kondratiev-wave" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">AgriMind</div>
+      <div class="proj-desc">AI-powered smart agriculture knowledge platform</div>
+      <div class="proj-footer">
+        <div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div>
+        <a href="https://github.com/MoKangMedical/agri-mind" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="tier tier-pipeline">Pipeline</div>
+      <div class="proj-name">MediVisual Artist</div>
+      <div class="proj-desc">AI medical visualization — illustrations + data viz</div>
+      <div class="proj-footer">
+        <div class="proj-status status-live"><span class="dot-sm"></span>Live</div>
+        <a href="https://github.com/MoKangMedical/medivisual-artist" class="proj-link" target="_blank">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(239,68,68,.1);color:#ef4444">Join Us</div>
+  <h2>Team & Partnerships</h2>
+  <p>Looking for exceptional people to build the future of medical AI together.</p>
+</div>
+<div class="team-grid reveal">
+
+  <div class="team-card">
+    <div class="team-priority p-urgent">Urgent</div>
+    <div>
+      <h4>Medical BD / Product Manager</h4>
+      <p>Hospital procurement experience, 三甲医院 connections</p>
+      <div class="team-type">Full-time / Co-founder</div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <div class="team-priority p-urgent">Urgent</div>
+    <div>
+      <h4>Knowledge Monetization Operator</h4>
+      <p>Course conversion, community building, private domain</p>
+      <div class="team-type">Full-time / Commission</div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <div class="team-priority p-urgent">Urgent</div>
+    <div>
+      <h4>Overseas Market BD</h4>
+      <p>FDA/EMA experience, English fluent, HIMSS/DIA connections</p>
+      <div class="team-type">Full-time</div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <div class="team-priority p-important">Important</div>
+    <div>
+      <h4>Full-stack Engineer</h4>
+      <p>Python + Next.js + deployment, medical AI experience preferred</p>
+      <div class="team-type">Full-time</div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <div class="team-priority p-important">Important</div>
+    <div>
+      <h4>Medical Advisory Board</h4>
+      <p>Department chiefs, professors — credibility + paper co-authorship</p>
+      <div class="team-type">Part-time / Advisory</div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <div class="team-priority p-important">Important</div>
+    <div>
+      <h4>Legal & Compliance</h4>
+      <p>Medical device registration, FDA/NMPA experience</p>
+      <div class="team-type">Part-time</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" style="text-align:center;padding-bottom:120px">
+<div class="reveal">
+  <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:16px">Ready to Build the Future?</h2>
+  <p style="font-size:16px;color:var(--text2);max-width:480px;margin:0 auto 32px">Whether you are a researcher, clinician, pharma company, or solo entrepreneur — let us talk.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <a href="https://github.com/MoKangMedical" target="_blank" style="background:var(--accent);color:#fff;padding:12px 32px;border-radius:10px;font-weight:600;font-size:15px">View All Projects</a>
+    <a href="mailto:contact@mokangmedical.com" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:12px 32px;border-radius:10px;font-weight:600;font-size:15px">Contact Us</a>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p>MoKangMedical &copy; 2026 &middot; Built with AI &middot; <a href="https://github.com/MoKangMedical" target="_blank">GitHub</a> &middot; Last updated: April 2026</p>
+</footer>
+
+<script>
+// Scroll reveal — fallback: make visible after 1s if observer doesn't fire
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
+}, {threshold: 0.05})
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+setTimeout(() => document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible')), 800)
+
+// Smooth nav highlight
+const sections = document.querySelectorAll('.segment[id]')
+const navLinks = document.querySelectorAll('.nav-links a')
+window.addEventListener('scroll', () => {
+  let current = ''
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 200) current = s.id })
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#'+current ? 'var(--text)' : '' })
+})
+</script>
+</body>
+</html>
