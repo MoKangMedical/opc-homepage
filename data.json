@@ -85,28 +85,32 @@
           "desc": "AI Meta-analysis platform — 6 Agents reduce 45-day reviews to 1 hour",
           "repo": "metaforge",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "45 days -> 1 hour analysis"
         },
         {
           "name": "Biostats",
           "desc": "AI biostatistics for clinical trials — publication-grade results",
           "repo": "Biostats",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "Publication-grade in minutes"
         },
         {
           "name": "MingEvidence",
           "desc": "Clinical evidence mining — PICO search → GRADE-ranked summaries",
           "repo": "mingevidence",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "impact": "10x faster evidence mining"
         },
         {
           "name": "MedRoundTable",
           "desc": "14-Agent research collaboration — from question to publication",
           "repo": "medroundtable",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "impact": "14 Agents collaborating"
         },
         {
           "name": "Lancet Research Platform",
@@ -178,14 +182,16 @@
           "desc": "Digital twin for drug development — full pipeline collaboration",
           "repo": "DrugMind",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "Full pipeline digital twin"
         },
         {
           "name": "DrugClip Platform",
           "desc": "AI virtual screening — high-throughput molecular filtering",
           "repo": "drugclip-platform",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "1000x faster screening"
         },
         {
           "name": "MediPharma",
@@ -199,7 +205,8 @@
           "desc": "Full lifecycle drug simulation — target to approval",
           "repo": "PharmaSim",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "Target to approval simulation"
         },
         {
           "name": "PharmaSpark",
@@ -220,7 +227,8 @@
           "desc": "Health economics & outcomes research — cost-effectiveness analysis",
           "repo": "heor-modeling-platform",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "Standardized cost-effectiveness"
         },
         {
           "name": "AI4S Drug Agent",
@@ -278,7 +286,8 @@
           "desc": "30-second voice → 25 disease early screening — biomarker AI",
           "repo": "voicehealth",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "30s voice -> 25 diseases"
         },
         {
           "name": "VoiceHealth Mini Program",
@@ -292,7 +301,8 @@
           "desc": "Cross-border medical second opinion — AI + global specialists",
           "repo": "KnowHealth",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "Cross-border in 48 hours"
         },
         {
           "name": "KnowHealth iOS",
@@ -306,7 +316,8 @@
           "desc": "Rare disease AI diagnosis — 66 skills, multi-agent system",
           "repo": "medichat-rd",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "impact": "66 skills, rare disease AI"
         },
         {
           "name": "Chronic Disease Mgmt",
@@ -371,14 +382,16 @@
           "desc": "AI digital memorial — voice, face, personality, memory preservation",
           "repo": "念念-Eterna",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "Digital immortality"
         },
         {
           "name": "Digital Sage",
           "desc": "Converse with history's 100 greatest minds — AI intellectual salon",
           "repo": "digital-sage",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "100 greatest minds"
         },
         {
           "name": "Cloud Memorial",
@@ -399,7 +412,8 @@
           "desc": "AI soul evolution — 30-day courses, meditation, achievement system",
           "repo": "narrowgate",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "impact": "30-day soul evolution"
         }
       ]
     },
@@ -415,7 +429,8 @@
           "desc": "Universal evolution framework — auto-improve any project",
           "repo": "darwin-framework",
           "status": "live",
-          "tier": "moat"
+          "tier": "moat",
+          "impact": "Auto-improve any project"
         },
         {
           "name": "EvoX",
@@ -450,7 +465,8 @@
           "desc": "Single-cell foundation model benchmark — 15 models × 26 datasets",
           "repo": "virtual-cell",
           "status": "live",
-          "tier": "moat"
+          "tier": "moat",
+          "impact": "15 models x 26 datasets"
         },
         {
           "name": "Global App Starter",
@@ -487,7 +503,8 @@
           "desc": "20 courses, 312 lessons — complete solo entrepreneur education",
           "repo": "opc-platform",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "312 lessons, 20 courses"
         },
         {
           "name": "OPC Marketplace",
@@ -522,7 +539,8 @@
           "desc": "10,000+ virtual consumers — market behavior simulation",
           "repo": "tianyan",
           "status": "live",
-          "tier": "cash-cow"
+          "tier": "cash-cow",
+          "impact": "10,000+ virtual consumers"
         },
         {
           "name": "Kondratiev Wave",

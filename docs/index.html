@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC创业者联盟 — 医疗AI一站式赋能平台</title>
+    <meta name="description" content="OPC创业者联盟：整合医疗AI、药物研发、商业预测、慢病管理等10+核心项目，一站式赋能医疗创业。">
+    <meta property="og:title" content="OPC创业者联盟">
+    <meta property="og:description" content="医疗AI一站式赋能平台">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg2: #111118;
+            --bg3: #1a1a24;
+            --card: #16161e;
+            --card-hover: #1e1e28;
+            --border: #2a2a3a;
+            --text: #f0f0f5;
+            --text2: #8888a0;
+            --text3: #555570;
+            --accent: #e94560;
+            --accent2: #ff6b81;
+            --blue: #3b82f6;
+            --green: #10b981;
+            --purple: #8b5cf6;
+            --gold: #f59e0b;
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Navigation */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10, 10, 15, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; }
+        .nav-logo { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--purple)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: var(--text2); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta {
+            background: var(--accent); color: white; padding: 8px 20px; border-radius: 8px;
+            font-size: 14px; font-weight: 600; transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--accent2); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 120px 24px 80px;
+            background: radial-gradient(ellipse at top, rgba(233, 69, 96, 0.15), transparent 60%);
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.1;
+            margin-bottom: 24px; letter-spacing: -0.03em;
+        }
+        .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text2); max-width: 700px; margin: 0 auto 40px; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--accent); color: white; padding: 14px 32px; border-radius: 10px;
+            font-size: 16px; font-weight: 600; transition: all 0.2s;
+        }
+        .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+        .btn-secondary {
+            background: var(--bg3); color: var(--text); padding: 14px 32px; border-radius: 10px;
+            font-size: 16px; font-weight: 600; border: 1px solid var(--border); transition: all 0.2s;
+        }
+        .btn-secondary:hover { background: var(--card); border-color: var(--accent); }
+
+        /* Stats */
+        .stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+            padding: 60px 0; border-top: 1px solid var(--border);
+        }
+        .stat { text-align: center; }
+        .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--accent); }
+        .stat-label { font-size: 14px; color: var(--text2); margin-top: 4px; }
+
+        /* Projects Grid */
+        .section { padding: 100px 0; }
+        .section-title {
+            font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 16px;
+        }
+        .section-desc {
+            text-align: center; color: var(--text2); max-width: 600px; margin: 0 auto 60px;
+        }
+
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px;
+        }
+        .project-card {
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 32px; transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
+        }
+        .project-card:hover {
+            background: var(--card-hover); border-color: var(--accent);
+            transform: translateY(-4px); box-shadow: 0 12px 40px rgba(233, 69, 96, 0.15);
+        }
+        .project-icon {
+            width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center;
+            justify-content: center; font-size: 28px; margin-bottom: 20px;
+        }
+        .project-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+        .project-card p { color: var(--text2); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+            background: var(--bg3); color: var(--text2); padding: 4px 12px; border-radius: 20px;
+            font-size: 12px; font-weight: 500;
+        }
+        .project-status {
+            position: absolute; top: 20px; right: 20px;
+            padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+        }
+        .status-live { background: rgba(16, 185, 129, 0.15); color: var(--green); }
+        .status-beta { background: rgba(245, 158, 11, 0.15); color: var(--gold); }
+        .status-dev { background: rgba(139, 92, 246, 0.15); color: var(--purple); }
+
+        /* Categories */
+        .category-label {
+            font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--accent); margin-bottom: 32px; display: flex; align-items: center; gap: 12px;
+        }
+        .category-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        /* Footer */
+        .footer {
+            background: var(--bg2); border-top: 1px solid var(--border); padding: 60px 0;
+        }
+        .footer-inner {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+        }
+        .footer-brand p { color: var(--text2); font-size: 14px; margin-top: 16px; }
+        .footer h4 { font-size: 14px; font-weight: 700; margin-bottom: 20px; color: var(--text); }
+        .footer-links { display: flex; flex-direction: column; gap: 12px; }
+        .footer-links a { color: var(--text2); font-size: 14px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom {
+            text-align: center; padding-top: 40px; margin-top: 40px;
+            border-top: 1px solid var(--border); color: var(--text3); font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <div class="nav-logo">O</div>
+                <span>OPC创业者联盟</span>
+            </a>
+            <div class="nav-links">
+                <a href="#projects">核心项目</a>
+                <a href="#ecosystem">生态体系</a>
+                <a href="#pricing">定价</a>
+                <a href="https://github.com/MoKangMedical">GitHub</a>
+            </div>
+            <a href="#contact" class="nav-cta">联系我们</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>医疗AI<br><span>一站式赋能平台</span></h1>
+            <p>整合药物研发、商业预测、慢病管理、临床试验等10+核心项目，为医疗创业者提供从idea到IPO的全链路支持。</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">探索核心项目</a>
+                <a href="https://github.com/MoKangMedical" class="btn-secondary">GitHub 仓库</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">核心项目</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">66</div>
+                <div class="stat-label">AI Agent Skills</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">50+</div>
+                <div class="stat-label">API 端点</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">3</div>
+                <div class="stat-label">目标市场</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="category-label">商业智能</div>
+            <div class="projects-grid">
+                <a href="https://mokangmedical.github.io/tianyan/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #e94560, #ff6b81);">◉</div>
+                    <h3>天眼 Tianyan</h3>
+                    <p>多Agent商业预测平台，支持市场推演、定价策略、渠道优化、KOL测试。14个API端点，152测试覆盖。</p>
+                    <div class="project-tags">
+                        <span class="tag">商业预测</span>
+                        <span class="tag">多Agent</span>
+                        <span class="tag">API</span>
+                    </div>
+                </a>
+                <a href="https://mokangmedical.github.io/pharmaspark/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">💊</div>
+                    <h3>PharmaSpark</h3>
+                    <p>药物研发全流程平台，集成靶点发现、先导化合物优化、ADMET预测、临床试验设计。</p>
+                    <div class="project-tags">
+                        <span class="tag">药物研发</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">临床试验</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-label" style="margin-top: 60px;">健康管理</div>
+            <div class="projects-grid">
+                <a href="https://mokangmedical.github.io/chronicdiseasemanagement/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">❤️</div>
+                    <h3>慢康智枢 ChroniCare OS</h3>
+                    <p>AI慢病管理系统，覆盖糖尿病、高血压、COPD全周期管理。40患者/5医院/15医生demo数据。</p>
+                    <div class="project-tags">
+                        <span class="tag">慢病管理</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">临床</span>
+                    </div>
+                </a>
+                <a href="https://mokangmedical.github.io/medichat-rd/" class="project-card">
+                    <span class="project-status status-beta">Beta</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">🔬</div>
+                    <h3>MediChat-RD</h3>
+                    <p>罕见病AI诊疗平台，知识图谱+药物重定位+多Agent系统。目标市场：美国、欧盟、日本。</p>
+                    <div class="project-tags">
+                        <span class="tag">罕见病</span>
+                        <span class="tag">知识图谱</span>
+                        <span class="tag">全球化</span>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <span class="project-status status-dev">开发中</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">🎤</div>
+                    <h3>VoiceHealth</h3>
+                    <p>AI声纹健康检测平台，通过声音分析疾病风险。含微信小程序、FastAPI后端。</p>
+                    <div class="project-tags">
+                        <span class="tag">声纹检测</span>
+                        <span class="tag">小程序</span>
+                        <span class="tag">健康</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-label" style="margin-top: 60px;">知识与教育</div>
+            <div class="projects-grid">
+                <a href="https://mokangmedical.github.io/kondratiev-wave/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #e2b64f, #f5d98a);">📈</div>
+                    <h3>康波研究院</h3>
+                    <p>基于康德拉季耶夫长波理论，21课5Phase体系，定位当前周期位置，规划投资策略。</p>
+                    <div class="project-tags">
+                        <span class="tag">经济周期</span>
+                        <span class="tag">投资</span>
+                        <span class="tag">课程</span>
+                    </div>
+                </a>
+                <a href="https://mokangmedical.github.io/digital-sage/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #6366f1, #818cf8);">🎓</div>
+                    <h3>Digital Sage 智者</h3>
+                    <p>100位专家多模态课程系统，HTML+SVG+MP3+Quiz+Certificate完整闭环。</p>
+                    <div class="project-tags">
+                        <span class="tag">课程</span>
+                        <span class="tag">多模态</span>
+                        <span class="tag">数字人</span>
+                    </div>
+                </a>
+                <a href="https://mokangmedical.github.io/medivisual-artist/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #ec4899, #f472b6);">🎨</div>
+                    <h3>MediVisual Artist</h3>
+                    <p>医学可视化工具，生成专业医学图表、解剖图、病理示意图。</p>
+                    <div class="project-tags">
+                        <span class="tag">可视化</span>
+                        <span class="tag">医学</span>
+                        <span class="tag">工具</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-label" style="margin-top: 60px;">研发工具</div>
+            <div class="projects-grid">
+                <a href="https://mokangmedical.github.io/drugclip-benchmark/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #14b8a6, #2dd4bf);">🧬</div>
+                    <h3>DrugCLIP Benchmark</h3>
+                    <p>药物虚拟筛选基准平台，CLIP模型在药物发现中的应用评估。</p>
+                    <div class="project-tags">
+                        <span class="tag">虚拟筛选</span>
+                        <span class="tag">CLIP</span>
+                        <span class="tag">基准</span>
+                    </div>
+                </a>
+                <a href="https://mokangmedical.github.io/nhanes-to-lancet/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);">📊</div>
+                    <h3>NHANES-to-Lancet</h3>
+                    <p>NHANES数据自动化分析平台，一键生成Lancet级别论文图表和统计结果。</p>
+                    <div class="project-tags">
+                        <span class="tag">NHANES</span>
+                        <span class="tag">统计</span>
+                        <span class="tag">论文</span>
+                    </div>
+                </a>
+                <a href="https://mokangmedical.github.io/metaforge/" class="project-card">
+                    <span class="project-status status-live">已上线</span>
+                    <div class="project-icon" style="background: linear-gradient(135deg, #f97316, #fb923c);">🔬</div>
+                    <h3>MetaForge</h3>
+                    <p>Meta分析自动化工具，文献筛选、数据提取、统计分析、森林图生成一站式完成。</p>
+                    <div class="project-tags">
+                        <span class="tag">Meta分析</span>
+                        <span class="tag">自动化</span>
+                        <span class="tag">研究</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="ecosystem" style="background: var(--bg2);">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">生态体系</h2>
+            <p class="section-desc">从数据采集到商业变现，覆盖医疗AI创业全链路</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 40px;">
+                <div style="padding: 24px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">📊</div>
+                    <h4 style="font-size: 16px; margin-bottom: 8px;">数据层</h4>
+                    <p style="font-size: 13px; color: var(--text2);">NHANES、SEER、UK Biobank、临床数据</p>
+                </div>
+                <div style="padding: 24px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">🤖</div>
+                    <h4 style="font-size: 16px; margin-bottom: 8px;">AI层</h4>
+                    <p style="font-size: 13px; color: var(--text2);">多Agent系统、知识图谱、LLM推理</p>
+                </div>
+                <div style="padding: 24px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">💊</div>
+                    <h4 style="font-size: 16px; margin-bottom: 8px;">应用层</h4>
+                    <p style="font-size: 13px; color: var(--text2);">药物研发、临床决策、健康管理</p>
+                </div>
+                <div style="padding: 24px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">💰</div>
+                    <h4 style="font-size: 16px; margin-bottom: 8px;">商业层</h4>
+                    <p style="font-size: 13px; color: var(--text2);">SaaS订阅、API调用、企业定制</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="pricing">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">定价方案</h2>
+            <p class="section-desc">灵活的定价策略，满足不同规模团队需求</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px;">
+                <div style="padding: 40px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); text-align: left;">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--text2); margin-bottom: 8px;">STARTER</div>
+                    <div style="font-size: 48px; font-weight: 900; margin-bottom: 8px;">$299<span style="font-size: 16px; color: var(--text2);">/月</span></div>
+                    <p style="color: var(--text2); font-size: 14px; margin-bottom: 24px;">适合初创团队和个人研究者</p>
+                    <ul style="list-style: none; margin-bottom: 32px;">
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 3个核心项目访问</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 1000次API调用/月</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 基础技术支持</li>
+                    </ul>
+                    <a href="#contact" style="display: block; text-align: center; padding: 12px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; font-weight: 600;">开始使用</a>
+                </div>
+                <div style="padding: 40px; background: var(--card); border-radius: var(--radius); border: 2px solid var(--accent); text-align: left; position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;">推荐</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 8px;">PROFESSIONAL</div>
+                    <div style="font-size: 48px; font-weight: 900; margin-bottom: 8px;">$999<span style="font-size: 16px; color: var(--text2);">/月</span></div>
+                    <p style="color: var(--text2); font-size: 14px; margin-bottom: 24px;">适合成长期企业和研究机构</p>
+                    <ul style="list-style: none; margin-bottom: 32px;">
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 全部项目访问</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 10000次API调用/月</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 优先技术支持</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 定制化报告</li>
+                    </ul>
+                    <a href="#contact" style="display: block; text-align: center; padding: 12px; background: var(--accent); border-radius: 10px; font-weight: 600; color: white;">立即升级</a>
+                </div>
+                <div style="padding: 40px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); text-align: left;">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--gold); margin-bottom: 8px;">ENTERPRISE</div>
+                    <div style="font-size: 48px; font-weight: 900; margin-bottom: 8px;">定制</div>
+                    <p style="color: var(--text2); font-size: 14px; margin-bottom: 24px;">适合大型企业和医疗机构</p>
+                    <ul style="list-style: none; margin-bottom: 32px;">
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 无限API调用</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 私有化部署</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ 专属客户经理</li>
+                        <li style="padding: 8px 0; color: var(--text2); font-size: 14px;">✓ SLA保障</li>
+                    </ul>
+                    <a href="#contact" style="display: block; text-align: center; padding: 12px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; font-weight: 600;">联系销售</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="nav-brand">
+                        <div class="nav-logo">O</div>
+                        <span>OPC创业者联盟</span>
+                    </div>
+                    <p>医疗AI一站式赋能平台<br>从idea到IPO的全链路支持</p>
+                </div>
+                <div>
+                    <h4>核心项目</h4>
+                    <div class="footer-links">
+                        <a href="https://mokangmedical.github.io/tianyan/">天眼 Tianyan</a>
+                        <a href="https://mokangmedical.github.io/chronicdiseasemanagement/">慢康智枢</a>
+                        <a href="https://mokangmedical.github.io/kondratiev-wave/">康波研究院</a>
+                        <a href="https://mokangmedical.github.io/digital-sage/">Digital Sage</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>资源</h4>
+                    <div class="footer-links">
+                        <a href="https://github.com/MoKangMedical">GitHub</a>
+                        <a href="#">API文档</a>
+                        <a href="#">技术博客</a>
+                        <a href="#">案例研究</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>联系我们</h4>
+                    <div class="footer-links">
+                        <a href="mailto:contact@mokangmedical.com">contact@mokangmedical.com</a>
+                        <a href="#">微信公众号</a>
+                        <a href="#">知乎</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 MoKangMedical. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

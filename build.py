@@ -41,6 +41,8 @@ def proj_card(p, seg_id):
     stars_html = '<span class="stat-badge" title="Stars">&#9733; %d</span>' % stars if stars > 0 else ''
     forks_html = '<span class="stat-badge" title="Forks">&#9906; %d</span>' % forks if forks > 0 else ''
     lang_html = '<span class="stat-badge">%s</span>' % lang if lang else ''
+    impact = p.get("impact", "")
+    impact_html = '<div class="proj-impact">%s</div>' % impact if impact else ''
     status_cls = "live" if p["status"] == "live" else "dev"
     status_txt = "Live" if p["status"] == "live" else "In Dev"
     return (
@@ -48,6 +50,7 @@ def proj_card(p, seg_id):
         '<div class="tier tier-%s">%s</div>'
         '<div class="proj-name">%s</div>'
         '<div class="proj-desc">%s</div>'
+        '%s'
         '<div class="proj-meta">%s%s%s</div>'
         '<div class="proj-footer">'
         '<div class="proj-status status-%s"><span class="dot-sm"></span>%s</div>'
@@ -56,6 +59,7 @@ def proj_card(p, seg_id):
     ) % (seg_id, p["tier"], p["status"], p["name"].lower(),
          p["tier"], tier_badge(p["tier"]),
          p["name"], p["desc"],
+         impact_html,
          stars_html, forks_html, lang_html,
          status_cls, status_txt, p["repo"])
 

@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mokangmedical.github.io/opc-homepage/">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>M</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -28,8 +29,9 @@ body{background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--accent);color:#fff}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,box-shadow .4s}
+nav.scrolled{background:rgba(9,9,11,.85);border-bottom-color:rgba(99,102,241,.15);box-shadow:0 1px 24px rgba(99,102,241,.08)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-weight:800;font-size:18px;letter-spacing:-.5px}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:20px;font-size:12px;font-weight:500;color:var(--text3)}
@@ -40,22 +42,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .nav-cta:hover{opacity:.85}
 .nav-mobile{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:22px;padding:4px}
 
-.hero{padding:140px 24px 60px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:1000px;height:1000px;background:radial-gradient(circle,rgba(99,102,241,.08) 0%,transparent 60%);pointer-events:none}
+.hero{padding:0 32px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle,rgba(99,102,241,.08) 0%,transparent 60%);pointer-events:none;z-index:0}
+.hero-mesh{position:absolute;inset:0;z-index:0;overflow:hidden!important}
+.hero>*:not(.hero-mesh){position:relative;z-index:1}
+.hero-mesh .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:morph 18s ease-in-out infinite alternate}
+.hero-mesh .orb-1{width:600px;height:600px;background:radial-gradient(circle,#6366f1,#8b5cf6);top:-15%;left:10%;animation-delay:0s}
+.hero-mesh .orb-2{width:500px;height:500px;background:radial-gradient(circle,#ec4899,#8b5cf6);bottom:-10%;right:5%;animation-delay:-6s}
+.hero-mesh .orb-3{width:400px;height:400px;background:radial-gradient(circle,#06b6d4,#6366f1);top:20%;right:25%;animation-delay:-12s}
+@keyframes morph{0%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.1)}66%{transform:translate(-20px,40px) scale(.95)}100%{transform:translate(30px,10px) scale(1.05)}}
+.hero-grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+.hero-noise{position:absolute;inset:0;z-index:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:128px 128px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px;font-size:13px;color:var(--text2);margin-bottom:24px}
 .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(36px,6vw,68px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;max-width:860px;margin:0 auto 20px}
+.hero h1{font-size:clamp(36px,6vw,68px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;max-width:860px;margin:0 auto 24px}
 .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--pink),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:17px;color:var(--text2);max-width:600px;margin:0 auto 40px;line-height:1.7}
+.hero p{font-size:17px;color:var(--text2);max-width:600px;margin:0 auto 48px;line-height:1.7}
 
-.stats-bar{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;padding:32px 0}
+.stats-bar{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:40px 0}
 .stat-item{text-align:center}
 .stat-item .num{font-size:32px;font-weight:800;letter-spacing:-1px}
 .stat-item .num.accent{color:var(--accent2)}
 .stat-item .label{font-size:12px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
 
-.controls{max-width:1280px;margin:0 auto;padding:0 24px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.controls{max-width:1280px;margin:0 auto;padding:0 32px 32px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .search-box{flex:1;min-width:200px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 16px;color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
 .search-box:focus{border-color:var(--accent)}
 .search-box::placeholder{color:var(--text3)}
@@ -63,22 +74,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent2);background:rgba(99,102,241,.08)}
 .result-count{font-size:12px;color:var(--text3);margin-left:auto}
 
-.section{max-width:1280px;margin:0 auto;padding:60px 24px}
-.section-header{text-align:center;margin-bottom:40px}
+.section{max-width:1280px;margin:0 auto;padding:80px 32px}
+.section-header{text-align:center;margin-bottom:48px}
 .section-header .tag{display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:6px;margin-bottom:12px}
 .section-header h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:10px}
 .section-header p{font-size:15px;color:var(--text2);max-width:520px;margin:0 auto}
 
 .fw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.fw-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:border-color .2s,transform .2s}
-.fw-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.fw-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.fw-card:hover{border-color:transparent;transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.2)}
 .fw-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px}
 .fw-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
 .fw-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:12px}
 .fw-tags{display:flex;gap:8px;flex-wrap:wrap}
 .fw-tags span{font-size:11px;background:var(--bg3);padding:3px 8px;border-radius:5px;color:var(--text3)}
 
-.segment{max-width:1280px;margin:0 auto;padding:40px 24px}
+.segment{max-width:1280px;margin:0 auto;padding:48px 32px}
 .seg-header{display:flex;align-items:center;gap:12px;margin-bottom:8px;padding-bottom:16px;border-bottom:1px solid var(--border)}
 .seg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .seg-titles{display:flex;align-items:baseline;gap:10px;flex:1}
@@ -87,9 +98,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .seg-count{font-size:12px;color:var(--text3);background:var(--bg3);padding:3px 10px;border-radius:6px}
 .seg-tagline{font-size:14px;color:var(--text2);margin-bottom:20px;padding-left:22px}
 
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .2s;position:relative;overflow:hidden}
-.proj-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.proj-card:hover{border-color:transparent;transform:translateY(-3px);box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.25)}
 .proj-card.hidden{display:none}
 .tier{position:absolute;top:14px;right:14px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 7px;border-radius:4px}
 .tier-cash-cow{background:rgba(16,185,129,.12);color:var(--green)}
@@ -99,7 +110,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .tier-support{background:rgba(113,113,122,.08);color:var(--text3)}
 .tier-niche{background:rgba(6,182,212,.12);color:var(--cyan)}
 .proj-name{font-size:15px;font-weight:700;margin-bottom:6px;padding-right:70px}
-.proj-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px;min-height:36px}
+.proj-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px;min-height:36px}
+.proj-impact{font-size:11px;color:var(--green);font-weight:600;margin-bottom:8px;padding:3px 8px;background:rgba(16,185,129,.08);border-radius:4px;display:inline-block}
 .proj-meta{display:flex;gap:6px;margin-bottom:10px}
 .stat-badge{font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 6px;border-radius:4px}
 .proj-footer{display:flex;align-items:center;justify-content:space-between}
@@ -110,10 +122,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .proj-link{font-size:11px;color:var(--text3);transition:color .2s}
 .proj-link:hover{color:var(--accent2)}
 
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:all .2s}
-.price-card:hover{border-color:var(--border2)}
-.price-card.featured{border-color:var(--accent);position:relative}
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:32px}
+.toggle-label{font-size:14px;color:var(--text3);transition:color .3s}
+.toggle-label.active{color:var(--text);font-weight:600}
+.save-badge{font-size:10px;background:rgba(16,185,129,.15);color:var(--green);padding:2px 6px;border-radius:4px;margin-left:4px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.price-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(99,102,241,.1)}
+.price-card.featured:hover{box-shadow:0 12px 40px rgba(99,102,241,.18)}
 .price-card.featured::before{content:'Recommended';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:1px}
 .price-tier{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:8px}
 .price-amount{font-size:36px;font-weight:900;letter-spacing:-1px;margin-bottom:4px}
@@ -123,12 +140,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .price-features li{font-size:13px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .price-features li::before{content:'\2713';color:var(--green);font-weight:700;font-size:12px}
 .price-btn{display:block;width:100%;padding:10px;border-radius:8px;font-size:14px;font-weight:600;text-align:center;transition:all .2s;cursor:pointer;font-family:inherit}
-.price-btn.primary{background:var(--accent);color:#fff;border:none}
-.price-btn.primary:hover{opacity:.85}
+.price-btn.primary{background:linear-gradient(135deg,var(--accent),#818cf8);color:#fff;border:none}
+.price-btn.primary:hover{opacity:.9;transform:translateY(-1px)}
 .price-btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
 .price-btn.secondary:hover{border-color:var(--accent);color:var(--accent2)}
 
-.faq-list{max-width:720px;margin:0 auto}
+.faq-list{max-width:720px;margin:0 auto;padding:0 8px}
 .faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden}
 .faq-item summary{padding:16px 20px;font-size:14px;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
 .faq-item summary::-webkit-details-marker{display:none}
@@ -136,8 +153,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .faq-item[open] summary::after{content:'\2212'}
 .faq-item p{padding:0 20px 16px;font-size:13px;color:var(--text2);line-height:1.7}
 
-.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
-.team-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;gap:12px;align-items:flex-start}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.team-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:14px;align-items:flex-start;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.team-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
 .team-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:2px}
 .team-badge.urgent{background:rgba(239,68,68,.12);color:#ef4444}
 .team-badge.important{background:rgba(245,158,11,.12);color:var(--amber)}
@@ -145,7 +163,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .team-card p{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:4px}
 .team-type{font-size:11px;color:var(--text3)}
 
-.contact-section{text-align:center;padding:80px 24px}
+.contact-section{text-align:center;padding:100px 32px}
 .contact-section h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
 .contact-section p{font-size:15px;color:var(--text2);max-width:480px;margin:0 auto 28px}
 .contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -160,17 +178,59 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.8);b
 .newsletter-form input:focus{border-color:var(--accent)}
 .newsletter-form button{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap}
 
-footer{border-top:1px solid var(--border);padding:48px 24px 32px;max-width:1280px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+footer{border-top:1px solid var(--border);padding:56px 32px 36px;max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
 .footer-brand h3{font-size:16px;font-weight:800;margin-bottom:8px}
-.footer-brand p{font-size:12px;color:var(--text3);line-height:1.6}
+.footer-brand p{font-size:13px;color:var(--text3);line-height:1.7}
 .footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:12px}
-.footer-col a{display:block;font-size:13px;color:var(--text2);padding:3px 0;transition:color .2s}
+.footer-col a{display:block;font-size:13px;color:var(--text2);padding:5px 0;transition:all .2s}
 .footer-col a:hover{color:var(--accent2)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3)}
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-stagger{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-stagger.visible{opacity:1;transform:translateY(0)}
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:28px;font-size:14px;font-weight:500}
+.pricing-toggle .label{color:var(--text3);transition:color .3s}
+.pricing-toggle .label.active{color:var(--text)}
+.toggle-switch{width:48px;height:26px;background:var(--bg3);border:1px solid var(--border);border-radius:999px;cursor:pointer;position:relative;transition:background .3s,border-color .3s;flex-shrink:0}
+.toggle-switch.annual{background:var(--accent);border-color:var(--accent)}
+.toggle-switch .toggle-knob{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle-switch.annual .toggle-knob{transform:translateX(22px)}
+.save-badge{font-size:11px;font-weight:700;background:rgba(16,185,129,.15);color:var(--green);padding:2px 8px;border-radius:999px;margin-left:4px}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.how-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.how-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.how-num{font-size:32px;font-weight:900;color:var(--accent);margin-bottom:12px;opacity:.6}
+.how-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.how-card p{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* USE CASES */
+.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.usecase-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.usecase-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.usecase-icon{font-size:28px;margin-bottom:12px}
+.usecase-card h3{font-size:16px;font-weight:700;margin-bottom:12px}
+.usecase-quote{font-size:13px;color:var(--text2);line-height:1.7;font-style:italic;margin-bottom:12px}
+.usecase-author{font-size:11px;color:var(--text3);margin-bottom:16px}
+.usecase-metric{display:flex;align-items:baseline;gap:8px;padding-top:12px;border-top:1px solid var(--border)}
+.metric-num{font-size:24px;font-weight:800;color:var(--accent2)}
+.metric-label{font-size:12px;color:var(--text3)}
+
+/* SOCIAL PROOF BAR */
+.proof-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;margin:0 auto;max-width:1280px}
+.proof-inner{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.proof-label{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
+.proof-item{font-size:13px;color:var(--text2);font-weight:500}
+.proof-dot{color:var(--text3)}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;z-index:50}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{border-color:var(--accent);color:var(--accent2)}
 
 @media(max-width:768px){
   .nav-links{display:none}
@@ -180,26 +240,261 @@ footer{border-top:1px solid var(--border);padding:48px 24px 32px;max-width:1280p
   .projects-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr}
   .fw-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr}
+  .usecase-grid{grid-template-columns:1fr}
   .pricing-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
   .controls{flex-direction:column}
   .search-box{width:100%}
   .result-count{margin-left:0}
+  .hero-mesh .orb{filter:blur(80px);opacity:.25}
+  .hero-mesh .orb-1{width:350px;height:350px}
+  .hero-mesh .orb-2{width:300px;height:300px}
+  .hero-mesh .orb-3{width:250px;height:250px}
 }
 @media(max-width:480px){
   .hero h1{font-size:28px}
   .section{padding:40px 16px}
   .footer-grid{grid-template-columns:1fr}
 }
-</style>
+
+/* ===== MOBILE OPTIMIZATION ===== */
+/* Better touch targets */
+a, button, .filter-btn, .price-btn, .nav-cta, .btn-primary, .btn-secondary{
+  min-height:44px;
+  min-width:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.filter-btn{padding:10px 14px;font-size:13px}
+.nav-mobile{width:44px;height:44px;font-size:24px}
+
+/* Slide-in mobile menu */
+.mobile-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  z-index:99;opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+}
+.mobile-overlay.open{opacity:1;pointer-events:auto}
+
+.nav-links.mobile-open{
+  position:fixed!important;top:0;right:0;bottom:0;
+  width:280px;max-width:80vw;display:flex!important;
+  flex-direction:column;background:var(--bg2)!important;
+  border-left:1px solid var(--border);
+  padding:80px 24px 24px!important;z-index:101;
+  gap:0!important;transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;
+}
+.nav-links.mobile-open.open{transform:translateX(0)}
+.nav-links.mobile-open a{
+  padding:14px 16px;font-size:15px;font-weight:500;
+  color:var(--text2);border-bottom:1px solid var(--border);
+  transition:color .2s,background .2s;border-radius:0;
+}
+.nav-links.mobile-open a:hover{color:var(--text);background:rgba(99,102,241,.06)}
+
+/* Better spacing on small screens */
+@media(max-width:640px){
+  .hero{padding:0 20px;min-height:90vh}
+  .hero p{font-size:15px;margin-bottom:32px}
+  .hero-badge{font-size:12px;padding:5px 12px}
+  .stats-bar{gap:16px;padding:24px 0}
+  .stat-item .num{font-size:22px}
+  .stat-item .label{font-size:10px}
+  .controls{padding:0 16px 24px;gap:8px}
+  .segment{padding:32px 16px}
+  .contact-section{padding:60px 20px}
+  .contact-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;max-width:280px;justify-content:center}
+  .newsletter-form{flex-direction:column}
+  .newsletter-form button{width:100%}
+  footer{padding:40px 20px 28px}
+}
+
+/* ===== MICRO-INTERACTIONS ===== */
+/* Button press effect */
+button:active, .price-btn:active, .btn-primary:active, .btn-secondary:active, .nav-cta:active{
+  transform:scale(0.98)!important;
+  transition:transform .1s ease!important;
+}
+a.price-btn:active, a.btn-primary:active, a.btn-secondary:active, a.nav-cta:active{
+  transform:scale(0.98)!important;
+}
+
+/* Smooth focus states */
+input:focus, textarea:focus, select:focus{
+  outline:none;
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 3px rgba(99,102,241,.15);
+  transition:border-color .2s, box-shadow .2s;
+}
+.search-box:focus, .newsletter-form input:focus{
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 3px rgba(99,102,241,.15);
+}
+
+/* Card hover glow effect */
+.fw-card:hover, .proj-card:hover, .how-card:hover, .usecase-card:hover, .team-card:hover{
+  box-shadow:0 8px 32px rgba(99,102,241,.12),0 0 0 1px rgba(99,102,241,.2),0 0 60px rgba(99,102,241,.06);
+}
+.price-card:hover{
+  box-shadow:0 12px 40px rgba(99,102,241,.15),0 0 80px rgba(99,102,241,.08);
+}
+
+/* ===== ROI CALCULATOR ===== */
+.roi-section{
+  background:linear-gradient(135deg,rgba(99,102,241,.05),rgba(236,72,153,.03));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:48px 40px;
+  max-width:800px;
+  margin:0 auto;
+}
+.roi-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:center;
+}
+.roi-input-area label{
+  display:block;font-size:14px;font-weight:600;
+  margin-bottom:12px;color:var(--text);
+}
+.roi-slider-wrap{position:relative}
+.roi-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:8px;border-radius:4px;
+  background:var(--bg4);outline:none;
+  margin:12px 0;
+}
+.roi-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--accent);cursor:pointer;
+  box-shadow:0 2px 8px rgba(99,102,241,.3);
+}
+.roi-slider::-moz-range-thumb{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--accent);cursor:pointer;border:none;
+  box-shadow:0 2px 8px rgba(99,102,241,.3);
+}
+.roi-hours-display{
+  text-align:center;font-size:28px;font-weight:800;
+  color:var(--accent2);margin-bottom:4px;
+}
+.roi-hours-label{
+  text-align:center;font-size:12px;color:var(--text3);
+}
+.roi-output-area{
+  display:flex;flex-direction:column;gap:20px;
+}
+.roi-output-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;text-align:center;
+}
+.roi-output-card .roi-val{
+  font-size:36px;font-weight:900;letter-spacing:-1px;
+  margin-bottom:4px;
+}
+.roi-output-card .roi-val.green{color:var(--green)}
+.roi-output-card .roi-val.pink{color:var(--pink)}
+.roi-output-card .roi-label{
+  font-size:13px;color:var(--text2);
+}
+@media(max-width:640px){
+  .roi-section{padding:32px 20px}
+  .roi-grid{grid-template-columns:1fr;gap:24px}
+  .roi-output-card .roi-val{font-size:28px}
+}
+
+/* ===== TECH STACK SHOWCASE ===== */
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:16px;
+  max-width:960px;
+  margin:0 auto;
+}
+.tech-item{
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;padding:24px 16px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  cursor:default;
+}
+.tech-item:hover{
+  border-color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(99,102,241,.1),0 0 40px rgba(99,102,241,.06);
+}
+.tech-icon{
+  font-size:32px;line-height:1;
+}
+.tech-name{
+  font-size:13px;font-weight:600;color:var(--text2);
+  text-align:center;
+}
+@media(max-width:480px){
+  .tech-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px}
+  .tech-item{padding:18px 12px}
+  .tech-icon{font-size:26px}
+  .tech-name{font-size:11px}
+}
+
+/* ===== INTEGRATION ECOSYSTEM ===== */
+.integration-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+  max-width:960px;
+  margin:0 auto;
+}
+.integration-item{
+  display:flex;align-items:center;gap:14px;
+  padding:20px 20px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.integration-item:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(99,102,241,.1),0 0 40px rgba(99,102,241,.06);
+}
+.integration-icon{
+  font-size:28px;width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.integration-info h4{
+  font-size:14px;font-weight:700;margin-bottom:2px;
+}
+.integration-info p{
+  font-size:11px;color:var(--text3);
+}
+@media(max-width:480px){
+  .integration-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .integration-item{padding:14px;gap:10px}
+  .integration-icon{font-size:22px;width:32px;height:32px}
+  .integration-info h4{font-size:12px}
+  .integration-info p{font-size:10px}
+}
 </head>
 <body>
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
 
 <nav>
 <div class="nav-inner">
   <a href="#" class="nav-logo">MoKang<span>Medical</span></a>
   <div class="nav-links">
     <a href="#flywheels">Business</a>
+    <a href="#how">How It Works</a>
     <a href="#research">Medical Research AI</a><a href="#pharma">Drug Discovery</a><a href="#clinical">Clinical</a><a href="#digital">Digital Human</a><a href="#infra">Infrastructure</a><a href="#platform">OPC Ecosystem</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
@@ -213,6 +508,7 @@ footer{border-top:1px solid var(--border);padding:48px 24px 32px;max-width:1280p
 </nav>
 
 <section class="hero">
+  <div class="hero-mesh"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
   <div class="hero-badge"><span class="dot"></span>60 Projects Active &middot; April 2026</div>
   <h1>AI-Powered<br><span class="grad">Medical Innovation</span><br>Ecosystem</h1>
   <p>From drug discovery to clinical trials, from academic publishing to digital health. 60 open-source projects. Six business verticals. Five revenue flywheels.</p>
@@ -245,13 +541,113 @@ footer{border-top:1px solid var(--border);padding:48px 24px 32px;max-width:1280p
 <div class="fw-grid reveal"><div class="fw-card"><div class="fw-icon" style="background:#6366f122;color:#6366f1">&#128300;</div><h3>Research Full Chain</h3><p class="fw-desc">From evidence mining → statistical analysis → paper writing → collaboration</p><div class="fw-tags"><span>¥2,999-9,999/mo per institution</span><span>4 core projects</span></div></div><div class="fw-card"><div class="fw-icon" style="background:#ec489922;color:#ec4899">&#129516;</div><h3>Drug Development Pipeline</h3><p class="fw-desc">Target discovery → virtual screening → simulation → health economics → safety</p><div class="fw-tags"><span>¥200K-500K per project</span><span>5 core projects</span></div></div><div class="fw-card"><div class="fw-icon" style="background:#10b98122;color:#10b981">&#128131;</div><h3>Health C-End Gateway</h3><p class="fw-desc">Free screening → knowledge → management → premium consultation</p><div class="fw-tags"><span>¥49-2,000 per user</span><span>3 core projects</span></div></div><div class="fw-card"><div class="fw-icon" style="background:#06b6d422;color:#06b6d4">&#127793;</div><h3>OPC Ecosystem</h3><p class="fw-desc">Learn → Build → Sell → Scale globally</p><div class="fw-tags"><span>¥99-4,999 per member</span><span>3 core projects</span></div></div><div class="fw-card"><div class="fw-icon" style="background:#f59e0b22;color:#f59e0b">&#10024;</div><h3>Digital Eternity</h3><p class="fw-desc">Memory preservation → AI companionship → eternal connection</p><div class="fw-tags"><span>¥49-199/mo subscription</span><span>3 core projects</span></div></div></div>
 </section>
 
-<section class="segment" id="research"><div class="seg-header reveal"><div class="seg-dot" style="background:#6366f1"></div><div class="seg-titles"><h2>Medical Research AI</h2><span class="seg-zh">医学科研AI</span></div><span class="seg-count">12 projects</span></div><p class="seg-tagline reveal">From Data to Publication in Hours, Not Months</p><div class="projects-grid"><div class="proj-card" data-seg="research" data-tier="cash-cow" data-status="live" data-name="metaforge"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">MetaForge</div><div class="proj-desc">AI Meta-analysis platform — 6 Agents reduce 45-day reviews to 1 hour</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/metaforge" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="cash-cow" data-status="live" data-name="biostats"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">Biostats</div><div class="proj-desc">AI biostatistics for clinical trials — publication-grade results</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/Biostats" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="live" data-name="mingevidence"><div class="tier tier-growth">Growth</div><div class="proj-name">MingEvidence</div><div class="proj-desc">Clinical evidence mining — PICO search → GRADE-ranked summaries</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/mingevidence" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="live" data-name="medroundtable"><div class="tier tier-growth">Growth</div><div class="proj-name">MedRoundTable</div><div class="proj-desc">14-Agent research collaboration — from question to publication</div><div class="proj-meta"><span class="stat-badge" title="Stars">&#9733; 1</span><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medroundtable" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="live" data-name="lancet research platform"><div class="tier tier-growth">Growth</div><div class="proj-name">Lancet Research Platform</div><div class="proj-desc">Local research OS for NHANES, MIMIC, GBD studies</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/lancet-research-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="nhanes → lancet"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">NHANES → Lancet</div><div class="proj-desc">Automated NHANES analysis → top journal submission</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/nhanes-to-lancet" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="seer → oncology"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">SEER → Oncology</div><div class="proj-desc">US cancer data → top oncology journal pipeline</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/seer-data-to-top-oncology-journal" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="global aging → lancet"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Global Aging → Lancet</div><div class="proj-desc">Global aging demographics → Lancet Global Health</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/global-aging-data-to-lancet-global-health" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="clinical trials insight"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Clinical Trials Insight</div><div class="proj-desc">Global clinical trial analysis and commentary platform</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/global-clinical-trials-insight-and-commentary-platform-overview" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="support" data-status="live" data-name="meta-analysis figures"><div class="tier tier-support">Support</div><div class="proj-name">Meta-Analysis Figures</div><div class="proj-desc">Publication-quality figures for systematic reviews</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/meta-analysis-figures" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="dev" data-name="labmind"><div class="tier tier-growth">Growth</div><div class="proj-name">LabMind</div><div class="proj-desc">Smart lab notebook — experiment recording + knowledge management</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/LabMind--" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="dev" data-name="med research collab"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Med Research Collab</div><div class="proj-desc">AI-powered medical research collaboration platform</div><div class="proj-meta"><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/med-research-collab" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="pharma"><div class="seg-header reveal"><div class="seg-dot" style="background:#ec4899"></div><div class="seg-titles"><h2>Drug Discovery & Development</h2><span class="seg-zh">药物研发AI</span></div><span class="seg-count">13 projects</span></div><p class="seg-tagline reveal">AI-Powered Full Pipeline — From Target to Market</p><div class="projects-grid"><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="drugmind"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">DrugMind</div><div class="proj-desc">Digital twin for drug development — full pipeline collaboration</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/DrugMind" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="drugclip platform"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">DrugClip Platform</div><div class="proj-desc">AI virtual screening — high-throughput molecular filtering</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/drugclip-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="growth" data-status="live" data-name="medipharma"><div class="tier tier-growth">Growth</div><div class="proj-name">MediPharma</div><div class="proj-desc">ChEMBL 2.4M compounds + OpenTargets — AI drug activity prediction</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medi-pharma" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="pharmasim"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">PharmaSim</div><div class="proj-desc">Full lifecycle drug simulation — target to approval</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/PharmaSim" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="dev" data-name="pharmaspark"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">PharmaSpark</div><div class="proj-desc">3D Gaussian Splatting for pharmaceutical visualization</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/pharmaspark" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="growth" data-status="live" data-name="harmes agent"><div class="tier tier-growth">Growth</div><div class="proj-name">Harmes Agent</div><div class="proj-desc">Drug safety AI — adverse reaction monitoring + compliance</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/Harmes-Agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="heor modeling"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">HEOR Modeling</div><div class="proj-desc">Health economics & outcomes research — cost-effectiveness analysis</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/heor-modeling-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="live" data-name="ai4s drug agent"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AI4S Drug Agent</div><div class="proj-desc">CNS challenge — targeted molecular design agent</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/ai4s-drug-agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="live" data-name="ai4s cns agent"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AI4S CNS Agent</div><div class="proj-desc">CNS drug synthesis planning agent</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/ai4s-cns-agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="dev" data-name="ai4s rna-protein"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AI4S RNA-Protein</div><div class="proj-desc">RNA-protein interaction prediction</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/ai4s-rna-protein" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="support" data-status="live" data-name="drugclip benchmark"><div class="tier tier-support">Support</div><div class="proj-name">DrugClip Benchmark</div><div class="proj-desc">AI4S competition — virtual screening optimization</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/drugclip-benchmark" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="support" data-status="dev" data-name="drugclip paper"><div class="tier tier-support">Support</div><div class="proj-name">DrugClip Paper</div><div class="proj-desc">Research paper for DrugClip methodology</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/drugclip-paper" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="dev" data-name="drugclip agent"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">DrugClip Agent</div><div class="proj-desc">Autonomous DrugClip optimization agent</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/drugclip-agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="clinical"><div class="seg-header reveal"><div class="seg-dot" style="background:#10b981"></div><div class="seg-titles"><h2>Clinical & Health AI</h2><span class="seg-zh">临床健康AI</span></div><span class="seg-count">12 projects</span></div><p class="seg-tagline reveal">From Screening to Treatment — AI at Every Patient Touchpoint</p><div class="projects-grid"><div class="proj-card" data-seg="clinical" data-tier="cash-cow" data-status="live" data-name="voicehealth"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">VoiceHealth</div><div class="proj-desc">30-second voice → 25 disease early screening — biomarker AI</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/voicehealth" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="cash-cow" data-status="live" data-name="voicehealth mini program"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">VoiceHealth Mini Program</div><div class="proj-desc">WeChat mini program for voice health detection</div><div class="proj-meta"><span class="stat-badge">JavaScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/voiceHealth-miniprogram" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="cash-cow" data-status="live" data-name="knowhealth"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">KnowHealth</div><div class="proj-desc">Cross-border medical second opinion — AI + global specialists</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/KnowHealth" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="growth" data-status="live" data-name="knowhealth ios"><div class="tier tier-growth">Growth</div><div class="proj-name">KnowHealth iOS</div><div class="proj-desc">Native iOS app for cross-border medical consultation</div><div class="proj-meta"><span class="stat-badge">Swift</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/KnowHealth-iOS" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="growth" data-status="live" data-name="medichat-rd"><div class="tier tier-growth">Growth</div><div class="proj-name">MediChat-RD</div><div class="proj-desc">Rare disease AI diagnosis — 66 skills, multi-agent system</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medichat-rd" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="growth" data-status="live" data-name="chronic disease mgmt"><div class="tier tier-growth">Growth</div><div class="proj-name">Chronic Disease Mgmt</div><div class="proj-desc">HIS-integrated chronic disease management — risk stratification</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/chronicdiseasemanagement" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="live" data-name="healthguard opc"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">HealthGuard OPC</div><div class="proj-desc">Outpatient population health management platform</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/healthguard-opc" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="live" data-name="healthknow"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">HealthKnow</div><div class="proj-desc">AI health knowledge Q&A platform</div><div class="proj-meta"><span class="stat-badge">Shell</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/health-know" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="dev" data-name="medislim"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MediSlim</div><div class="proj-desc">Consumer medical — AI body assessment + med-spa recommendations</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/medi-slim" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="dev" data-name="medintel cloud"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MedIntel Cloud</div><div class="proj-desc">Full-stack medical AI — diagnosis, treatment, follow-up</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/medintel-cloud" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="dev" data-name="mediguard"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MediGuard</div><div class="proj-desc">Medical safety monitoring system</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/MediGuard--" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="niche" data-status="live" data-name="pilot stone prediction"><div class="tier tier-niche">Niche</div><div class="proj-name">Pilot Stone Prediction</div><div class="proj-desc">AI risk prediction for pilot urolithiasis — aviation medicine</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/pilot-stone-prediction" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="digital"><div class="seg-header reveal"><div class="seg-dot" style="background:#f59e0b"></div><div class="seg-titles"><h2>Digital Human & Emotional AI</h2><span class="seg-zh">数字人/情感AI</span></div><span class="seg-count">5 projects</span></div><p class="seg-tagline reveal">Where Technology Meets the Human Soul</p><div class="projects-grid"><div class="proj-card" data-seg="digital" data-tier="cash-cow" data-status="live" data-name="念念 eterna"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">念念 Eterna</div><div class="proj-desc">AI digital memorial — voice, face, personality, memory preservation</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/念念-Eterna" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="cash-cow" data-status="live" data-name="digital sage"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">Digital Sage</div><div class="proj-desc">Converse with history's 100 greatest minds — AI intellectual salon</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/digital-sage" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="growth" data-status="live" data-name="cloud memorial"><div class="tier tier-growth">Growth</div><div class="proj-name">Cloud Memorial</div><div class="proj-desc">AI platform for preserving memories of loved ones</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/cloud-memorial" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="pipeline" data-status="dev" data-name="minder"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Minder</div><div class="proj-desc">AI-powered personal knowledge management</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/minder" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="growth" data-status="live" data-name="narrowgate"><div class="tier tier-growth">Growth</div><div class="proj-name">NarrowGate</div><div class="proj-desc">AI soul evolution — 30-day courses, meditation, achievement system</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/narrowgate" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="infra"><div class="seg-header reveal"><div class="seg-dot" style="background:#8b5cf6"></div><div class="seg-titles"><h2>Infrastructure & Frameworks</h2><span class="seg-zh">基础设施/框架</span></div><span class="seg-count">9 projects</span></div><p class="seg-tagline reveal">Open Source Foundations — The Technical Moat</p><div class="projects-grid"><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="darwin framework"><div class="tier tier-moat">Open Source</div><div class="proj-name">Darwin Framework</div><div class="proj-desc">Universal evolution framework — auto-improve any project</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/darwin-framework" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="evox"><div class="tier tier-moat">Open Source</div><div class="proj-name">EvoX</div><div class="proj-desc">Triple-layer evolution engine — Darwin + EvoPrompt + SEW</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/evox" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="medical harness"><div class="tier tier-moat">Open Source</div><div class="proj-name">Medical Harness</div><div class="proj-desc">Medical AI agent orchestration framework</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medical-harness" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="openclaw medical"><div class="tier tier-moat">Open Source</div><div class="proj-name">OpenClaw Medical</div><div class="proj-desc">5-step harness pipeline + MCP tools + multi-agent</div><div class="proj-meta"><span class="stat-badge" title="Stars">&#9733; 1</span><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/openclaw-medical-harness" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="medical multiagent"><div class="tier tier-moat">Open Source</div><div class="proj-name">Medical MultiAgent</div><div class="proj-desc">Multi-agent medical research platform</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medical-multiagent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="virtual cell"><div class="tier tier-moat">Open Source</div><div class="proj-name">Virtual Cell</div><div class="proj-desc">Single-cell foundation model benchmark — 15 models × 26 datasets</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/virtual-cell" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="global app starter"><div class="tier tier-moat">Open Source</div><div class="proj-name">Global App Starter</div><div class="proj-desc">Industrialized go-global template — Next.js + i18n + Stripe + CI/CD</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/global-app-starter" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="dev" data-name="ponder knowledge"><div class="tier tier-moat">Open Source</div><div class="proj-name">Ponder Knowledge</div><div class="proj-desc">Medical knowledge engineering — graph construction + management</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/ponder-knowledge-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="support" data-status="live" data-name="searxng"><div class="tier tier-support">Support</div><div class="proj-name">SearXNG</div><div class="proj-desc">Private search engine deployment</div><div class="proj-meta"><span class="stat-badge">Shell</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/searxng" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="platform"><div class="seg-header reveal"><div class="seg-dot" style="background:#06b6d4"></div><div class="seg-titles"><h2>OPC Ecosystem & Platform</h2><span class="seg-zh">OPC生态平台</span></div><span class="seg-count">9 projects</span></div><p class="seg-tagline reveal">Empowering Solo Entrepreneurs — From $0 to $100K</p><div class="projects-grid"><div class="proj-card" data-seg="platform" data-tier="cash-cow" data-status="live" data-name="opc platform"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">OPC Platform</div><div class="proj-desc">20 courses, 312 lessons — complete solo entrepreneur education</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="growth" data-status="live" data-name="opc marketplace"><div class="tier tier-growth">Growth</div><div class="proj-name">OPC Marketplace</div><div class="proj-desc">Two-sided platform — connecting demand with OPC supply</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-marketplace" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="growth" data-status="live" data-name="opc alliance"><div class="tier tier-growth">Growth</div><div class="proj-name">OPC Alliance</div><div class="proj-desc">Solo entrepreneur community — networking + collaboration</div><div class="proj-meta"><span class="stat-badge">JavaScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-alliance" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="support" data-status="live" data-name="opc legends"><div class="tier tier-support">Support</div><div class="proj-name">OPC Legends</div><div class="proj-desc">Hall of fame — successful OPC entrepreneurs worldwide</div><div class="proj-meta"><span class="stat-badge">JavaScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-legends" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="cash-cow" data-status="live" data-name="opc platform v2"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">OPC Platform v2</div><div class="proj-desc">Full learning path — 6 courses, 38 modules, 15+ templates</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opcplatform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="cash-cow" data-status="live" data-name="天眼 tianyan"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">天眼 Tianyan</div><div class="proj-desc">10,000+ virtual consumers — market behavior simulation</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/tianyan" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="growth" data-status="live" data-name="kondratiev wave"><div class="tier tier-growth">Growth</div><div class="proj-name">Kondratiev Wave</div><div class="proj-desc">Economic cycle investment prediction — long wave theory</div><div class="proj-meta"><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/kondratiev-wave" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="pipeline" data-status="dev" data-name="agrimind"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AgriMind</div><div class="proj-desc">AI-powered smart agriculture knowledge platform</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/agri-mind" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="pipeline" data-status="live" data-name="medivisual artist"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MediVisual Artist</div><div class="proj-desc">AI medical visualization — illustrations + data viz</div><div class="proj-meta"><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medivisual-artist" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section>
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(6,182,212,.08);color:var(--cyan)">How It Works</div>
+  <h2>Three Steps to Value</h2>
+  <p>From discovery to deployment in minutes, not months.</p>
+</div>
+<div class="how-grid reveal">
+  <div class="how-card">
+    <div class="how-num">01</div>
+    <h3>Discover</h3>
+    <p>Browse 60+ open-source projects by category, status, or use case. Search and filter to find exactly what you need.</p>
+  </div>
+  <div class="how-card">
+    <div class="how-num">02</div>
+    <h3>Deploy</h3>
+    <p>Clone from GitHub, follow the docs, and deploy. Most projects run in under 5 minutes. Enterprise? We handle it for you.</p>
+  </div>
+  <div class="how-card">
+    <div class="how-num">03</div>
+    <h3>Scale</h3>
+    <p>Start free, upgrade when ready. From single researcher to institution-wide deployment. Custom integrations available.</p>
+  </div>
+</div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-bar reveal">
+  <div class="proof-inner">
+    <span class="proof-label">Built for</span>
+    <span class="proof-item">Researchers</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Clinicians</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Pharma Companies</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">CROs</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Medical Schools</span>
+    <span class="proof-dot">&middot;</span>
+    <span class="proof-item">Solo Entrepreneurs</span>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="section" id="usecases">
+<div class="section-header reveal">
+  <div class="tag" style="background:rgba(236,72,153,.08);color:var(--pink)">Use Cases</div>
+  <h2>Real-World Impact</h2>
+  <p>How researchers and organizations use our platform to accelerate breakthroughs.</p>
+</div>
+<div class="usecase-grid reveal">
+  <div class="usecase-card">
+    <div class="usecase-icon">&#128218;</div>
+    <h3>Academic Research</h3>
+    <p class="usecase-quote">"MetaForge reduced our systematic review from 3 months to 2 hours. We published in Lancet within 6 weeks."</p>
+    <div class="usecase-author">— Research Team, Top Medical University</div>
+    <div class="usecase-metric">
+      <span class="metric-num">95%</span>
+      <span class="metric-label">Time Saved</span>
+    </div>
+  </div>
+  <div class="usecase-card">
+    <div class="usecase-icon">&#129516;</div>
+    <h3>Pharmaceutical R&D</h3>
+    <p class="usecase-quote">"DrugClip screened 2M compounds in 48 hours. Previously this took our team 6 months with traditional methods."</p>
+    <div class="usecase-author">— VP of Discovery, Biotech Company</div>
+    <div class="usecase-metric">
+      <span class="metric-num">1000x</span>
+      <span class="metric-label">Faster Screening</span>
+    </div>
+  </div>
+  <div class="usecase-card">
+    <div class="usecase-icon">&#128131;</div>
+    <h3>Clinical Decision Support</h3>
+    <p class="usecase-quote">"VoiceHealth detected early-stage conditions in 12% of screened patients who showed no symptoms."</p>
+    <div class="usecase-author">— Chief Medical Officer, Hospital Network</div>
+    <div class="usecase-metric">
+      <span class="metric-num">12%</span>
+      <span class="metric-label">Early Detection</span>
+    </div>
+  </div>
+  <div class="usecase-card">
+    <div class="usecase-icon">&#127793;</div>
+    <h3>Solo Entrepreneurship</h3>
+    <p class="usecase-quote">"OPC Platform gave me the exact playbook to go from zero to $50K/month as a one-person medical AI company."</p>
+    <div class="usecase-author">— Independent Developer</div>
+    <div class="usecase-metric">
+      <span class="metric-num">$50K</span>
+      <span class="metric-label">Monthly Revenue</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="segment" id="research"><div class="seg-header reveal"><div class="seg-dot" style="background:#6366f1"></div><div class="seg-titles"><h2>Medical Research AI</h2><span class="seg-zh">医学科研AI</span></div><span class="seg-count">12 projects</span></div><p class="seg-tagline reveal">From Data to Publication in Hours, Not Months</p><div class="projects-grid"><div class="proj-card" data-seg="research" data-tier="cash-cow" data-status="live" data-name="metaforge"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">MetaForge</div><div class="proj-desc">AI Meta-analysis platform — 6 Agents reduce 45-day reviews to 1 hour</div><div class="proj-impact">45 days -> 1 hour analysis</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/metaforge" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="cash-cow" data-status="live" data-name="biostats"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">Biostats</div><div class="proj-desc">AI biostatistics for clinical trials — publication-grade results</div><div class="proj-impact">Publication-grade in minutes</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/Biostats" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="live" data-name="mingevidence"><div class="tier tier-growth">Growth</div><div class="proj-name">MingEvidence</div><div class="proj-desc">Clinical evidence mining — PICO search → GRADE-ranked summaries</div><div class="proj-impact">10x faster evidence mining</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/mingevidence" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="live" data-name="medroundtable"><div class="tier tier-growth">Growth</div><div class="proj-name">MedRoundTable</div><div class="proj-desc">14-Agent research collaboration — from question to publication</div><div class="proj-impact">14 Agents collaborating</div><div class="proj-meta"><span class="stat-badge" title="Stars">&#9733; 1</span><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medroundtable" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="live" data-name="lancet research platform"><div class="tier tier-growth">Growth</div><div class="proj-name">Lancet Research Platform</div><div class="proj-desc">Local research OS for NHANES, MIMIC, GBD studies</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/lancet-research-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="nhanes → lancet"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">NHANES → Lancet</div><div class="proj-desc">Automated NHANES analysis → top journal submission</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/nhanes-to-lancet" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="seer → oncology"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">SEER → Oncology</div><div class="proj-desc">US cancer data → top oncology journal pipeline</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/seer-data-to-top-oncology-journal" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="global aging → lancet"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Global Aging → Lancet</div><div class="proj-desc">Global aging demographics → Lancet Global Health</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/global-aging-data-to-lancet-global-health" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="live" data-name="clinical trials insight"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Clinical Trials Insight</div><div class="proj-desc">Global clinical trial analysis and commentary platform</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/global-clinical-trials-insight-and-commentary-platform-overview" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="support" data-status="live" data-name="meta-analysis figures"><div class="tier tier-support">Support</div><div class="proj-name">Meta-Analysis Figures</div><div class="proj-desc">Publication-quality figures for systematic reviews</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/meta-analysis-figures" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="growth" data-status="dev" data-name="labmind"><div class="tier tier-growth">Growth</div><div class="proj-name">LabMind</div><div class="proj-desc">Smart lab notebook — experiment recording + knowledge management</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/LabMind--" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="research" data-tier="pipeline" data-status="dev" data-name="med research collab"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Med Research Collab</div><div class="proj-desc">AI-powered medical research collaboration platform</div><div class="proj-meta"><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/med-research-collab" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="pharma"><div class="seg-header reveal"><div class="seg-dot" style="background:#ec4899"></div><div class="seg-titles"><h2>Drug Discovery & Development</h2><span class="seg-zh">药物研发AI</span></div><span class="seg-count">13 projects</span></div><p class="seg-tagline reveal">AI-Powered Full Pipeline — From Target to Market</p><div class="projects-grid"><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="drugmind"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">DrugMind</div><div class="proj-desc">Digital twin for drug development — full pipeline collaboration</div><div class="proj-impact">Full pipeline digital twin</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/DrugMind" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="drugclip platform"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">DrugClip Platform</div><div class="proj-desc">AI virtual screening — high-throughput molecular filtering</div><div class="proj-impact">1000x faster screening</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/drugclip-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="growth" data-status="live" data-name="medipharma"><div class="tier tier-growth">Growth</div><div class="proj-name">MediPharma</div><div class="proj-desc">ChEMBL 2.4M compounds + OpenTargets — AI drug activity prediction</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medi-pharma" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="pharmasim"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">PharmaSim</div><div class="proj-desc">Full lifecycle drug simulation — target to approval</div><div class="proj-impact">Target to approval simulation</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/PharmaSim" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="dev" data-name="pharmaspark"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">PharmaSpark</div><div class="proj-desc">3D Gaussian Splatting for pharmaceutical visualization</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/pharmaspark" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="growth" data-status="live" data-name="harmes agent"><div class="tier tier-growth">Growth</div><div class="proj-name">Harmes Agent</div><div class="proj-desc">Drug safety AI — adverse reaction monitoring + compliance</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/Harmes-Agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="cash-cow" data-status="live" data-name="heor modeling"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">HEOR Modeling</div><div class="proj-desc">Health economics & outcomes research — cost-effectiveness analysis</div><div class="proj-impact">Standardized cost-effectiveness</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/heor-modeling-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="live" data-name="ai4s drug agent"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AI4S Drug Agent</div><div class="proj-desc">CNS challenge — targeted molecular design agent</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/ai4s-drug-agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="live" data-name="ai4s cns agent"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AI4S CNS Agent</div><div class="proj-desc">CNS drug synthesis planning agent</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/ai4s-cns-agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="dev" data-name="ai4s rna-protein"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AI4S RNA-Protein</div><div class="proj-desc">RNA-protein interaction prediction</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/ai4s-rna-protein" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="support" data-status="live" data-name="drugclip benchmark"><div class="tier tier-support">Support</div><div class="proj-name">DrugClip Benchmark</div><div class="proj-desc">AI4S competition — virtual screening optimization</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/drugclip-benchmark" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="support" data-status="dev" data-name="drugclip paper"><div class="tier tier-support">Support</div><div class="proj-name">DrugClip Paper</div><div class="proj-desc">Research paper for DrugClip methodology</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/drugclip-paper" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="pharma" data-tier="pipeline" data-status="dev" data-name="drugclip agent"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">DrugClip Agent</div><div class="proj-desc">Autonomous DrugClip optimization agent</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/drugclip-agent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="clinical"><div class="seg-header reveal"><div class="seg-dot" style="background:#10b981"></div><div class="seg-titles"><h2>Clinical & Health AI</h2><span class="seg-zh">临床健康AI</span></div><span class="seg-count">12 projects</span></div><p class="seg-tagline reveal">From Screening to Treatment — AI at Every Patient Touchpoint</p><div class="projects-grid"><div class="proj-card" data-seg="clinical" data-tier="cash-cow" data-status="live" data-name="voicehealth"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">VoiceHealth</div><div class="proj-desc">30-second voice → 25 disease early screening — biomarker AI</div><div class="proj-impact">30s voice -> 25 diseases</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/voicehealth" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="cash-cow" data-status="live" data-name="voicehealth mini program"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">VoiceHealth Mini Program</div><div class="proj-desc">WeChat mini program for voice health detection</div><div class="proj-meta"><span class="stat-badge">JavaScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/voiceHealth-miniprogram" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="cash-cow" data-status="live" data-name="knowhealth"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">KnowHealth</div><div class="proj-desc">Cross-border medical second opinion — AI + global specialists</div><div class="proj-impact">Cross-border in 48 hours</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/KnowHealth" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="growth" data-status="live" data-name="knowhealth ios"><div class="tier tier-growth">Growth</div><div class="proj-name">KnowHealth iOS</div><div class="proj-desc">Native iOS app for cross-border medical consultation</div><div class="proj-meta"><span class="stat-badge">Swift</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/KnowHealth-iOS" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="growth" data-status="live" data-name="medichat-rd"><div class="tier tier-growth">Growth</div><div class="proj-name">MediChat-RD</div><div class="proj-desc">Rare disease AI diagnosis — 66 skills, multi-agent system</div><div class="proj-impact">66 skills, rare disease AI</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medichat-rd" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="growth" data-status="live" data-name="chronic disease mgmt"><div class="tier tier-growth">Growth</div><div class="proj-name">Chronic Disease Mgmt</div><div class="proj-desc">HIS-integrated chronic disease management — risk stratification</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/chronicdiseasemanagement" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="live" data-name="healthguard opc"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">HealthGuard OPC</div><div class="proj-desc">Outpatient population health management platform</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/healthguard-opc" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="live" data-name="healthknow"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">HealthKnow</div><div class="proj-desc">AI health knowledge Q&A platform</div><div class="proj-meta"><span class="stat-badge">Shell</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/health-know" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="dev" data-name="medislim"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MediSlim</div><div class="proj-desc">Consumer medical — AI body assessment + med-spa recommendations</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/medi-slim" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="dev" data-name="medintel cloud"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MedIntel Cloud</div><div class="proj-desc">Full-stack medical AI — diagnosis, treatment, follow-up</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/medintel-cloud" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="pipeline" data-status="dev" data-name="mediguard"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MediGuard</div><div class="proj-desc">Medical safety monitoring system</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/MediGuard--" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="clinical" data-tier="niche" data-status="live" data-name="pilot stone prediction"><div class="tier tier-niche">Niche</div><div class="proj-name">Pilot Stone Prediction</div><div class="proj-desc">AI risk prediction for pilot urolithiasis — aviation medicine</div><div class="proj-meta"><span class="stat-badge">TypeScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/pilot-stone-prediction" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="digital"><div class="seg-header reveal"><div class="seg-dot" style="background:#f59e0b"></div><div class="seg-titles"><h2>Digital Human & Emotional AI</h2><span class="seg-zh">数字人/情感AI</span></div><span class="seg-count">5 projects</span></div><p class="seg-tagline reveal">Where Technology Meets the Human Soul</p><div class="projects-grid"><div class="proj-card" data-seg="digital" data-tier="cash-cow" data-status="live" data-name="念念 eterna"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">念念 Eterna</div><div class="proj-desc">AI digital memorial — voice, face, personality, memory preservation</div><div class="proj-impact">Digital immortality</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/念念-Eterna" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="cash-cow" data-status="live" data-name="digital sage"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">Digital Sage</div><div class="proj-desc">Converse with history's 100 greatest minds — AI intellectual salon</div><div class="proj-impact">100 greatest minds</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/digital-sage" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="growth" data-status="live" data-name="cloud memorial"><div class="tier tier-growth">Growth</div><div class="proj-name">Cloud Memorial</div><div class="proj-desc">AI platform for preserving memories of loved ones</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/cloud-memorial" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="pipeline" data-status="dev" data-name="minder"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">Minder</div><div class="proj-desc">AI-powered personal knowledge management</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/minder" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="digital" data-tier="growth" data-status="live" data-name="narrowgate"><div class="tier tier-growth">Growth</div><div class="proj-name">NarrowGate</div><div class="proj-desc">AI soul evolution — 30-day courses, meditation, achievement system</div><div class="proj-impact">30-day soul evolution</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/narrowgate" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="infra"><div class="seg-header reveal"><div class="seg-dot" style="background:#8b5cf6"></div><div class="seg-titles"><h2>Infrastructure & Frameworks</h2><span class="seg-zh">基础设施/框架</span></div><span class="seg-count">9 projects</span></div><p class="seg-tagline reveal">Open Source Foundations — The Technical Moat</p><div class="projects-grid"><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="darwin framework"><div class="tier tier-moat">Open Source</div><div class="proj-name">Darwin Framework</div><div class="proj-desc">Universal evolution framework — auto-improve any project</div><div class="proj-impact">Auto-improve any project</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/darwin-framework" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="evox"><div class="tier tier-moat">Open Source</div><div class="proj-name">EvoX</div><div class="proj-desc">Triple-layer evolution engine — Darwin + EvoPrompt + SEW</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/evox" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="medical harness"><div class="tier tier-moat">Open Source</div><div class="proj-name">Medical Harness</div><div class="proj-desc">Medical AI agent orchestration framework</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medical-harness" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="openclaw medical"><div class="tier tier-moat">Open Source</div><div class="proj-name">OpenClaw Medical</div><div class="proj-desc">5-step harness pipeline + MCP tools + multi-agent</div><div class="proj-meta"><span class="stat-badge" title="Stars">&#9733; 1</span><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/openclaw-medical-harness" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="medical multiagent"><div class="tier tier-moat">Open Source</div><div class="proj-name">Medical MultiAgent</div><div class="proj-desc">Multi-agent medical research platform</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medical-multiagent" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="virtual cell"><div class="tier tier-moat">Open Source</div><div class="proj-name">Virtual Cell</div><div class="proj-desc">Single-cell foundation model benchmark — 15 models × 26 datasets</div><div class="proj-impact">15 models x 26 datasets</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/virtual-cell" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="live" data-name="global app starter"><div class="tier tier-moat">Open Source</div><div class="proj-name">Global App Starter</div><div class="proj-desc">Industrialized go-global template — Next.js + i18n + Stripe + CI/CD</div><div class="proj-meta"></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/global-app-starter" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="moat" data-status="dev" data-name="ponder knowledge"><div class="tier tier-moat">Open Source</div><div class="proj-name">Ponder Knowledge</div><div class="proj-desc">Medical knowledge engineering — graph construction + management</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/ponder-knowledge-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="infra" data-tier="support" data-status="live" data-name="searxng"><div class="tier tier-support">Support</div><div class="proj-name">SearXNG</div><div class="proj-desc">Private search engine deployment</div><div class="proj-meta"><span class="stat-badge">Shell</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/searxng" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section><section class="segment" id="platform"><div class="seg-header reveal"><div class="seg-dot" style="background:#06b6d4"></div><div class="seg-titles"><h2>OPC Ecosystem & Platform</h2><span class="seg-zh">OPC生态平台</span></div><span class="seg-count">9 projects</span></div><p class="seg-tagline reveal">Empowering Solo Entrepreneurs — From $0 to $100K</p><div class="projects-grid"><div class="proj-card" data-seg="platform" data-tier="cash-cow" data-status="live" data-name="opc platform"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">OPC Platform</div><div class="proj-desc">20 courses, 312 lessons — complete solo entrepreneur education</div><div class="proj-impact">312 lessons, 20 courses</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-platform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="growth" data-status="live" data-name="opc marketplace"><div class="tier tier-growth">Growth</div><div class="proj-name">OPC Marketplace</div><div class="proj-desc">Two-sided platform — connecting demand with OPC supply</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-marketplace" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="growth" data-status="live" data-name="opc alliance"><div class="tier tier-growth">Growth</div><div class="proj-name">OPC Alliance</div><div class="proj-desc">Solo entrepreneur community — networking + collaboration</div><div class="proj-meta"><span class="stat-badge">JavaScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-alliance" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="support" data-status="live" data-name="opc legends"><div class="tier tier-support">Support</div><div class="proj-name">OPC Legends</div><div class="proj-desc">Hall of fame — successful OPC entrepreneurs worldwide</div><div class="proj-meta"><span class="stat-badge">JavaScript</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opc-legends" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="cash-cow" data-status="live" data-name="opc platform v2"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">OPC Platform v2</div><div class="proj-desc">Full learning path — 6 courses, 38 modules, 15+ templates</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/opcplatform" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="cash-cow" data-status="live" data-name="天眼 tianyan"><div class="tier tier-cash-cow">Cash Cow</div><div class="proj-name">天眼 Tianyan</div><div class="proj-desc">10,000+ virtual consumers — market behavior simulation</div><div class="proj-impact">10,000+ virtual consumers</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/tianyan" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="growth" data-status="live" data-name="kondratiev wave"><div class="tier tier-growth">Growth</div><div class="proj-name">Kondratiev Wave</div><div class="proj-desc">Economic cycle investment prediction — long wave theory</div><div class="proj-meta"><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/kondratiev-wave" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="pipeline" data-status="dev" data-name="agrimind"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">AgriMind</div><div class="proj-desc">AI-powered smart agriculture knowledge platform</div><div class="proj-meta"><span class="stat-badge">Python</span></div><div class="proj-footer"><div class="proj-status status-dev"><span class="dot-sm"></span>In Dev</div><a href="https://github.com/MoKangMedical/agri-mind" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div><div class="proj-card" data-seg="platform" data-tier="pipeline" data-status="live" data-name="medivisual artist"><div class="tier tier-pipeline">Pipeline</div><div class="proj-name">MediVisual Artist</div><div class="proj-desc">AI medical visualization — illustrations + data viz</div><div class="proj-meta"><span class="stat-badge">HTML</span></div><div class="proj-footer"><div class="proj-status status-live"><span class="dot-sm"></span>Live</div><a href="https://github.com/MoKangMedical/medivisual-artist" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a></div></div></div></section>
 
 <section class="section" id="pricing">
 <div class="section-header reveal">
   <div class="tag" style="background:rgba(16,185,129,.08);color:var(--green)">Pricing</div>
   <h2>Flexible Plans for Every Scale</h2>
   <p>From individual researchers to enterprise pharma — transparent pricing, no hidden fees.</p>
+</div>
+<div class="pricing-toggle reveal">
+  <span class="toggle-label" id="toggleMonthly">Monthly</span>
+  <div class="toggle-switch" id="pricingToggle" onclick="togglePricing()"><div class="toggle-knob"></div></div>
+  <span class="toggle-label" id="toggleAnnual">Annual <span class="save-badge">Save 20%</span></span>
 </div>
 <div class="pricing-grid reveal">
   <div class="price-card">
@@ -344,6 +740,104 @@ footer{border-top:1px solid var(--border);padding:48px 24px 32px;max-width:1280p
   </div>
 </section>
 
+
+<!-- ROI CALCULATOR -->
+<section class="section reveal">
+<div class="section-header">
+  <div class="tag" style="background:rgba(139,92,246,.08);color:var(--purple)">ROI Calculator</div>
+  <h2>See Your Time & Cost Savings</h2>
+  <p>Estimate how much MoKangMedical can save your research workflow.</p>
+</div>
+<div class="roi-section">
+  <div class="roi-grid">
+    <div class="roi-input-area">
+      <label for="roiSlider">Hours spent on research per week</label>
+      <div class="roi-slider-wrap">
+        <input type="range" class="roi-slider" id="roiSlider" min="1" max="80" value="20" oninput="updateROI()">
+      </div>
+      <div class="roi-hours-display" id="roiHoursDisplay">20</div>
+      <div class="roi-hours-label">hours / week</div>
+    </div>
+    <div class="roi-output-area">
+      <div class="roi-output-card">
+        <div class="roi-val green" id="roiSaved">16</div>
+        <div class="roi-label">Hours saved per week with MoKangMedical</div>
+      </div>
+      <div class="roi-output-card">
+        <div class="roi-val pink" id="roiValue">$41,600</div>
+        <div class="roi-label">Annual value of time saved (at $50/hr)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TECH STACK SHOWCASE -->
+<section class="section reveal">
+<div class="section-header">
+  <div class="tag" style="background:rgba(6,182,212,.08);color:var(--cyan)">Tech Stack</div>
+  <h2>Built with Modern Technology</h2>
+  <p>Our platform leverages the best tools in AI, web, and data science.</p>
+</div>
+<div class="tech-grid">
+  <div class="tech-item"><span class="tech-icon">&#128013;</span><span class="tech-name">Python</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128308;</span><span class="tech-name">TypeScript</span></div>
+  <div class="tech-item"><span class="tech-icon">&#9889;</span><span class="tech-name">Next.js</span></div>
+  <div class="tech-item"><span class="tech-icon">&#9889;</span><span class="tech-name">FastAPI</span></div>
+  <div class="tech-item"><span class="tech-icon">&#129302;</span><span class="tech-name">PyTorch</span></div>
+  <div class="tech-item"><span class="tech-icon">&#129504;</span><span class="tech-name">HuggingFace</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128202;</span><span class="tech-name">R / Shiny</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128218;</span><span class="tech-name">LaTeX</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128421;</span><span class="tech-name">PostgreSQL</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128187;</span><span class="tech-name">Docker</span></div>
+  <div class="tech-item"><span class="tech-icon">&#9729;&#65039;</span><span class="tech-name">Cloud</span></div>
+  <div class="tech-item"><span class="tech-icon">&#128295;</span><span class="tech-name">CI/CD</span></div>
+</div>
+</section>
+
+<!-- INTEGRATION ECOSYSTEM -->
+<section class="section reveal">
+<div class="section-header">
+  <div class="tag" style="background:rgba(245,158,11,.08);color:var(--amber)">Integrations</div>
+  <h2>Works with Your Existing Tools</h2>
+  <p>Seamlessly connects with the platforms and workflows you already use.</p>
+</div>
+<div class="integration-grid">
+  <div class="integration-item">
+    <span class="integration-icon">&#128187;</span>
+    <div class="integration-info"><h4>GitHub</h4><p>Source control & CI</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128187;</span>
+    <div class="integration-info"><h4>VS Code</h4><p>IDE extensions</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128187;</span>
+    <div class="integration-info"><h4>Docker</h4><p>Containerized deploy</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128218;</span>
+    <div class="integration-info"><h4>Jupyter</h4><p>Notebook workflows</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#127973;</span>
+    <div class="integration-info"><h4>Epic EHR</h4><p>Clinical data</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#127973;</span>
+    <div class="integration-info"><h4>Cerner EHR</h4><p>Clinical data</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128202;</span>
+    <div class="integration-info"><h4>REDCap</h4><p>Data capture</p></div>
+  </div>
+  <div class="integration-item">
+    <span class="integration-icon">&#128240;</span>
+    <div class="integration-info"><h4>PubMed</h4><p>Literature APIs</p></div>
+  </div>
+</div>
+</section>
+
 <footer>
 <div class="footer-grid">
   <div class="footer-brand">
@@ -378,12 +872,29 @@ footer{border-top:1px solid var(--border);padding:48px 24px 32px;max-width:1280p
 </div>
 </footer>
 
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8593;</button>
+
 <script>
+/* Mobile slide-in nav */
 function toggleNav(){
   var nl=document.querySelector('.nav-links');
-  if(nl.style.display==='flex'){nl.style.display='none';return}
-  nl.style.display='flex';nl.style.flexDirection='column';nl.style.position='absolute';nl.style.top='56px';nl.style.left='0';nl.style.right='0';
-  nl.style.background='rgba(9,9,11,.95)';nl.style.padding='16px 24px';nl.style.gap='12px';nl.style.borderBottom='1px solid var(--border)';
+  var overlay=document.getElementById('mobileOverlay');
+  if(nl.classList.contains('mobile-open')){
+    closeMobileNav();
+  } else {
+    nl.classList.add('mobile-open');
+    requestAnimationFrame(function(){nl.classList.add('open')});
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+}
+function closeMobileNav(){
+  var nl=document.querySelector('.nav-links');
+  var overlay=document.getElementById('mobileOverlay');
+  nl.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){nl.classList.remove('mobile-open')},300);
 }
 
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.05});
@@ -428,13 +939,61 @@ function subscribeNewsletter(e){
   return false;
 }
 
+// Pricing toggle
+var isAnnual=false;
+function togglePricing(){
+  isAnnual=!isAnnual;
+  var toggle=document.getElementById('pricingToggle');
+  var monthly=document.getElementById('toggleMonthly');
+  var annual=document.getElementById('toggleAnnual');
+  if(isAnnual){
+    toggle.classList.add('annual');
+    monthly.classList.remove('active');
+    annual.classList.add('active');
+  }else{
+    toggle.classList.remove('annual');
+    monthly.classList.add('active');
+    annual.classList.remove('active');
+  }
+  // Update prices
+  var prices=document.querySelectorAll('.price-amount');
+  var monthlyPrices=['0','299','2K+','5K+'];
+  var annualPrices=['0','239','1.6K+','4K+'];
+  var periods=['Free forever','per month','per month','per project'];
+  prices.forEach(function(el,i){
+    var currency=el.querySelector('.currency');
+    if(currency&&i<monthlyPrices.length){
+      var price=isAnnual?annualPrices[i]:monthlyPrices[i];
+      el.innerHTML='<span class="currency">$</span>'+price;
+    }
+  });
+}
+// Initialize
+document.getElementById('toggleMonthly').classList.add('active');
+
 var sections=document.querySelectorAll('.segment[id]');
 var navLinks=document.querySelectorAll('.nav-links a');
+var backTop=document.getElementById('backTop');
+var navEl=document.querySelector('nav');
 window.addEventListener('scroll',function(){
   var current='';
   sections.forEach(function(s){if(window.scrollY>=s.offsetTop-200)current=s.id});
   navLinks.forEach(function(a){a.style.color=a.getAttribute('href')==='#'+current?'var(--text)':''});
+  // Nav scroll effect
+  if(window.scrollY>50){navEl.classList.add('scrolled')}else{navEl.classList.remove('scrolled')}
+  // Back to top button
+  if(window.scrollY>600){backTop.classList.add('show')}else{backTop.classList.remove('show')}
 });
+
+/* ROI Calculator */
+function updateROI(){
+  var hours=parseInt(document.getElementById('roiSlider').value);
+  var saved=Math.round(hours*0.8*10)/10;
+  var value=Math.round(saved*50*52);
+  document.getElementById('roiHoursDisplay').textContent=hours;
+  document.getElementById('roiSaved').textContent=saved;
+  document.getElementById('roiValue').textContent='$'+value.toLocaleString();
+}
 </script>
 </body>
 </html>
