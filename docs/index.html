@@ -1,14 +1,195 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MoKangMedical OPC Ecosystem — MoKangMedical</title><meta name="description" content="One-Stop Platform for Medical AI Innovation — 70+ Projects Across Drug Discovery, Clinical Intelligence, and Health Analytics">
-<link rel="stylesheet" href="https://mokangmedical.github.io/opc-homepage/shared-design-system.css">
-</head><body>
-<nav class="eco-nav"><a class="nav-brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
-<div class="nav-links"><a href="https://github.com/MoKangMedical/opc-homepage">GitHub</a><a href="https://mokangmedical.github.io/opc-homepage/">Ecosystem</a><a href="#features">Features</a><a href="#pricing">Pricing</a></div></nav>
-<section class="hero"><div class="badge">70+ Projects Live</div><h1>MoKangMedical OPC Ecosystem</h1><p class="subtitle">One-Stop Platform for Medical AI Innovation — 70+ Projects Across Drug Discovery, Clinical Intelligence, and Health Analytics</p>
-<div class="btn-group"><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary">View on GitHub</a><a href="#features" class="btn btn-outline">Explore Features</a></div></section>
-<section class="section" id="stats"><div class="stats"><div><div class="stat-num">70+</div><div class="stat-label">Projects</div></div><div><div class="stat-num">15+</div><div class="stat-label">Live Pages</div></div><div><div class="stat-num">500K+</div><div class="stat-label">Lines of Code</div></div><div><div class="stat-num">6</div><div class="stat-label">Core Domains</div></div></div></section>
-<section class="section" id="features"><h2 class="section-title">Key Features</h2><p class="section-desc">Powerful capabilities designed for medical professionals and researchers</p><div class="card-grid"><div class="card fade-up"><div class="card-icon">🧬</div><h3>Drug Discovery AI</h3><p>DrugMind, PharmaSim, DrugCLIP — from molecular design to market simulation</p></div><div class="card fade-up"><div class="card-icon">🏥</div><h3>Clinical Intelligence</h3><p>MediChat-RD, clinical trials platform, real-world evidence analysis</p></div><div class="card fade-up"><div class="card-icon">📊</div><h3>Health Analytics</h3><p>Epidemiology, HEOR modeling, NHANES/SEER data pipelines</p></div><div class="card fade-up"><div class="card-icon">🤖</div><h3>Multi-Agent Systems</h3><p>66+ skills, autonomous research agents, knowledge graphs</p></div><div class="card fade-up"><div class="card-icon">🌐</div><h3>Global Reach</h3><p>i18n support, FDA/EMA compliance, multi-language platforms</p></div><div class="card fade-up"><div class="card-icon">🔬</div><h3>Research Tools</h3><p>Meta-analysis, systematic review, biostatistics platforms</p></div></div></section>
-<section class="section" id="pricing"><h2 class="section-title">Pricing Plans</h2><p class="section-desc">Choose the plan that fits your needs</p><div class="pricing-grid"><div class="price-card "><h3>Open Source</h3><div class="price-tag">Free</div><ul><li>All open-source projects</li><li>Community support</li><li>Basic documentation</li></ul><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a></div><div class="price-card featured"><div class="price-badge">Most Popular</div><h3>Professional</h3><div class="price-tag">$299/mo</div><ul><li>Priority support</li><li>Advanced features</li><li>API access</li><li>Custom integrations</li></ul><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a></div><div class="price-card "><h3>Enterprise</h3><div class="price-tag">$999/mo</div><ul><li>Dedicated support</li><li>SLA guarantee</li><li>Custom development</li><li>Training sessions</li></ul><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a></div></div></section>
-<footer class="footer"><div class="footer-links"><a href="https://mokangmedical.github.io/opc-homepage/">Ecosystem Home</a><a href="https://github.com/MoKangMedical">GitHub Organization</a><a href="https://github.com/MoKangMedical/opc-homepage">This Project</a></div><p>&copy; 2025 MoKangMedical. All rights reserved.</p></footer>
-</body></html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC Homepage - MoKangMedical</title>
+    <meta name="description" content="OPC生态首页，展示MoKangMedical全部项目">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #8b5cf6;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #1e293b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--darker) 0%, #1e1b4b 50%, var(--darker) 100%);
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600 font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--border);
+        }
+        .features {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        .feature-card p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        footer {
+            padding: 40px 0;
+            background: var(--darker);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>OPC Homepage</h1>
+            <p>OPC生态首页，展示MoKangMedical全部项目</p>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+                <a href="#features" class="btn btn-primary">了解功能</a>
+                <a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </section>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心功能</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card"><h3>项目展示</h3><p>专业的项目展示能力，助力创业成功</p></div><div class="feature-card"><h3>生态导航</h3><p>专业的生态导航能力，助力创业成功</p></div><div class="feature-card"><h3>新闻动态</h3><p>专业的新闻动态能力，助力创业成功</p></div><div class="feature-card"><h3>团队介绍</h3><p>专业的团队介绍能力，助力创业成功</p></div><div class="feature-card"><h3>联系方式</h3><p>专业的联系方式能力，助力创业成功</p></div><div class="feature-card"><h3>加入我们</h3><p>专业的加入我们能力，助力创业成功</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="cta">
+        <div class="container">
+            <h2>开始使用 OPC Homepage</h2>
+            <p>加入MoKangMedical生态，探索AI医疗的无限可能</p>
+            <a href="https://github.com/MoKangMedical/opc-homepage" class="btn" style="background:white;color:var(--primary)">立即开始</a>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MoKangMedical. All rights reserved. | <a href="https://mokangmedical.github.io/opc-homepage/">生态首页</a></p>
+        </div>
+    </footer>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" style="padding:80px 0;background:#0d0d1a;">
+        <div style="max-width:800px;margin:0 auto;padding:0 24px;">
+            <h2 style="text-align:center;font-size:2rem;color:#fff;margin-bottom:12px;">Frequently Asked Questions</h2>
+            <p style="text-align:center;color:#888;margin-bottom:48px;">Everything you need to know</p>
+            <div class="faq-list">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-question"><span>What is the OPC ecosystem?</span><span class="faq-icon">+</span></div>
+            <div class="faq-answer"><p>OPC (One-stop Platform for healthcare innovation and Commercialization) is a comprehensive ecosystem of 14+ AI-powered healthcare projects spanning drug discovery, clinical trials, patient care, and commercialization.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-question"><span>How can I join the OPC ecosystem?</span><span class="faq-icon">+</span></div>
+            <div class="faq-answer"><p>Visit our Alliance page to apply. We welcome healthcare innovators, researchers, and technology partners.</p></div>
+        </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .faq-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;margin-bottom:12px;cursor:pointer;transition:border-color .3s;overflow:hidden;}
+        .faq-item:hover,.faq-item.open{border-color:rgba(99,102,241,0.4);}
+        .faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;color:#fff;font-weight:600;font-size:1.05rem;}
+        .faq-icon{color:#6366f1;font-size:1.5rem;transition:transform .3s;}
+        .faq-item.open .faq-icon{transform:rotate(45deg);}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 24px;}
+        .faq-item.open .faq-answer{max-height:300px;padding:0 24px 20px;}
+        .faq-answer p{color:#aaa;line-height:1.7;font-size:.95rem;}
+    </style>
+</body>
+</html>
