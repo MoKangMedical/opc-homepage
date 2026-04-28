@@ -130,7 +130,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2
 .floating-nav .title{font-size:.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:.05rem;padding:.4rem .8rem;border-bottom:1px solid var(--border);margin-bottom:.3rem}
 </style>
 </head>
-<body>
+<body style="padding-top:56px!important">
+<nav id="opc-nav" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,10,30,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,0.2);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <a href="https://mokangmedical.github.io/opc-homepage/" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="url(#ng1)" stroke-width="2.5"/><path d="M10 16h12M16 10v12" stroke="url(#ng1)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="ng1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#c084fc"/></linearGradient></defs></svg>
+    <span style="background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">MoKangMedical</span>
+  </a>
+  <div style="display:flex;gap:6px;align-items:center">
+    <a href="https://mokangmedical.github.io/opc-homepage/" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px">生态首页</a>
+    <a href="https://github.com/MoKangMedical" target="_blank" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px">GitHub</a>
+    <a href="https://mokangmedical.github.io/opc-alliance/" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:6px 16px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none">OPC Hub</a>
+  </div>
+</nav>
 
 <!-- NAV -->
 <nav>
@@ -339,6 +350,168 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2
 <div class="desc">全球临床试验洞察平台，AI驱动的试验数据分析与评论，覆盖NEJM/Lancet/JAMA/BMJ/Annals五大期刊</div>
 <div class="tags"><span class="tag tag-data">Clinical Data</span><span class="tag tag-clinical">AI Analysis</span></div>
 <div class="meta"><span class="stat">Journals: <strong>5</strong></span><span class="arrow">→</span></div>
+
+
+<!-- VoiceHealth -->
+<div class="project-card" data-cat="ai clinical" onclick="window.open('https://mokangmedical.github.io/voicehealth/','_blank')">
+<div class="icon">🎤</div>
+<h3>VoiceHealth</h3>
+<div class="desc">AI声纹健康检测平台，通过语音分析实现健康早筛，FastAPI后端+微信小程序，8个数据库表、20+API接口</div>
+<div class="tags"><span class="tag tag-ai">Voice AI</span><span class="tag tag-clinical">Health Screening</span></div>
+<div class="meta"><span class="stat">APIs: <strong>20+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Biostats -->
+<div class="project-card" data-cat="data" onclick="window.open('https://mokangmedical.github.io/Biostats/','_blank')">
+<div class="icon">📊</div>
+<h3>Biostats</h3>
+<div class="desc">生物统计分析平台，覆盖生存分析、回归模型、样本量计算、Meta分析等核心统计方法</div>
+<div class="tags"><span class="tag tag-data">Statistics</span><span class="tag tag-clinical">Biostatistics</span></div>
+<div class="meta"><span class="stat">Methods: <strong>15+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MetaForge -->
+<div class="project-card" data-cat="data ai" onclick="window.open('https://mokangmedical.github.io/metaforge/','_blank')">
+<div class="icon">🔬</div>
+<h3>MetaForge</h3>
+<div class="desc">Meta分析全流程平台，森林图/漏斗图/亚组分析一键生成，符合Cochrane/PRISMA标准</div>
+<div class="tags"><span class="tag tag-data">Meta-Analysis</span><span class="tag tag-ai">Automation</span></div>
+<div class="meta"><span class="stat">Charts: <strong>6</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- DrugClip -->
+<div class="project-card" data-cat="drug ai" onclick="window.open('https://mokangmedical.github.io/drugclip-benchmark/','_blank')">
+<div class="icon">💊</div>
+<h3>DrugClip Benchmark</h3>
+<div class="desc">AI虚拟筛选基准平台，DrugCLIP深度学习模型对比传统方法，高通量分子筛选优化</div>
+<div class="tags"><span class="tag tag-ai">Deep Learning</span><span class="tag tag-pharma">Virtual Screening</span></div>
+<div class="meta"><span class="stat">Models: <strong>10+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- NHANES -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/nhanes-to-lancet/','_blank')">
+<div class="icon">📈</div>
+<h3>NHANES → Lancet</h3>
+<div class="desc">NHANES健康调查数据分析平台，从数据清洗到Lancet级论文的完整科研工作流</div>
+<div class="tags"><span class="tag tag-data">NHANES</span><span class="tag tag-clinical">Epidemiology</span></div>
+<div class="meta"><span class="stat">Datasets: <strong>5+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- HEOR -->
+<div class="project-card" data-cat="data platform" onclick="window.open('https://mokangmedical.github.io/heor-modeling-platform/','_blank')">
+<div class="icon">💰</div>
+<h3>HEOR Modeling</h3>
+<div class="desc">卫生经济学与结果研究平台，成本效益分析、预算影响分析、Markov模型构建</div>
+<div class="tags"><span class="tag tag-data">HEOR</span><span class="tag tag-platform">Modeling</span></div>
+<div class="meta"><span class="stat">Models: <strong>5</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Lancet Research -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/lancet-research-platform/','_blank')">
+<div class="icon">📝</div>
+<h3>Lancet Research</h3>
+<div class="desc">柳叶刀级医学研究平台，从数据采集到论文撰写的全流程AI辅助</div>
+<div class="tags"><span class="tag tag-data">Research</span><span class="tag tag-clinical">Publication</span></div>
+<div class="meta"><span class="stat">Workflows: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- AI Health Platform -->
+<div class="project-card" data-cat="ai clinical" onclick="window.open('https://mokangmedical.github.io/ai-health-platform/','_blank')">
+<div class="icon">🤖</div>
+<h3>AI Health Platform</h3>
+<div class="desc">综合AI健康检测平台，多模态健康数据分析、风险评估、个性化健康方案</div>
+<div class="tags"><span class="tag tag-ai">Multi-Modal</span><span class="tag tag-clinical">Health</span></div>
+<div class="meta"><span class="stat">Modules: <strong>10+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- PharmaSpark -->
+<div class="project-card" data-cat="drug ai" onclick="window.open('https://mokangmedical.github.io/pharmaspark/','_blank')">
+<div class="icon">⚡</div>
+<h3>PharmaSpark</h3>
+<div class="desc">AI药物发现加速平台，分子生成、靶点预测、化合物优化一站式服务</div>
+<div class="tags"><span class="tag tag-pharma">Drug Discovery</span><span class="tag tag-ai">AI</span></div>
+<div class="meta"><span class="stat">Tools: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- HealthGuard -->
+<div class="project-card" data-cat="clinical platform" onclick="window.open('https://mokangmedical.github.io/healthguard-opc/','_blank')">
+<div class="icon">🛡️</div>
+<h3>HealthGuard</h3>
+<div class="desc">健康守护平台，智能健康监测、风险预警、家庭医生AI助手</div>
+<div class="tags"><span class="tag tag-clinical">Health Monitor</span><span class="tag tag-ai">AI Assistant</span></div>
+<div class="meta"><span class="stat">Features: <strong>12</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- PilotStone -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/pilot-stone-prediction/','_blank')">
+<div class="icon">✈️</div>
+<h3>PilotStone</h3>
+<div class="desc">飞行员尿石症风险评估系统，AI驱动的航空医学健康风险预测</div>
+<div class="tags"><span class="tag tag-clinical">Aviation Med</span><span class="tag tag-ai">Risk Prediction</span></div>
+<div class="meta"><span class="stat">Accuracy: <strong>96%</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- AgriMind -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/agri-mind/','_blank')">
+<div class="icon">🌾</div>
+<h3>AgriMind 农智云</h3>
+<div class="desc">AI驱动的智慧种植平台，气候数据分析、病虫害防治、灌溉优化、市场价格预测</div>
+<div class="tags"><span class="tag tag-ai">AgriTech</span><span class="tag tag-platform">Smart Farming</span></div>
+<div class="meta"><span class="stat">Regions: <strong>28</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediSlim -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/MediSlim/','_blank')">
+<div class="icon">⚖️</div>
+<h3>MediSlim</h3>
+<div class="desc">AI智能减重管理平台，个性化饮食/运动方案，GLP-1类药物辅助决策</div>
+<div class="tags"><span class="tag tag-clinical">Weight Loss</span><span class="tag tag-ai">GLP-1</span></div>
+<div class="meta"><span class="stat">Users: <strong>5K+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- OpenClaw -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/openclaw-medical-harness/','_blank')">
+<div class="icon">🔧</div>
+<h3>OpenClaw Harness</h3>
+<div class="desc">医疗AI Agent编排框架，5步Harness流水线+MCP工具+多Agent协作</div>
+<div class="tags"><span class="tag tag-ai">Agent</span><span class="tag tag-platform">Framework</span></div>
+<div class="meta"><span class="stat">Agents: <strong>66</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Minder -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/minder/','_blank')">
+<div class="icon">🧠</div>
+<h3>Minder</h3>
+<div class="desc">AI驱动的知识管理平台，知识图谱、智能搜索、自动标签、团队协作</div>
+<div class="tags"><span class="tag tag-ai">Knowledge</span><span class="tag tag-platform">Management</span></div>
+<div class="meta"><span class="stat">Features: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediPharma -->
+<div class="project-card" data-cat="drug platform" onclick="window.open('https://mokangmedical.github.io/medi-pharma/','_blank')">
+<div class="icon">💉</div>
+<h3>MediPharma</h3>
+<div class="desc">医药智能平台，靶点发现、临床试验优化、市场准入分析、竞品情报监控</div>
+<div class="tags"><span class="tag tag-pharma">Pharma</span><span class="tag tag-ai">Intelligence</span></div>
+<div class="meta"><span class="stat">Modules: <strong>6</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MingEvidence -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/mingevidence/','_blank')">
+<div class="icon">📚</div>
+<h3>MingEvidence</h3>
+<div class="desc">循证医学研究平台，AI文献筛选、质量评估、数据提取、GRADE证据分级</div>
+<div class="tags"><span class="tag tag-data">Evidence</span><span class="tag tag-clinical">EBM</span></div>
+<div class="meta"><span class="stat">Tools: <strong>6</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MedRoundtable -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/medroundtable/','_blank')">
+<div class="icon">👨‍⚕️</div>
+<h3>MedRoundtable</h3>
+<div class="desc">多Agent虚拟医学专家圆桌讨论平台，鉴别诊断、治疗方案、文献检索一体化</div>
+<div class="tags"><span class="tag tag-clinical">Diagnosis</span><span class="tag tag-ai">Multi-Agent</span></div>
+<div class="meta"><span class="stat">Experts: <strong>12</strong></span><span class="arrow">→</span></div>
 </div>
 
 </div>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mokangmedical.github.io/opc-homepage/sitemap.xml

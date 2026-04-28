@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品路线图 — OPC Open Pharma Coalition</title>
+<meta name="description" content="OPC开放医药联盟2026年产品路线图，从核心平台到全球生态的进化之路">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--bg2:#111827;--bg3:#1e293b;--text:#f1f5f9;--text2:#94a3b8;--accent:#3b82f6;--accent2:#8b5cf6;--green:#10b981;--cyan:#06b6d4;--orange:#f59e0b;--pink:#ec4899;--border:#1e293b;--glass:rgba(255,255,255,0.03)}
+body{font-family:-apple-system,'SF Pro Display','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none;transition:color .2s}a:hover{color:var(--cyan)}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.8rem 0}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .links{display:flex;gap:1.5rem}nav .links a{color:var(--text2);font-size:.85rem;font-weight:500;transition:color .2s}nav .links a:hover{color:var(--text)}
+.hamburger{display:none;cursor:pointer;font-size:1.5rem;color:var(--text)}
+@media(max-width:768px){nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);flex-direction:column;padding:1rem;gap:.8rem;border-bottom:1px solid var(--border)}nav .links.open{display:flex}.hamburger{display:block}}
+
+/* HERO */
+.hero{padding:8rem 0 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(139,92,246,.06) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;line-height:1.2;margin-bottom:1rem}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .subtitle{font-size:1.15rem;color:var(--text2);max-width:600px;margin:0 auto;line-height:1.7}
+
+/* SECTIONS */
+section{padding:5rem 0}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2.2rem;font-weight:700;margin-bottom:.5rem}
+.section-header p{color:var(--text2);max-width:600px;margin:0 auto}
+
+/* PROGRESS BAR */
+.progress-overview{max-width:800px;margin:0 auto 3rem}
+.progress-bar-bg{width:100%;height:12px;background:var(--bg3);border-radius:6px;overflow:hidden;margin-bottom:.8rem}
+.progress-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.5s ease}
+.progress-label{display:flex;justify-content:space-between;color:var(--text2);font-size:.85rem}
+
+/* ROADMAP CARDS */
+.roadmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.roadmap-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:all .3s}
+.roadmap-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 40px rgba(59,130,246,.1)}
+.roadmap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+.roadmap-card:hover::before{opacity:1}
+.roadmap-card .quarter{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1rem;margin-bottom:.5rem;display:inline-block;padding:.25rem .75rem;border-radius:20px}
+.quarter-done{background:rgba(16,185,129,.15);color:var(--green)}
+.quarter-progress{background:rgba(59,130,246,.15);color:var(--accent)}
+.quarter-future{background:rgba(139,92,246,.15);color:var(--accent2)}
+.quarter-later{background:rgba(245,158,11,.15);color:var(--orange)}
+.roadmap-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
+.roadmap-card .desc{color:var(--text2);font-size:.9rem;line-height:1.6;margin-bottom:1.2rem}
+.roadmap-card .milestones{list-style:none;padding:0}
+.roadmap-card .milestones li{padding:.4rem 0;padding-left:1.5rem;position:relative;color:var(--text2);font-size:.85rem}
+.roadmap-card .milestones li::before{content:'';position:absolute;left:0;top:.7rem;width:8px;height:8px;border-radius:50%}
+.milestone-done::before{background:var(--green)}
+.milestone-progress::before{background:var(--accent)}
+.milestone-future::before{background:var(--accent2)}
+.milestone-later::before{background:var(--orange)}
+.roadmap-card .status{margin-top:1rem;display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600}
+.status-done{color:var(--green)}
+.status-progress{color:var(--accent)}
+.status-future{color:var(--accent2)}
+.status-later{color:var(--orange)}
+
+/* MILESTONES TIMELINE */
+.timeline-vertical{position:relative;max-width:900px;margin:0 auto}
+.timeline-vertical::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--green),var(--accent),var(--accent2),var(--orange));transform:translateX(-50%)}
+.tl-item{position:relative;padding:1.5rem 0;display:flex;align-items:center}
+.tl-item:nth-child(odd){flex-direction:row-reverse;text-align:right}
+.tl-item:nth-child(odd) .tl-content{margin-right:2.5rem}
+.tl-item:nth-child(even) .tl-content{margin-left:2.5rem}
+.tl-content{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.5rem;max-width:360px}
+.tl-dot{position:absolute;left:50%;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;border:3px solid var(--bg);z-index:2}
+.tl-dot-done{background:var(--green);box-shadow:0 0 12px rgba(16,185,129,.4)}
+.tl-dot-progress{background:var(--accent);box-shadow:0 0 12px rgba(59,130,246,.4)}
+.tl-dot-future{background:var(--accent2);box-shadow:0 0 12px rgba(139,92,246,.4)}
+.tl-content h3{font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.tl-content .tl-date{color:var(--accent);font-size:.8rem;font-weight:600;margin-bottom:.3rem}
+.tl-content p{color:var(--text2);font-size:.85rem;line-height:1.5}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand .logo{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.footer-brand p{color:var(--text2);font-size:.85rem}
+.footer-col h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05rem;margin-bottom:1rem;color:var(--text)}
+.footer-col a{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid var(--border);color:var(--text2);font-size:.8rem}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}.timeline-vertical::before{left:20px}.tl-dot{left:20px}.tl-item,.tl-item:nth-child(odd){flex-direction:row;text-align:left}.tl-content{margin-left:3rem!important;margin-right:0!important;max-width:100%}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="inner">
+<div class="logo"><a href="index.html" style="color:inherit;text-decoration:none">OPC Open Pharma Coalition</a></div>
+<div class="hamburger" onclick="document.querySelector('.links').classList.toggle('open')">☰</div>
+<div class="links">
+<a href="index.html">首页</a>
+<a href="about.html">关于我们</a>
+<a href="roadmap.html">路线图</a>
+<a href="contact.html">联系我们</a>
+<a href="https://github.com/MoKangMedical" target="_blank">GitHub</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>产品<span class="gradient">路线图</span></h1>
+<p class="subtitle">从核心平台到全球生态，2026年四大阶段全面进化</p>
+</div>
+</section>
+
+<!-- OVERALL PROGRESS -->
+<section style="padding-top:0">
+<div class="container">
+<div class="progress-overview">
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" id="progressFill"></div>
+</div>
+<div class="progress-label">
+<span>2026年度目标</span>
+<span id="progressText">0%</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ROADMAP QUARTERS -->
+<section style="padding-top:0">
+<div class="container">
+<div class="roadmap-grid">
+
+<!-- Q1 -->
+<div class="roadmap-card">
+<span class="quarter quarter-done">Q1 2026</span>
+<h3>🚀 核心平台上线</h3>
+<div class="desc">完成核心AI产品矩阵的全面升级，建立稳固的技术基础和产品架构</div>
+<ul class="milestones">
+<li class="milestone-done">DrugMind 5大Pipeline全面优化</li>
+<li class="milestone-done">MediChat-RD 66 Skill体系上线</li>
+<li class="milestone-done">天眼商业智能平台发布</li>
+<li class="milestone-done">VirtualCell基准测试平台上线</li>
+<li class="milestone-done">OPC官网正式上线</li>
+</ul>
+<div class="status status-done">✅ 已完成</div>
+</div>
+
+<!-- Q2 -->
+<div class="roadmap-card">
+<span class="quarter quarter-progress">Q2 2026</span>
+<h3>🌿 生态扩展</h3>
+<div class="desc">丰富产品生态，引入更多AI能力，构建完整的医药创新闭环</div>
+<ul class="milestones">
+<li class="milestone-progress">OPC联盟平台正式运营</li>
+<li class="milestone-progress">OPC市场上线首批AI产品</li>
+<li class="milestone-progress">数字智者100位专家课程发布</li>
+<li class="milestone-progress">念念数字纪念平台上线</li>
+<li class="milestone-future">Agent协作框架v2.0</li>
+</ul>
+<div class="status status-progress">🔄 进行中</div>
+</div>
+
+<!-- Q3 -->
+<div class="roadmap-card">
+<span class="quarter quarter-future">Q3 2026</span>
+<h3>🌏 国际市场</h3>
+<div class="desc">启动国际化战略，进入东南亚和欧美市场，建立全球开发者社区</div>
+<ul class="milestones">
+<li class="milestone-future">英文版全平台上线</li>
+<li class="milestone-future">东南亚市场试点启动</li>
+<li class="milestone-future">与国际医学期刊合作</li>
+<li class="milestone-future">全球开发者社区建设</li>
+<li class="milestone-future">FDA/CE合规框架研究</li>
+</ul>
+<div class="status status-future">📋 计划中</div>
+</div>
+
+<!-- Q4 -->
+<div class="roadmap-card">
+<span class="quarter quarter-later">Q4 2026</span>
+<h3>🏢 企业方案</h3>
+<div class="desc">推出企业级解决方案，面向大型药企和医疗机构提供定制化AI服务</div>
+<ul class="milestones">
+<li class="milestone-later">企业版DrugMind发布</li>
+<li class="milestone-later">私有化部署方案上线</li>
+<li class="milestone-later">SLA保障与技术支持体系</li>
+<li class="milestone-later">药企合作伙伴计划启动</li>
+<li class="milestone-later">年度营收目标达成</li>
+</ul>
+<div class="status status-later">🎯 规划中</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- KEY MILESTONES TIMELINE -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+<div class="section-header">
+<h2>🗓 关键里程碑</h2>
+<p>2026年度重点节点一览</p>
+</div>
+<div class="timeline-vertical">
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-done"></div>
+<div class="tl-content">
+<div class="tl-date">2026年1月</div>
+<h3>OPC官网正式上线</h3>
+<p>全新品牌形象、产品矩阵展示、开源社区入口</p>
+</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-done"></div>
+<div class="tl-content">
+<div class="tl-date">2026年2月</div>
+<h3>DrugMind v2.0 发布</h3>
+<p>5大Pipeline全面升级，新增ADMET预测模块</p>
+</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-progress"></div>
+<div class="tl-content">
+<div class="tl-date">2026年4月</div>
+<h3>OPC联盟 + 市场</h3>
+<p>创业者联盟平台和AI产品市场同步上线</p>
+</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-future"></div>
+<div class="tl-content">
+<div class="tl-date">2026年6月</div>
+<h3>数字智者发布</h3>
+<p>100位专家数字人课程系统，HTML+SVG+MP3完整教学链</p>
+</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-future"></div>
+<div class="tl-content">
+<div class="tl-date">2026年8月</div>
+<h3>国际化启动</h3>
+<p>英文版全平台上线，东南亚市场试点</p>
+</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-future"></div>
+<div class="tl-content">
+<div class="tl-date">2026年10月</div>
+<h3>企业版发布</h3>
+<p>面向大型药企的私有化部署和定制化解决方案</p>
+</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-dot tl-dot-future"></div>
+<div class="tl-content">
+<div class="tl-date">2026年12月</div>
+<h3>年度目标达成</h3>
+<p>20+产品、全球3大市场、首个企业客户签约</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo">OPC Open Pharma Coalition</div>
+<p>AI驱动的开放医药创新生态系统<br>Building the future of pharma innovation</p>
+</div>
+<div class="footer-col">
+<h4>产品</h4>
+<a href="https://mokangmedical.github.io/DrugMind/">DrugMind</a>
+<a href="https://mokangmedical.github.io/PharmaSim/">PharmaSim</a>
+<a href="https://mokangmedical.github.io/medichat-rd/">MediChat-RD</a>
+</div>
+<div class="footer-col">
+<h4>平台</h4>
+<a href="https://mokangmedical.github.io/tianyan/">天眼</a>
+<a href="https://mokangmedical.github.io/opc-alliance/">OPC联盟</a>
+<a href="https://mokangmedical.github.io/opc-marketplace/">OPC市场</a>
+</div>
+<div class="footer-col">
+<h4>链接</h4>
+<a href="index.html">首页</a>
+<a href="about.html">关于我们</a>
+<a href="contact.html">联系我们</a>
+</div>
+</div>
+<div class="footer-bottom">© 2026 OPC Open Pharma Coalition. All rights reserved. Powered by MoKangMedical.</div>
+</div>
+</footer>
+
+<script>
+// Animate progress bar on load
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const fill = document.getElementById('progressFill');
+    const text = document.getElementById('progressText');
+    // Q1 done (25%) + Q2 ~40% done = ~35% overall
+    const target = 35;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += 1;
+      if (current >= target) { current = target; clearInterval(timer); }
+      fill.style.width = current + '%';
+      text.textContent = current + '%';
+    }, 30);
+  }, 500);
+});
+</script>
+<script src="https://mokangmedical.github.io/opc-homepage/opc-nav.js"></script>
+</body>
+</html>
