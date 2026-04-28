@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Calculator - MoKangMedical OPC Ecosystem</title>
+<meta name="description" content="Calculate your return on investment with MoKangMedical AI-powered medical tools.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--bg2:#111827;--text:#f1f5f9;--dim:#94a3b8;--border:#1e293b;--accent:#3b82f6;--accent2:#8b5cf6;--green:#10b981;--gold:#f59e0b}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.8rem 0}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-weight:700;font-size:1.2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .links{display:flex;gap:1.5rem}nav .links a{color:var(--dim);font-size:.85rem}
+
+.hero{padding:8rem 2rem 3rem;text-align:center}
+.hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.5rem}
+.hero h1 .g{background:linear-gradient(135deg,var(--green),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--dim);font-size:1.1rem;max-width:600px;margin:0 auto}
+
+.calc-container{max-width:1000px;margin:3rem auto;padding:0 2rem 4rem}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:768px){.calc-grid{grid-template-columns:1fr}}
+
+.input-panel{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem}
+.input-panel h2{font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;color:var(--accent)}
+.field{margin-bottom:1.5rem}
+.field label{display:block;font-size:.85rem;font-weight:600;color:var(--dim);margin-bottom:.5rem}
+.field input,.field select{width:100%;padding:.7rem 1rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.95rem;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.field .hint{font-size:.75rem;color:var(--dim);margin-top:.3rem}
+.range-wrap{display:flex;align-items:center;gap:1rem}
+.range-wrap input[type=range]{flex:1;accent-color:var(--accent)}
+.range-val{min-width:50px;text-align:right;font-weight:700;color:var(--accent)}
+
+.result-panel{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem}
+.result-panel h2{font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;color:var(--green)}
+
+.result-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;text-align:center}
+.result-card .label{font-size:.8rem;color:var(--dim);margin-bottom:.3rem}
+.result-card .value{font-size:2rem;font-weight:800}
+.result-card .value.green{color:var(--green)}
+.result-card .value.gold{color:var(--gold)}
+.result-card .value.blue{color:var(--accent)}
+
+.breakdown{margin-top:1.5rem}
+.breakdown h3{font-size:1rem;font-weight:600;margin-bottom:1rem;color:var(--text)}
+.breakdown-item{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.breakdown-item .label{color:var(--dim)}
+.breakdown-item .value{font-weight:600;color:var(--text)}
+
+.cta-section{margin-top:2rem;text-align:center;padding:2rem;background:linear-gradient(135deg,var(--accent)11,var(--accent2)11);border-radius:16px;border:1px solid var(--border)}
+.cta-section h3{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
+.cta-section p{color:var(--dim);margin-bottom:1.5rem}
+.btn{padding:.8rem 2rem;border-radius:10px;font-weight:600;cursor:pointer;transition:all .3s;border:none;font-size:.95rem}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(59,130,246,.4)}
+
+footer{padding:3rem 2rem;text-align:center;color:var(--dim);font-size:.8rem;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<nav><div class="inner"><span class="logo">MoKangMedical OPC</span><div class="links"><a href="https://mokangmedical.github.io/opc-homepage/">Home</a><a href="https://mokangmedical.github.io/opc-marketplace/">Marketplace</a><a href="https://github.com/MoKangMedical" target="_blank">GitHub</a></div></div></nav>
+
+<section class="hero">
+<h1>Calculate Your <span class="g">ROI</span></h1>
+<p>See how much time and money you can save with MoKangMedical AI-powered medical tools</p>
+</section>
+
+<div class="calc-container">
+<div class="calc-grid">
+  <div class="input-panel">
+    <h2>Your Current Workflow</h2>
+    
+    <div class="field">
+      <label>Research Team Size</label>
+      <div class="range-wrap">
+        <input type="range" id="teamSize" min="1" max="100" value="10">
+        <span class="range-val" id="teamSizeVal">10</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Hours Spent on Data Analysis (per week per person)</label>
+      <div class="range-wrap">
+        <input type="range" id="hoursAnalysis" min="1" max="40" value="15">
+        <span class="range-val" id="hoursAnalysisVal">15</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Average Hourly Rate (USD)</label>
+      <div class="range-wrap">
+        <input type="range" id="hourlyRate" min="20" max="500" value="75" step="5">
+        <span class="range-val" id="hourlyRateVal">$75</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Projects Per Year</label>
+      <div class="range-wrap">
+        <input type="range" id="projectsYear" min="1" max="50" value="5">
+        <span class="range-val" id="projectsYearVal">5</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Primary Use Case</label>
+      <select id="useCase">
+        <option value="research">Drug Discovery & Research</option>
+        <option value="clinical">Clinical Trials</option>
+        <option value="analytics">Data Analytics</option>
+        <option value="visualization">Medical Visualization</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="result-panel">
+    <h2>Your Projected Savings</h2>
+    
+    <div class="result-card">
+      <div class="label">Annual Time Saved</div>
+      <div class="value green" id="timeSaved">780 hours</div>
+    </div>
+    
+    <div class="result-card">
+      <div class="label">Annual Cost Savings</div>
+      <div class="value gold" id="costSaved">$58,500</div>
+    </div>
+    
+    <div class="result-card">
+      <div class="label">ROI (Return on Investment)</div>
+      <div class="value blue" id="roi">585%</div>
+    </div>
+    
+    <div class="breakdown">
+      <h3>Detailed Breakdown</h3>
+      <div class="breakdown-item"><span class="label">Current annual labor cost</span><span class="value" id="currentCost">$390,000</span></div>
+      <div class="breakdown-item"><span class="label">OPC platform annual cost</span><span class="value" id="platformCost">$11,988</span></div>
+      <div class="breakdown-item"><span class="label">Time reduction per task</span><span class="value" id="timeReduction">65%</span></div>
+      <div class="breakdown-item"><span class="label">Productivity increase</span><span class="value" id="productivity">3.2x</span></div>
+      <div class="breakdown-item"><span class="label">Payback period</span><span class="value" id="payback">2.1 months</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h3>Ready to Start Saving?</h3>
+  <p>Join 2,500+ researchers already using MoKangMedical tools</p>
+  <a href="https://mokangmedical.github.io/opc-marketplace/" class="btn btn-primary">Explore Marketplace</a>
+</div>
+</div>
+
+<footer><p>Part of <a href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical OPC Ecosystem</a> &copy; 2026</p></footer>
+
+<script>
+const inputs = {
+  teamSize: document.getElementById('teamSize'),
+  hoursAnalysis: document.getElementById('hoursAnalysis'),
+  hourlyRate: document.getElementById('hourlyRate'),
+  projectsYear: document.getElementById('projectsYear'),
+  useCase: document.getElementById('useCase')
+};
+
+const vals = {
+  teamSize: document.getElementById('teamSizeVal'),
+  hoursAnalysis: document.getElementById('hoursAnalysisVal'),
+  hourlyRate: document.getElementById('hourlyRateVal'),
+  projectsYear: document.getElementById('projectsYearVal')
+};
+
+const efficiency = {research: 0.65, clinical: 0.55, analytics: 0.70, visualization: 0.60};
+const platformCosts = {research: 11988, clinical: 9996, analytics: 5988, visualization: 5988};
+
+function update() {
+  const team = +inputs.teamSize.value;
+  const hours = +inputs.hoursAnalysis.value;
+  const rate = +inputs.hourlyRate.value;
+  const projects = +inputs.projectsYear.value;
+  const useCase = inputs.useCase.value;
+  
+  vals.teamSize.textContent = team;
+  vals.hoursAnalysis.textContent = hours;
+  vals.hourlyRate.textContent = '$' + rate;
+  vals.projectsYear.textContent = projects;
+  
+  const eff = efficiency[useCase];
+  const annualHours = team * hours * 52;
+  const timeSaved = Math.round(annualHours * eff);
+  const costSaved = timeSaved * rate;
+  const currentCost = annualHours * rate;
+  const platCost = platformCosts[useCase];
+  const roi = Math.round((costSaved - platCost) / platCost * 100);
+  const payback = (platCost / (costSaved / 12)).toFixed(1);
+  
+  document.getElementById('timeSaved').textContent = timeSaved.toLocaleString() + ' hours';
+  document.getElementById('costSaved').textContent = '$' + costSaved.toLocaleString();
+  document.getElementById('roi').textContent = roi + '%';
+  document.getElementById('currentCost').textContent = '$' + currentCost.toLocaleString();
+  document.getElementById('platformCost').textContent = '$' + platCost.toLocaleString();
+  document.getElementById('timeReduction').textContent = Math.round(eff * 100) + '%';
+  document.getElementById('productivity').textContent = (1 / (1 - eff)).toFixed(1) + 'x';
+  document.getElementById('payback').textContent = payback + ' months';
+}
+
+Object.values(inputs).forEach(el => el.addEventListener('input', update));
+update();
+</script>
+</body>
+</html>
