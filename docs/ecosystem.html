@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoKangMedical Ecosystem - Project Portfolio</title>
+<meta name="description" content="Complete healthcare AI ecosystem: 40+ projects spanning drug discovery, clinical trials, patient care, and medical research.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c18;--bg2:#0c1124;--card:#111827;--text:#f1f5f9;--dim:#94a3b8;--border:#1e293b;--indigo:#6366f1;--cyan:#06b6d4;--green:#10b981;--amber:#f59e0b;--red:#ef4444;--purple:#a855f7;--pink:#ec4899}
+body{background:var(--bg);color:var(--dim);font-family:'Inter',-apple-system,sans-serif;line-height:1.6}
+a{color:var(--indigo);text-decoration:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,24,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(30,41,59,.5);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:800;font-size:1.2rem;color:var(--text)}
+.nav-links{display:flex;gap:.3rem}
+.nav-links a{padding:.4rem .9rem;border-radius:8px;font-size:.83rem;font-weight:500;color:var(--dim);transition:all .25s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,255,255,.04)}
+
+.container{padding:80px 2rem 3rem;max-width:1400px;margin:0 auto}
+.hero{text-align:center;padding:3rem 0 2rem}
+.hero h1{font-size:2.8rem;font-weight:900;background:linear-gradient(135deg,var(--indigo),var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.03em}
+.hero p{color:var(--dim);font-size:1.15rem;margin-top:.8rem;max-width:700px;margin-left:auto;margin-right:auto}
+
+.stats-bar{display:flex;justify-content:center;gap:3rem;padding:2rem 0;margin:2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{text-align:center}
+.stat-value{font-size:2.5rem;font-weight:900;color:var(--text)}
+.stat-label{font-size:.85rem;color:var(--dim)}
+
+/* Category Filter */
+.filter-bar{display:flex;justify-content:center;gap:.5rem;margin:2rem 0;flex-wrap:wrap}
+.filter-btn{padding:.5rem 1.2rem;border-radius:20px;font-size:.85rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--dim);transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--indigo);border-color:var(--indigo);color:#fff}
+
+/* Project Grid */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;margin:2rem 0}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all .3s;position:relative;overflow:hidden}
+.project-card:hover{border-color:var(--indigo);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--cyan))}
+.project-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.project-icon{width:45px;height:45px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.project-info h3{font-size:1.05rem;font-weight:700;color:var(--text)}
+.project-info .category{font-size:.75rem;color:var(--dim)}
+.project-desc{color:var(--dim);font-size:.88rem;margin-bottom:1rem;line-height:1.5}
+.project-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.tag{padding:.2rem .6rem;border-radius:6px;font-size:.7rem;font-weight:600;background:rgba(99,102,241,.1);color:var(--indigo)}
+.project-meta{display:flex;justify-content:space-between;align-items:center}
+.project-status{display:flex;align-items:center;gap:.4rem;font-size:.8rem}
+.status-dot{width:8px;height:8px;border-radius:50%}
+.status-dot.live{background:var(--green);box-shadow:0 0 8px var(--green)}
+.status-dot.dev{background:var(--amber)}
+.project-link{padding:.4rem 1rem;border-radius:8px;font-size:.8rem;font-weight:600;background:rgba(99,102,241,.1);color:var(--indigo);transition:all .2s}
+.project-link:hover{background:var(--indigo);color:#fff}
+
+/* Category Colors */
+.cat-discovery{background:linear-gradient(135deg,var(--indigo),var(--purple))}
+.cat-clinical{background:linear-gradient(135deg,var(--cyan),var(--green))}
+.cat-patient{background:linear-gradient(135deg,var(--green),var(--amber))}
+.cat-research{background:linear-gradient(135deg,var(--amber),var(--pink))}
+.cat-platform{background:linear-gradient(135deg,var(--pink),var(--red))}
+.cat-data{background:linear-gradient(135deg,var(--purple),var(--indigo))}
+
+/* Ecosystem Map */
+.eco-map{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3rem;margin:3rem 0;text-align:center}
+.eco-map h2{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:2rem}
+.eco-layers{display:flex;flex-direction:column;gap:2rem}
+.eco-layer{display:flex;align-items:center;gap:1.5rem;padding:1.5rem;background:var(--bg2);border-radius:14px;border-left:4px solid}
+.layer-label{min-width:120px;font-weight:700;color:var(--text);font-size:.95rem}
+.layer-projects{display:flex;gap:.6rem;flex-wrap:wrap;flex:1}
+.layer-chip{padding:.4rem .8rem;border-radius:8px;font-size:.8rem;font-weight:500;background:rgba(255,255,255,.05);color:var(--dim);cursor:pointer;transition:all .2s}
+.layer-chip:hover{background:rgba(255,255,255,.1);color:var(--text)}
+
+/* CTA */
+.cta{text-align:center;padding:3rem 0}
+.cta h2{font-size:2rem;font-weight:800;color:var(--text);margin-bottom:1rem}
+.cta p{color:var(--dim);margin-bottom:2rem}
+.btn-group{display:flex;gap:1rem;justify-content:center}
+.btn{padding:14px 32px;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;border:none;transition:all .3s}
+.btn-primary{background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;box-shadow:0 4px 20px rgba(99,102,241,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.5)}
+.btn-secondary{background:rgba(255,255,255,.1);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{background:rgba(255,255,255,.15)}
+
+@media(max-width:768px){.project-grid{grid-template-columns:1fr}.stats-bar{flex-wrap:wrap;gap:1.5rem}.eco-layer{flex-direction:column;align-items:flex-start}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">MoKangMedical Ecosystem</div>
+  <div class="nav-links">
+    <a href="https://mokangmedical.github.io/opc-homepage/">Home</a>
+    <a href="#projects" class="active">Projects</a>
+    <a href="#ecosystem">Ecosystem</a>
+    <a href="https://github.com/MoKangMedical">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>Healthcare AI Ecosystem</h1>
+    <p>40+ integrated projects powering the future of medicine — from drug discovery to patient care, from clinical trials to medical research.</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-value">40+</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-value">1,800+</div><div class="stat-label">AI Agents</div></div>
+    <div class="stat"><div class="stat-value">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Open Source</div></div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+    <button class="filter-btn" onclick="filterProjects('discovery')">Drug Discovery</button>
+    <button class="filter-btn" onclick="filterProjects('clinical')">Clinical & Trials</button>
+    <button class="filter-btn" onclick="filterProjects('patient')">Patient Care</button>
+    <button class="filter-btn" onclick="filterProjects('research')">Research Tools</button>
+    <button class="filter-btn" onclick="filterProjects('platform')">Platform</button>
+    <button class="filter-btn" onclick="filterProjects('data')">Data & Analytics</button>
+  </div>
+
+  <!-- Projects -->
+  <div class="project-grid" id="projectGrid"></div>
+
+  <!-- Ecosystem Map -->
+  <div class="eco-map" id="ecosystem">
+    <h2>Ecosystem Architecture</h2>
+    <div class="eco-layers">
+      <div class="eco-layer" style="border-color:var(--indigo)">
+        <div class="layer-label">Discovery Layer</div>
+        <div class="layer-projects">
+          <a href="https://mokangmedical.github.io/DrugMind/" class="layer-chip">DrugMind</a>
+          <a href="https://mokangmedical.github.io/drugclip-platform/" class="layer-chip">DrugClip</a>
+          <a href="https://mokangmedical.github.io/virtual-cell/" class="layer-chip">Virtual Cell</a>
+          <a href="https://mokangmedical.github.io/ai4s-drug-agent/" class="layer-chip">AI4S Drug Agent</a>
+        </div>
+      </div>
+      <div class="eco-layer" style="border-color:var(--cyan)">
+        <div class="layer-label">Clinical Layer</div>
+        <div class="layer-projects">
+          <a href="https://mokangmedical.github.io/PharmaSim/" class="layer-chip">PharmaSim</a>
+          <a href="https://mokangmedical.github.io/tianyan/" class="layer-chip">Tianyan</a>
+          <a href="https://mokangmedical.github.io/medichat-rd/" class="layer-chip">MediChat-RD</a>
+          <a href="https://mokangmedical.github.io/clinical-trials/" class="layer-chip">Clinical Trials</a>
+        </div>
+      </div>
+      <div class="eco-layer" style="border-color:var(--green)">
+        <div class="layer-label">Patient Layer</div>
+        <div class="layer-projects">
+          <a href="https://mokangmedical.github.io/chronicdiseasemanagement/" class="layer-chip">ChroniCare</a>
+          <a href="https://mokangmedical.github.io/cloud-memorial/" class="layer-chip">Cloud Memorial</a>
+          <a href="https://mokangmedical.github.io/MediSlim/" class="layer-chip">MediSlim</a>
+          <a href="https://mokangmedical.github.io/voicehealth/" class="layer-chip">VoiceHealth</a>
+        </div>
+      </div>
+      <div class="eco-layer" style="border-color:var(--amber)">
+        <div class="layer-label">Research Layer</div>
+        <div class="layer-projects">
+          <a href="https://mokangmedical.github.io/digital-sage/" class="layer-chip">Digital Sage</a>
+          <a href="https://mokangmedical.github.io/kondratiev-wave/" class="layer-chip">Kondratiev Wave</a>
+          <a href="https://mokangmedical.github.io/narrowgate/" class="layer-chip">NarrowGate</a>
+          <a href="https://mokangmedical.github.io/heor-modeling-platform/" class="layer-chip">HEOR Platform</a>
+        </div>
+      </div>
+      <div class="eco-layer" style="border-color:var(--pink)">
+        <div class="layer-label">Platform Layer</div>
+        <div class="layer-projects">
+          <a href="https://mokangmedical.github.io/opc-platform/" class="layer-chip">OPC Platform</a>
+          <a href="https://mokangmedical.github.io/opc-marketplace/" class="layer-chip">Marketplace</a>
+          <a href="https://mokangmedical.github.io/opc-alliance/" class="layer-chip">Alliance</a>
+          <a href="https://mokangmedical.github.io/opc-homepage/" class="layer-chip">Homepage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Join the Healthcare AI Revolution</h2>
+    <p>Explore our open-source projects or contact us for enterprise partnerships</p>
+    <div class="btn-group">
+      <a href="https://github.com/MoKangMedical" class="btn btn-primary">View on GitHub</a>
+      <a href="https://mokangmedical.github.io/opc-homepage/" class="btn btn-secondary">Visit Homepage</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const projects = [
+  { name: 'DrugMind', desc: 'AI-powered drug discovery platform with multi-agent system for molecular design, ADMET prediction, and virtual screening.', cat: 'discovery', icon: '💊', color: '#6366f1', tags: ['AI', 'Drug Discovery', 'Molecular'], status: 'live', url: 'https://mokangmedical.github.io/DrugMind/' },
+  { name: 'PharmaSim', desc: 'Pharmaceutical market simulation with 1,800 AI agents for drug lifecycle cost analysis and market entry strategy.', cat: 'clinical', icon: '📊', color: '#06b6d4', tags: ['Simulation', 'Market Analysis', 'Pricing'], status: 'live', url: 'https://mokangmedical.github.io/PharmaSim/' },
+  { name: 'Tianyan', desc: 'Commercial prediction platform with 152 test cases, 17 API endpoints, and LLM-powered market intelligence.', cat: 'research', icon: '🔭', color: '#f59e0b', tags: ['Prediction', 'Market Intelligence', 'LLM'], status: 'live', url: 'https://mokangmedical.github.io/tianyan/' },
+  { name: 'MediChat-RD', desc: 'Rare disease AI diagnostic platform with knowledge graph, drug repurposing, and multi-agent clinical decision support.', cat: 'patient', icon: '🩺', color: '#10b981', tags: ['Rare Disease', 'Diagnosis', 'Knowledge Graph'], status: 'live', url: 'https://mokangmedical.github.io/medichat-rd/' },
+  { name: 'ChroniCare', desc: 'Chronic disease management platform with 40 patients, 5 hospitals, 15 doctors demo data and FastAPI backend.', cat: 'patient', icon: '🏥', color: '#ec4899', tags: ['Chronic Care', 'Management', 'EHR'], status: 'live', url: 'https://mokangmedical.github.io/chronicdiseasemanagement/' },
+  { name: 'Digital Sage', desc: '100 expert multimodal courses with HTML+SVG+MP3+Quiz+Certificate. AI-powered digital human platform.', cat: 'research', icon: '📚', color: '#a855f7', tags: ['Education', 'Digital Human', 'Multimodal'], status: 'live', url: 'https://mokangmedical.github.io/digital-sage/' },
+  { name: 'Virtual Cell', desc: 'Single-cell AI analysis platform for cell type annotation, trajectory inference, and spatial transcriptomics.', cat: 'discovery', icon: '🧬', color: '#14b8a6', tags: ['Single Cell', 'AI', 'Genomics'], status: 'live', url: 'https://mokangmedical.github.io/virtual-cell/' },
+  { name: 'Cloud Memorial', desc: 'Digital memorial platform for preserving memories and creating AI-powered interactive tributes.', cat: 'patient', icon: '🕯️', color: '#8b5cf6', tags: ['Memorial', 'Digital Legacy', 'AI'], status: 'live', url: 'https://mokangmedical.github.io/cloud-memorial/' },
+  { name: 'Kondratiev Wave', desc: '21 courses across 5 phases exploring economic cycles and their impact on healthcare innovation.', cat: 'research', icon: '📈', color: '#f97316', tags: ['Economics', 'Cycles', 'Education'], status: 'live', url: 'https://mokangmedical.github.io/kondratiev-wave/' },
+  { name: 'NarrowGate', desc: 'Advanced medical knowledge platform with course system and interactive learning modules.', cat: 'research', icon: '🚪', color: '#64748b', tags: ['Knowledge', 'Learning', 'Medical'], status: 'live', url: 'https://mokangmedical.github.io/narrowgate/' },
+  { name: 'OPC Platform', desc: 'One-stop healthcare innovation platform with 46 pages of tools, dashboards, and collaboration features.', cat: 'platform', icon: '🚀', color: '#3b82f6', tags: ['Platform', 'Innovation', 'Collaboration'], status: 'live', url: 'https://mokangmedical.github.io/opc-platform/' },
+  { name: 'OPC Marketplace', desc: 'Healthcare technology marketplace for buying, selling, and licensing medical AI solutions.', cat: 'platform', icon: '🛒', color: '#10b981', tags: ['Marketplace', 'Commerce', 'Licensing'], status: 'live', url: 'https://mokangmedical.github.io/opc-marketplace/' },
+  { name: 'MediSlim', desc: 'AI-powered weight management platform with personalized nutrition plans and progress tracking.', cat: 'patient', icon: '⚖️', color: '#f472b6', tags: ['Weight Loss', 'Nutrition', 'AI'], status: 'live', url: 'https://mokangmedical.github.io/MediSlim/' },
+  { name: 'HEOR Platform', desc: 'Health Economics and Outcomes Research modeling platform with cost-effectiveness analysis tools.', cat: 'data', icon: '💰', color: '#f59e0b', tags: ['HEOR', 'Economics', 'Modeling'], status: 'live', url: 'https://mokangmedical.github.io/heor-modeling-platform/' },
+  { name: 'DrugClip', desc: 'Virtual screening platform using CLIP-based models for drug-target interaction prediction.', cat: 'discovery', icon: '🔬', color: '#06b6d4', tags: ['Virtual Screening', 'CLIP', 'AI'], status: 'live', url: 'https://mokangmedical.github.io/drugclip-platform/' },
+  { name: 'VoiceHealth', desc: 'AI voice-based health detection platform with WeChat mini-program integration.', cat: 'patient', icon: '🎤', color: '#8b5cf6', tags: ['Voice', 'Health Detection', 'WeChat'], status: 'live', url: 'https://mokangmedical.github.io/voicehealth/' },
+  { name: 'MedRoundTable', desc: 'Medical roundtable discussion platform with 64 HTML pages of clinical case discussions.', cat: 'clinical', icon: '👨‍⚕️', color: '#14b8a6', tags: ['Clinical', 'Discussion', 'Cases'], status: 'live', url: 'https://mokangmedical.github.io/medroundtable/' },
+  { name: 'OPC Alliance', desc: 'Healthcare innovation alliance network connecting researchers, clinicians, and industry partners.', cat: 'platform', icon: '🤝', color: '#ec4899', tags: ['Network', 'Alliance', 'Partnership'], status: 'live', url: 'https://mokangmedical.github.io/opc-alliance/' },
+  { name: 'MetaForge', desc: 'Meta-analysis toolkit for systematic reviews and evidence synthesis in medical research.', cat: 'data', icon: '🔧', color: '#6366f1', tags: ['Meta-analysis', 'Statistics', 'Research'], status: 'live', url: 'https://mokangmedical.github.io/metaforge/' },
+  { name: 'Global Aging', desc: 'Lancet Global Health research platform analyzing global aging population data and trends.', cat: 'data', icon: '🌍', color: '#10b981', tags: ['Aging', 'Global Health', 'Lancet'], status: 'live', url: 'https://mokangmedical.github.io/global-aging-data-to-lancet-global-health/' }
+];
+
+function renderProjects(filter = 'all') {
+  const grid = document.getElementById('projectGrid');
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.cat === filter);
+  
+  grid.innerHTML = filtered.map(p => `
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon cat-${p.cat}">${p.icon}</div>
+        <div class="project-info">
+          <h3>${p.name}</h3>
+          <div class="category">${p.cat.charAt(0).toUpperCase() + p.cat.slice(1)}</div>
+        </div>
+      </div>
+      <div class="project-desc">${p.desc}</div>
+      <div class="project-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      <div class="project-meta">
+        <div class="project-status">
+          <div class="status-dot ${p.status}"></div>
+          <span>${p.status === 'live' ? 'Live' : 'In Development'}</span>
+        </div>
+        <a href="${p.url}" class="project-link" target="_blank">Visit →</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProjects(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderProjects(cat);
+}
+
+renderProjects();
+</script>
+</body>
+</html>
