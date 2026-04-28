@@ -1,116 +1,299 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPC Ecosystem Dashboard - Project Portfolio</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <meta property="og:title" content="OPC Ecosystem Dashboard">
-    <meta property="og:description" content="Real-time overview of 14+ AI healthcare projects in the OPC ecosystem">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a1a;color:#e0e0e0;}
-        .header{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:48px 24px;text-align:center;border-bottom:1px solid rgba(99,102,241,0.2);}
-        .header h1{font-size:2.2rem;background:linear-gradient(90deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-        .header p{color:#888;margin-top:8px;}
-        .back{display:inline-block;color:#6366f1;text-decoration:none;margin-bottom:16px;}
-        .container{max-width:1200px;margin:0 auto;padding:32px 24px;}
-        .summary-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
-        @media(max-width:768px){.summary-row{grid-template-columns:repeat(2,1fr);}}
-        .summary-card{background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(168,85,247,0.1));border:1px solid rgba(99,102,241,0.2);border-radius:14px;padding:24px;text-align:center;}
-        .summary-card .num{font-size:2.2rem;font-weight:800;background:linear-gradient(90deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-        .summary-card .lbl{color:#888;font-size:.85rem;margin-top:4px;}
-        .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;}
-        @media(max-width:768px){.charts-grid{grid-template-columns:1fr;}}
-        .chart-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;}
-        .chart-card h3{color:#fff;margin-bottom:16px;font-size:1.1rem;}
-        .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
-        .project-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px;transition:transform .3s,border-color .3s;}
-        .project-card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,0.4);}
-        .project-card .name{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:4px;}
-        .project-card .cat{font-size:.8rem;color:#6366f1;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-        .project-card .desc{color:#888;font-size:.88rem;line-height:1.5;margin-bottom:12px;}
-        .project-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-        .project-card .tag{background:rgba(99,102,241,0.15);color:#6366f1;padding:3px 10px;border-radius:20px;font-size:.75rem;}
-        .project-card .link{color:#22d3ee;text-decoration:none;font-size:.85rem;font-weight:600;}
-        .project-card .link:hover{text-decoration:underline;}
-        .status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:600;margin-left:8px;}
-        .status-live{background:rgba(34,197,94,0.15);color:#22c55e;}
-        .status-beta{background:rgba(245,158,11,0.15);color:#f59e0b;}
-        .status-alpha{background:rgba(239,68,68,0.15);color:#ef4444;}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OPC Dashboard - MoKangMedical</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e5e5e5}
+.nav{position:sticky;top:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:#0a0a0aee;backdrop-filter:blur(10px);border-bottom:1px solid #1a1a1a}
+.nav a{color:#a3a3a3;text-decoration:none;margin:0 0.8rem;font-size:0.9rem}
+.nav a:hover{color:#fff}
+.nav .brand{color:#fff;font-weight:700;font-size:1.1rem}
+.dashboard{max-width:1400px;margin:0 auto;padding:2rem}
+.header{text-align:center;margin-bottom:3rem}
+.header h1{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#0ea5e9,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:#a3a3a3;margin-top:0.5rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.metric{background:#141414;border:1px solid #262626;border-radius:12px;padding:1.5rem;text-align:center}
+.metric .value{font-size:2.5rem;font-weight:800;color:#0ea5e9}
+.metric .label{color:#737373;font-size:0.85rem;margin-top:0.3rem}
+.metric .trend{font-size:0.8rem;margin-top:0.5rem}
+.metric .trend.up{color:#22c55e}
+.metric .trend.down{color:#ef4444}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:768px){.grid-2{grid-template-columns:1fr}}
+.card{background:#141414;border:1px solid #262626;border-radius:12px;padding:1.5rem}
+.card h3{color:#fff;margin-bottom:1rem;font-size:1.1rem}
+.chart-placeholder{height:200px;background:#1a1a1a;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#525252}
+.project-list{max-height:400px;overflow-y:auto}
+.project-item{display:flex;justify-content:space-between;align-items:center;padding:0.8rem;border-bottom:1px solid #1a1a1a}
+.project-item:last-child{border-bottom:none}
+.project-item .name{color:#fff;font-weight:500}
+.project-item .status{padding:0.2rem 0.6rem;border-radius:999px;font-size:0.75rem}
+.status-live{background:#22c55e22;color:#22c55e}
+.status-dev{background:#f59e0b22;color:#f59e0b}
+.status-plan{background:#6366f122;color:#6366f1}
+.category-bar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:0.5rem}
+.category-bar div{transition:width 0.5s}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#0ea5e944}
+.timeline-item{position:relative;margin-bottom:1.5rem;padding-left:1.5rem}
+.timeline-item::before{content:'';position:absolute;left:-2.35rem;top:0.5rem;width:10px;height:10px;border-radius:50%;background:#0ea5e9}
+.timeline-item h4{color:#fff;font-size:0.95rem}
+.timeline-item p{color:#737373;font-size:0.85rem}
+.timeline-item .date{color:#0ea5e9;font-size:0.8rem}
+footer{text-align:center;padding:2rem;color:#525252;border-top:1px solid #1a1a1a;font-size:0.8rem}
+footer a{color:#0ea5e9;text-decoration:none}
+</style>
 </head>
 <body>
-    <div class="header">
-        <a href="index.html" class="back">← Back to OPC Home</a>
-        <h1>OPC Ecosystem Dashboard</h1>
-        <p>Real-time overview of our healthcare AI project portfolio</p>
-    </div>
-    <div class="container">
-        <div class="summary-row">
-            <div class="summary-card"><div class="num">14</div><div class="lbl">Active Projects</div></div>
-            <div class="summary-card"><div class="num">66</div><div class="lbl">AI Agents</div></div>
-            <div class="summary-card"><div class="num">5</div><div class="lbl">Target Markets</div></div>
-            <div class="summary-card"><div class="num">50+</div><div class="lbl">Partner Institutions</div></div>
-        </div>
-        
-        <div class="charts-grid">
-            <div class="chart-card"><h3>Projects by Category</h3><canvas id="catChart"></canvas></div>
-            <div class="chart-card"><h3>Technology Stack Distribution</h3><canvas id="techChart"></canvas></div>
-        </div>
-        
-        <h2 style="color:#fff;margin-bottom:20px;font-size:1.5rem;">Project Portfolio</h2>
-        <div class="project-grid" id="projectGrid"></div>
-    </div>
-    
-    <script>
-        const projects = [
-            {name:"DrugMind",cat:"Drug Discovery",desc:"AI-powered molecular screening with multi-agent architecture. 94% prediction accuracy in lead compound identification.",tags:["Molecular Docking","ADMET","Toxicity","Multi-Agent"],url:"https://mokangmedical.github.io/DrugMind/",status:"live"},
-            {name:"PharmaSim",cat:"Market Intelligence",desc:"7-dimensional pharmaceutical market simulation engine. 92% forecast accuracy across 15+ markets.",tags:["Market Simulation","Pricing","Competitive Analysis"],url:"https://mokangmedical.github.io/PharmaSim/",status:"live"},
-            {name:"MediChat-RD",cat:"Clinical AI",desc:"Rare disease diagnostic platform covering 7,000+ conditions. 89% top-5 diagnostic accuracy.",tags:["Rare Disease","Knowledge Graph","Clinical Decision"],url:"https://mokangmedical.github.io/medichat-rd/",status:"live"},
-            {name:"Virtual Cell",cat:"Computational Biology",desc:"Single-cell simulation platform. 200+ cell types, 94% concordance with wet-lab experiments.",tags:["scRNA-seq","Cell Simulation","Systems Biology"],url:"https://mokangmedical.github.io/virtual-cell/",status:"live"},
-            {name:"Tianyan",cat:"Competitive Intelligence",desc:"Healthcare competitive analysis with 152 test scenarios and real-time monitoring.",tags:["Patent Monitoring","Market Analysis","Due Diligence"],url:"https://mokangmedical.github.io/tianyan/",status:"live"},
-            {name:"ChroniCare",cat:"Patient Care",desc:"Chronic disease management for 15+ conditions. 28% readmission reduction.",tags:["Remote Monitoring","AI Alerts","Patient Dashboard"],url:"https://mokangmedical.github.io/chronicdiseasemanagement/",status:"live"},
-            {name:"Cloud Memorial",cat:"Digital Legacy",desc:"AI-powered digital memorial platform with privacy-first design and AES-256 encryption.",tags:["Digital Legacy","AI Interaction","Privacy"],url:"https://mokangmedical.github.io/cloud-memorial/",status:"live"},
-            {name:"NarrowGate",cat:"Church Management",desc:"Modern church management with 35% attendance increase and 500+ churches served.",tags:["Member Engagement","Event Scheduling","Community"],url:"https://mokangmedical.github.io/narrowgate/",status:"live"},
-            {name:"Digital Sage",cat:"Education",desc:"100+ expert-led multimodal courses with AI teaching assistants.",tags:["AI Education","Multimodal","Course Builder"],url:"https://mokangmedical.github.io/digital-sage/",status:"live"},
-            {name:"OPC Platform",cat:"Collaboration",desc:"Healthcare innovation collaboration hub with 50+ tool integrations.",tags:["Team Collaboration","API","Integrations"],url:"https://mokangmedical.github.io/opc-platform/",status:"live"},
-            {name:"OPC Marketplace",cat:"Commerce",desc:"Two-sided marketplace for healthcare AI tools and services.",tags:["Marketplace","SaaS","Healthcare Tools"],url:"https://mokangmedical.github.io/opc-marketplace/",status:"beta"},
-            {name:"OPC Alliance",cat:"Community",desc:"Network of healthcare innovators, researchers, and technology partners.",tags:["Partnership","Community","Ecosystem"],url:"https://mokangmedical.github.io/opc-alliance/",status:"live"},
-            {name:"DrugClip",cat:"AI Research",desc:"Deep learning virtual screening benchmark platform.",tags:["Virtual Screening","Benchmark","ML"],url:"https://mokangmedical.github.io/drugclip-platform/",status:"beta"},
-            {name:"Kondratiev Wave",cat:"Education",desc:"21-course economic cycle analysis system with 5-phase framework.",tags:["Economics","Cycles","Investment"],url:"https://mokangmedical.github.io/kondratiev-wave/",status:"live"},
-        ];
-        
-        // Category chart
-        const cats = {};
-        projects.forEach(p => { cats[p.cat] = (cats[p.cat]||0) + 1; });
-        new Chart(document.getElementById('catChart'), {
-            type: 'doughnut',
-            data: {labels: Object.keys(cats), datasets: [{data: Object.values(cats), backgroundColor: ['#6366f1','#22d3ee','#f43f5e','#f59e0b','#22c55e','#a855f7','#ec4899','#14b8a6','#f97316'], borderWidth: 0}]},
-            options: {responsive: true, plugins: {legend: {labels: {color: '#ccc', padding: 12}}}}
-        });
-        
-        // Tech chart
-        const techs = {'FastAPI': 8, 'Python': 10, 'JavaScript': 7, 'AI/ML': 9, 'Chart.js': 5, 'REST API': 8};
-        new Chart(document.getElementById('techChart'), {
-            type: 'radar',
-            data: {labels: Object.keys(techs), datasets: [{label: 'Projects Using', data: Object.values(techs), backgroundColor: 'rgba(99,102,241,0.2)', borderColor: '#6366f1', borderWidth: 2, pointBackgroundColor: '#6366f1'}]},
-            options: {responsive: true, scales: {r: {ticks: {color: '#888', backdropColor: 'transparent'}, grid: {color: 'rgba(255,255,255,0.08)'}, pointLabels: {color: '#ccc'}}}, plugins: {legend: {display: false}}}
-        });
-        
-        // Project cards
-        const grid = document.getElementById('projectGrid');
-        const statusColors = {live: 'status-live', beta: 'status-beta', alpha: 'status-alpha'};
-        projects.forEach(p => {
-            grid.innerHTML += `
-                <div class="project-card">
-                    <div class="cat">${p.cat}</div>
-                    <div class="name">${p.name} <span class="status-badge ${statusColors[p.status]}">${p.status.toUpperCase()}</span></div>
-                    <div class="desc">${p.desc}</div>
-                    <div class="tags">${p.tags.map(t=>'<span class="tag">'+t+'</span>').join('')}</div>
-                    <a href="${p.url}" target="_blank" class="link">View Project →</a>
-                </div>`;
-        });
-    </script>
-</body>
-</html>
+<nav class="nav">
+<a class="brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
+<div>
+<a href="index.html">首页</a>
+<a href="ecosystem.html">生态</a>
+<a href="dashboard.html" style="color:#0ea5e9">仪表板</a>
+<a href="projects.html">项目</a>
+<a href="https://github.com/MoKangMedical">GitHub</a>
+</div>
+</nav>
+
+<div class="dashboard">
+<div class="header">
+<h1>OPC 生态仪表板</h1>
+<p>MoKangMedical 创业者联盟实时数据概览</p>
+</div>
+
+<div class="metrics">
+<div class="metric">
+<div class="value">73</div>
+<div class="label">总项目数</div>
+<div class="trend up">+12 本月新增</div>
+</div>
+<div class="metric">
+<div class="value">60+</div>
+<div class="label">GitHub Pages上线</div>
+<div class="trend up">+15 本周上线</div>
+</div>
+<div class="metric">
+<div class="value">12</div>
+<div class="label">技术领域</div>
+<div class="trend">覆盖全医疗AI</div>
+</div>
+<div class="metric">
+<div class="value">100%</div>
+<div class="label">开源率</div>
+<div class="trend up">MIT License</div>
+</div>
+<div class="metric">
+<div class="value">70+</div>
+<div class="label">Git仓库</div>
+<div class="trend up">持续增长</div>
+</div>
+</div>
+
+<div class="grid-2">
+<div class="card">
+<h3>项目分类分布</h3>
+<div style="padding:1rem 0">
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">药物研发</span>
+<span style="font-size:0.85rem;color:#0ea5e9">7个项目</span>
+</div>
+<div class="category-bar"><div style="width:10%;background:#0ea5e9"></div></div>
+</div>
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">临床研究</span>
+<span style="font-size:0.85rem;color:#a78bfa">7个项目</span>
+</div>
+<div class="category-bar"><div style="width:10%;background:#a78bfa"></div></div>
+</div>
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">AI医疗</span>
+<span style="font-size:0.85rem;color:#f43f5e">7个项目</span>
+</div>
+<div class="category-bar"><div style="width:10%;background:#f43f5e"></div></div>
+</div>
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">健康管理</span>
+<span style="font-size:0.85rem;color:#22c55e">8个项目</span>
+</div>
+<div class="category-bar"><div style="width:11%;background:#22c55e"></div></div>
+</div>
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">知识平台</span>
+<span style="font-size:0.85rem;color:#f59e0b">6个项目</span>
+</div>
+<div class="category-bar"><div style="width:8%;background:#f59e0b"></div></div>
+</div>
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">数据科学</span>
+<span style="font-size:0.85rem;color:#06b6d4">9个项目</span>
+</div>
+<div class="category-bar"><div style="width:12%;background:#06b6d4"></div></div>
+</div>
+<div style="margin-bottom:1rem">
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">商业平台</span>
+<span style="font-size:0.85rem;color:#ec4899">7个项目</span>
+</div>
+<div class="category-bar"><div style="width:10%;background:#ec4899"></div></div>
+</div>
+<div>
+<div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+<span style="font-size:0.85rem">其他领域</span>
+<span style="font-size:0.85rem;color:#8b5cf6">22个项目</span>
+</div>
+<div class="category-bar"><div style="width:30%;background:#8b5cf6"></div></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>最近动态</h3>
+<div class="timeline">
+<div class="timeline-item">
+<span class="date">2026-04-28</span>
+<h4>18个新项目Landing Page上线</h4>
+<p>从零建设18个专业级项目主页</p>
+</div>
+<div class="timeline-item">
+<span class="date">2026-04-28</span>
+<h4>25个项目多页面扩展</h4>
+<p>每个项目新增功能/定价/关于/文档4个页面</p>
+</div>
+<div class="timeline-item">
+<span class="date">2026-04-28</span>
+<h4>OPC生态全景页面更新</h4>
+<p>展示全部73个项目的分类浏览</p>
+</div>
+<div class="timeline-item">
+<span class="date">2026-04-28</span>
+<h4>SEO全面优化</h4>
+<p>13个核心项目添加结构化数据和OG标签</p>
+</div>
+<div class="timeline-item">
+<span class="date">2026-04-28</span>
+<h4>商业闭环完善</h4>
+<p>62个项目修复CTA链接，统一定价入口</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card" style="margin-bottom:2rem">
+<h3>核心项目状态</h3>
+<div class="project-list">
+<div class="project-item">
+<span class="name">PharmaSim 药品市场仿真</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">天眼 Tianyan 商业预测</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">MediChat-RD 罕见病AI</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">DrugMind 药物研发AI</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">慢康智枢 慢性病管理</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">NarrowGate 研究平台</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">Digital Sage 智者课程</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">康波经济周期课程</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">虚拟细胞 Virtual Cell</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">念念 Cloud Memorial</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">OPC Platform 创业者平台</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">OPC Marketplace 市场</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">HEOR Modeling Platform</span>
+<span class="status status-live">LIVE</span>
+</div>
+<div class="project-item">
+<span class="name">MedRoundTable 圆桌</span>
+<span class="status status-live">LIVE</span>
+</div>
+</div>
+</div>
+
+<div class="grid-2">
+<div class="card">
+<h3>技术栈覆盖</h3>
+<div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem">
+<span style="padding:0.3rem 0.8rem;background:#0ea5e922;color:#0ea5e9;border-radius:999px;font-size:0.8rem">Python</span>
+<span style="padding:0.3rem 0.8rem;background:#a78bfa22;color:#a78bfa;border-radius:999px;font-size:0.8rem">FastAPI</span>
+<span style="padding:0.3rem 0.8rem;background:#f43f5e22;color:#f43f5e;border-radius:999px;font-size:0.8rem">React</span>
+<span style="padding:0.3rem 0.8rem;background:#22c55e22;color:#22c55e;border-radius:999px;font-size:0.8rem">Next.js</span>
+<span style="padding:0.3rem 0.8rem;background:#f59e0b22;color:#f59e0b;border-radius:999px;font-size:0.8rem">TypeScript</span>
+<span style="padding:0.3rem 0.8rem;background:#06b6d422;color:#06b6d4;border-radius:999px;font-size:0.8rem">Docker</span>
+<span style="padding:0.3rem 0.8rem;background:#ec489922;color:#ec4899;border-radius:999px;font-size:0.8rem">PostgreSQL</span>
+<span style="padding:0.3rem 0.8rem;background:#8b5cf622;color:#8b5cf6;border-radius:999px;font-size:0.8rem">PyTorch</span>
+<span style="padding:0.3rem 0.8rem;background:#14b8a622;color:#14b8a6;border-radius:999px;font-size:0.8rem">Swift</span>
+<span style="padding:0.3rem 0.8rem;background:#f9731622;color:#f97316;border-radius:999px;font-size:0.8rem">Kubernetes</span>
+</div>
+</div>
+
+<div class="card">
+<h3>商业模型</h3>
+<div style="margin-top:0.5rem">
+<div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid #1a1a1a">
+<span>Starter (免费)</span>
+<span style="color:#22c55e">开源社区版</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid #1a1a1a">
+<span>Professional</span>
+<span style="color:#0ea5e9">¥999/月</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid #1a1a1a">
+<span>Enterprise</span>
+<span style="color:#a78bfa">定制方案</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:0.5rem 0">
+<span>API Access</span>
+<span style="color:#f59e0b">按量计费</span>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+<p>&copy; 2026 MoKangMedical. <a href="https://mokangmedical.github.io/opc-homepage/">OPC Ecosystem</a> | <a href="https://github.com/MoKangMedical">GitHub</a></p>
+</footer>
+</body></html>
