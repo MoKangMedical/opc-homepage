@@ -1,22 +1,302 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>About — MoKangMedical</title>
-<link rel="stylesheet" href="https://mokangmedical.github.io/opc-homepage/shared-design-system.css">
-</head><body>
-<nav class="eco-nav"><a class="nav-brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
-<div class="nav-links"><a href="index.html">Home</a><a href="features.html">Projects</a><a href="about.html">About</a><a href="https://github.com/MoKangMedical">GitHub</a></div></nav>
-<section class="hero"><h1>About MoKangMedical</h1><p class="subtitle">Advancing healthcare through open-source AI innovation</p></section>
-<section class="section">
-<div class="card-grid">
-<div class="card fade-up"><h3>Our Mission</h3><p>Democratize medical AI by building open-source tools that empower researchers, clinicians, and healthcare organizations worldwide.</p></div>
-<div class="card fade-up"><h3>Our Vision</h3><p>A world where AI-powered medical tools are accessible to every healthcare provider, from academic medical centers to rural clinics.</p></div>
-<div class="card fade-up"><h3>Open Source</h3><p>All our core platforms are open-source, fostering collaboration and transparency in medical AI development.</p></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我们 — MoKangMedical 魔康医疗</title>
+<meta name="description" content="MoKangMedical致力于构建AI驱动的医药创新生态系统，用开源和AI技术推动全球医疗创新">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--bg2:#111827;--bg3:#1e293b;--text:#f1f5f9;--text2:#94a3b8;--accent:#3b82f6;--accent2:#8b5cf6;--green:#10b981;--cyan:#06b6d4;--orange:#f59e0b;--pink:#ec4899;--border:#1e293b;--glass:rgba(255,255,255,0.03)}
+body{font-family:-apple-system,'SF Pro Display','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none;transition:color .2s}a:hover{color:var(--cyan)}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.8rem 0}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .links{display:flex;gap:1.5rem}nav .links a{color:var(--text2);font-size:.85rem;font-weight:500;transition:color .2s}nav .links a:hover{color:var(--text)}
+.hamburger{display:none;cursor:pointer;font-size:1.5rem;color:var(--text)}
+@media(max-width:768px){nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);flex-direction:column;padding:1rem;gap:.8rem;border-bottom:1px solid var(--border)}nav .links.open{display:flex}.hamburger{display:block}}
+
+/* HERO */
+.hero{padding:8rem 0 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(139,92,246,.06) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;line-height:1.2;margin-bottom:1rem}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .subtitle{font-size:1.15rem;color:var(--text2);max-width:600px;margin:0 auto;line-height:1.7}
+
+/* SECTIONS */
+section{padding:5rem 0}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2.2rem;font-weight:700;margin-bottom:.5rem}
+.section-header p{color:var(--text2);max-width:600px;margin:0 auto}
+
+/* MISSION */
+.mission-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2.5rem;max-width:800px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.mission-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.mission-card .icon{font-size:3rem;margin-bottom:1rem}
+.mission-card h3{font-size:1.5rem;font-weight:700;margin-bottom:1rem}
+.mission-card p{color:var(--text2);font-size:1.05rem;line-height:1.8}
+
+/* VALUES */
+.values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.value-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.value-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 40px rgba(59,130,246,.1)}
+.value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+.value-card:hover::before{opacity:1}
+.value-card .icon{font-size:2.5rem;margin-bottom:1rem}
+.value-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.value-card p{color:var(--text2);font-size:.9rem;line-height:1.6}
+
+/* TIMELINE */
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent2),var(--cyan));transform:translateX(-50%)}
+.timeline-item{position:relative;padding:1.5rem 0;display:flex;align-items:flex-start}
+.timeline-item:nth-child(odd){flex-direction:row-reverse;text-align:right}
+.timeline-item:nth-child(odd) .timeline-content{margin-right:2.5rem}
+.timeline-item:nth-child(even) .timeline-content{margin-left:2.5rem}
+.timeline-content{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;max-width:340px}
+.timeline-dot{position:absolute;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);z-index:1}
+.timeline-content h3{font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
+.timeline-content .year{color:var(--accent);font-size:.85rem;font-weight:600;margin-bottom:.3rem}
+.timeline-content p{color:var(--text2);font-size:.85rem;line-height:1.6}
+
+/* TEAM */
+.team-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;max-width:700px;margin:0 auto}
+.team-card .avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1.5rem;box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.team-card h3{font-size:1.4rem;font-weight:700;margin-bottom:.5rem}
+.team-card .role{color:var(--accent);font-size:.9rem;margin-bottom:1rem}
+.team-card p{color:var(--text2);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem}
+.team-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.team-stat .num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.team-stat .lbl{font-size:.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1rem}
+
+/* VISION */
+.vision-box{background:linear-gradient(135deg,rgba(59,130,246,.05),rgba(139,92,246,.05));border:1px solid var(--border);border-radius:16px;padding:3rem;text-align:center;max-width:800px;margin:0 auto}
+.vision-box h3{font-size:1.8rem;font-weight:800;margin-bottom:1rem}
+.vision-box p{color:var(--text2);font-size:1.05rem;line-height:1.8}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand .logo{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.footer-brand p{color:var(--text2);font-size:.85rem}
+.footer-col h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05rem;margin-bottom:1rem;color:var(--text)}
+.footer-col a{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid var(--border);color:var(--text2);font-size:.8rem}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}.timeline::before{left:20px}.timeline-dot{left:20px}.timeline-item,.timeline-item:nth-child(odd){flex-direction:row;text-align:left}.timeline-content{margin-left:3rem!important;margin-right:0!important;max-width:100%}}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.9rem;margin-bottom:2rem;transition:color .2s}
+.back-link:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="inner">
+<div class="logo"><a href="index.html" style="color:inherit;text-decoration:none">OPC Open Pharma Coalition</a></div>
+<div class="hamburger" onclick="document.querySelector('.links').classList.toggle('open')">☰</div>
+<div class="links">
+<a href="index.html">首页</a>
+<a href="about.html">关于我们</a>
+<a href="roadmap.html">路线图</a>
+<a href="contact.html">联系我们</a>
+<a href="https://github.com/MoKangMedical" target="_blank">GitHub</a>
 </div>
-<div class="stats" style="margin-top:3rem">
-<div><div class="stat-num">70+</div><div class="stat-label">Open Source Projects</div></div>
-<div><div class="stat-num">15+</div><div class="stat-label">Live Platforms</div></div>
-<div><div class="stat-num">6</div><div class="stat-label">Core Domains</div></div>
-<div><div class="stat-num">100%</div><div class="stat-label">Open Source</div></div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>关于 <span class="gradient">MoKangMedical</span></h1>
+<p class="subtitle">我们致力于用AI技术重塑医药创新，让每一个生命都能享受到最先进的医疗科技</p>
 </div>
 </section>
-<footer class="footer"><p>&copy; 2025 MoKangMedical. All rights reserved.</p></footer>
-</body></html>
+
+<!-- MISSION -->
+<section>
+<div class="container">
+<div class="section-header">
+<h2>🎯 我们的使命</h2>
+<p>构建AI驱动的医药创新生态系统</p>
+</div>
+<div class="mission-card">
+<div class="icon">⚗️</div>
+<h3>AI-Powered Medical Innovation Ecosystem</h3>
+<p>MoKangMedical 魔康医疗致力于构建全球首个AI驱动的开放医药创新生态系统。通过整合药物研发、临床试验、数字疗法、商业智能等全链条能力，我们正在打造下一代医药创新基础设施。我们的愿景是让AI成为每一位医药研究者和创业者的超级助手，加速从实验室到病床的每一个环节。</p>
+</div>
+</div>
+</section>
+
+<!-- VALUES -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+<div class="section-header">
+<h2>💎 核心价值观</h2>
+<p>驱动我们前行的五大核心理念</p>
+</div>
+<div class="values-grid">
+<div class="value-card">
+<div class="icon">🌐</div>
+<h3>开源开放</h3>
+<p>我们坚信开源是推动医药创新的最佳方式。所有核心项目均以开源形式发布，让全球开发者共同参与、共同受益，降低创新门槛。</p>
+</div>
+<div class="value-card">
+<div class="icon">🔬</div>
+<h3>循证医学</h3>
+<p>每一个AI模型、每一项功能都基于严谨的科学证据。我们与顶级医学期刊数据对接，确保平台输出的专业性和可靠性。</p>
+</div>
+<div class="value-card">
+<div class="icon">❤️</div>
+<h3>以患者为中心</h3>
+<p>技术的终极目标是服务于患者。从药物研发到临床管理，我们始终将患者获益放在首位，用温暖科技守护每一个生命。</p>
+</div>
+<div class="value-card">
+<div class="icon">🤖</div>
+<h3>AI原生</h3>
+<p>不是在传统系统上叠加AI，而是从零开始以AI为核心设计。每个产品都充分发挥大语言模型和多Agent协作的能力。</p>
+</div>
+<div class="value-card">
+<div class="icon">🤝</div>
+<h3>生态共建</h3>
+<p>一个人走得快，一群人走得远。通过OPC联盟，我们汇聚医药创业者、研究者和投资者，共建共享医药创新生态。</p>
+</div>
+<div class="value-card">
+<div class="icon">🚀</div>
+<h3>快速迭代</h3>
+<p>以周为单位发布新功能，以月为单位推出新产品。在快速变化的AI时代，速度就是竞争力，我们始终保持前沿。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HISTORY -->
+<section>
+<div class="container">
+<div class="section-header">
+<h2>📅 发展历程</h2>
+<p>从一个想法到17个AI产品</p>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<div class="year">2024 Q1</div>
+<h3>创立起步</h3>
+<p>MoKangMedical正式成立，启动第一个AI医药项目，确立"AI+医药"的核心方向</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<div class="year">2024 Q2</div>
+<h3>产品矩阵成型</h3>
+<p>DrugMind、MediChat-RD、PharmaSim三大核心产品相继发布，形成药物研发+临床+市场的三角支撑</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<div class="year">2024 Q3</div>
+<h3>数据平台上线</h3>
+<p>天眼商业智能、SEER肿瘤数据、全球老龄化分析等数据平台发布，建立完整数据基础设施</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<div class="year">2024 Q4</div>
+<h3>生态扩展</h3>
+<p>OPC联盟、OPC市场、数字智者等平台发布，产品数量突破15个，生态系统初步形成</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<div class="year">2025 - 2026</div>
+<h3>全面进化</h3>
+<p>累计17个AI产品、66个专业Skill、100+ AI Agent，从单一项目发展为完整的医药创新生态系统</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+<div class="section-header">
+<h2>👥 团队</h2>
+<p>一个人 + AI军团 = 无限可能</p>
+</div>
+<div class="team-card">
+<div class="avatar">👨‍💻</div>
+<h3>创始人</h3>
+<div class="role">MoKangMedical 魔康医疗</div>
+<p>独立创始人，携手AI Agent军团，在两年时间内从零构建了完整的医药创新生态系统。这不仅是一个技术实验，更是对"一人公司"模式的极致探索——当AI成为你的超级团队，一个人也能改变一个行业。</p>
+<div class="team-stats">
+<div class="team-stat"><div class="num">66</div><div class="lbl">专业技能</div></div>
+<div class="team-stat"><div class="num">17</div><div class="lbl">AI产品</div></div>
+<div class="team-stat"><div class="num">100+</div><div class="lbl">AI Agent</div></div>
+<div class="team-stat"><div class="num">50K+</div><div class="lbl">代码行数</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- VISION -->
+<section>
+<div class="container">
+<div class="section-header">
+<h2>🔭 未来愿景</h2>
+<p>让全球共享AI医药创新</p>
+</div>
+<div class="vision-box">
+<h3>民主化全球医疗AI</h3>
+<p>我们的终极愿景是让先进的AI医疗技术触手可及。无论是顶级三甲医院还是偏远地区的诊所，无论是大型药企还是初创团队，都能通过OPC生态系统获得世界一流的AI工具和数据资源。我们相信，技术创新不应被地域和资源所限制——每一个需要的人，都值得拥有最好的医疗AI。</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo">OPC Open Pharma Coalition</div>
+<p>AI驱动的开放医药创新生态系统<br>Building the future of pharma innovation</p>
+</div>
+<div class="footer-col">
+<h4>产品</h4>
+<a href="https://mokangmedical.github.io/DrugMind/">DrugMind</a>
+<a href="https://mokangmedical.github.io/PharmaSim/">PharmaSim</a>
+<a href="https://mokangmedical.github.io/medichat-rd/">MediChat-RD</a>
+</div>
+<div class="footer-col">
+<h4>平台</h4>
+<a href="https://mokangmedical.github.io/tianyan/">天眼</a>
+<a href="https://mokangmedical.github.io/opc-alliance/">OPC联盟</a>
+<a href="https://mokangmedical.github.io/opc-marketplace/">OPC市场</a>
+</div>
+<div class="footer-col">
+<h4>链接</h4>
+<a href="index.html">首页</a>
+<a href="roadmap.html">路线图</a>
+<a href="contact.html">联系我们</a>
+</div>
+</div>
+<div class="footer-bottom">© 2026 OPC Open Pharma Coalition. All rights reserved. Powered by MoKangMedical.</div>
+</div>
+</footer>
+
+<script src="https://mokangmedical.github.io/opc-homepage/opc-nav.js"></script>
+</body>
+</html>
