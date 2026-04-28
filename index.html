@@ -485,6 +485,39 @@ input:focus, textarea:focus, select:focus{
   .integration-info h4{font-size:12px}
   .integration-info p{font-size:10px}
 }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MoKangMedical",
+  "url": "https://mokangmedical.github.io/opc-homepage/",
+  "logo": "https://mokangmedical.github.io/opc-homepage/",
+  "description": "AI-powered medical innovation ecosystem with 60+ open-source projects across drug discovery, clinical research, digital health, and solo entrepreneur empowerment.",
+  "sameAs": ["https://github.com/MoKangMedical"],
+  "founder": {
+    "@type": "Person",
+    "name": "MoKang"
+  },
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": 1
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MoKangMedical",
+  "url": "https://mokangmedical.github.io/opc-homepage/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://mokangmedical.github.io/opc-homepage/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 </head>
 <body>
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
@@ -994,6 +1027,39 @@ function updateROI(){
   document.getElementById('roiSaved').textContent=saved;
   document.getElementById('roiValue').textContent='$'+value.toLocaleString();
 }
+
+// Fetch real-time GitHub stars
+function fetchGitHubStars(){
+  var cards=document.querySelectorAll('.proj-card');
+  cards.forEach(function(card){
+    var link=card.querySelector('.proj-link');
+    if(!link)return;
+    var href=link.getAttribute('href');
+    var match=href.match(/github\.com\/MoKangMedical\/([^\/\?]+)/);
+    if(!match)return;
+    var repo=match[1];
+    fetch('https://api.github.com/repos/MoKangMedical/'+repo)
+      .then(function(r){return r.json()})
+      .then(function(data){
+        if(data.stargazers_count>0){
+          var meta=card.querySelector('.proj-meta');
+          if(meta){
+            var existing=meta.querySelector('.star-count');
+            if(!existing){
+              var badge=document.createElement('span');
+              badge.className='stat-badge star-count';
+              badge.title='Stars';
+              badge.innerHTML='&#9733; '+data.stargazers_count;
+              meta.appendChild(badge);
+            }
+          }
+        }
+      })
+      .catch(function(){});
+  });
+}
+// Fetch stars on load (delayed to not block rendering)
+setTimeout(fetchGitHubStars,3000);
 </script>
 </body>
 </html>
