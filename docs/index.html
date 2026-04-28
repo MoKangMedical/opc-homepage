@@ -1,14 +1,780 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MoKangMedical OPC Ecosystem — MoKangMedical</title><meta name="description" content="One-Stop Platform for Medical AI Innovation — 70+ Projects Across Drug Discovery, Clinical Intelligence, and Health Analytics">
-<link rel="stylesheet" href="https://mokangmedical.github.io/opc-homepage/shared-design-system.css">
-</head><body>
-<nav class="eco-nav"><a class="nav-brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
-<div class="nav-links"><a href="https://github.com/MoKangMedical/opc-homepage">GitHub</a><a href="https://mokangmedical.github.io/opc-homepage/">Ecosystem</a><a href="#features">Features</a><a href="#pricing">Pricing</a></div></nav>
-<section class="hero"><div class="badge">70+ Projects Live</div><h1>MoKangMedical OPC Ecosystem</h1><p class="subtitle">One-Stop Platform for Medical AI Innovation — 70+ Projects Across Drug Discovery, Clinical Intelligence, and Health Analytics</p>
-<div class="btn-group"><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary">View on GitHub</a><a href="#features" class="btn btn-outline">Explore Features</a></div></section>
-<section class="section" id="stats"><div class="stats"><div><div class="stat-num">70+</div><div class="stat-label">Projects</div></div><div><div class="stat-num">15+</div><div class="stat-label">Live Pages</div></div><div><div class="stat-num">500K+</div><div class="stat-label">Lines of Code</div></div><div><div class="stat-num">6</div><div class="stat-label">Core Domains</div></div></div></section>
-<section class="section" id="features"><h2 class="section-title">Key Features</h2><p class="section-desc">Powerful capabilities designed for medical professionals and researchers</p><div class="card-grid"><div class="card fade-up"><div class="card-icon">🧬</div><h3>Drug Discovery AI</h3><p>DrugMind, PharmaSim, DrugCLIP — from molecular design to market simulation</p></div><div class="card fade-up"><div class="card-icon">🏥</div><h3>Clinical Intelligence</h3><p>MediChat-RD, clinical trials platform, real-world evidence analysis</p></div><div class="card fade-up"><div class="card-icon">📊</div><h3>Health Analytics</h3><p>Epidemiology, HEOR modeling, NHANES/SEER data pipelines</p></div><div class="card fade-up"><div class="card-icon">🤖</div><h3>Multi-Agent Systems</h3><p>66+ skills, autonomous research agents, knowledge graphs</p></div><div class="card fade-up"><div class="card-icon">🌐</div><h3>Global Reach</h3><p>i18n support, FDA/EMA compliance, multi-language platforms</p></div><div class="card fade-up"><div class="card-icon">🔬</div><h3>Research Tools</h3><p>Meta-analysis, systematic review, biostatistics platforms</p></div></div></section>
-<section class="section" id="pricing"><h2 class="section-title">Pricing Plans</h2><p class="section-desc">Choose the plan that fits your needs</p><div class="pricing-grid"><div class="price-card "><h3>Open Source</h3><div class="price-tag">Free</div><ul><li>All open-source projects</li><li>Community support</li><li>Basic documentation</li></ul><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a></div><div class="price-card featured"><div class="price-badge">Most Popular</div><h3>Professional</h3><div class="price-tag">$299/mo</div><ul><li>Priority support</li><li>Advanced features</li><li>API access</li><li>Custom integrations</li></ul><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a></div><div class="price-card "><h3>Enterprise</h3><div class="price-tag">$999/mo</div><ul><li>Dedicated support</li><li>SLA guarantee</li><li>Custom development</li><li>Training sessions</li></ul><a href="https://github.com/MoKangMedical/opc-homepage" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a></div></div></section>
-<footer class="footer"><div class="footer-links"><a href="https://mokangmedical.github.io/opc-homepage/">Ecosystem Home</a><a href="https://github.com/MoKangMedical">GitHub Organization</a><a href="https://github.com/MoKangMedical/opc-homepage">This Project</a></div><p>&copy; 2025 MoKangMedical. All rights reserved.</p></footer>
-</body></html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPC Open Pharma Coalition — 开放医药联盟</title>
+<meta name="description" content="AI驱动的医药创新生态系统，汇聚35+前沿项目，覆盖药物研发、临床试验、数字疗法全链条">
+<meta property="og:title" content="OPC Open Pharma Coalition">
+<meta property="og:description" content="AI驱动的医药创新生态系统">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--bg2:#111827;--bg3:#1e293b;--text:#f1f5f9;--text2:#94a3b8;--accent:#3b82f6;--accent2:#8b5cf6;--green:#10b981;--cyan:#06b6d4;--orange:#f59e0b;--pink:#ec4899;--border:#1e293b;--glass:rgba(255,255,255,0.03)}
+body{font-family:-apple-system,'SF Pro Display','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none;transition:color .2s}a:hover{color:var(--cyan)}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.8rem 0}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .links{display:flex;gap:1.5rem}nav .links a{color:var(--text2);font-size:.85rem;font-weight:500;transition:color .2s}nav .links a:hover{color:var(--text)}
+.hamburger{display:none;cursor:pointer;font-size:1.5rem;color:var(--text)}
+@media(max-width:768px){nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);flex-direction:column;padding:1rem;gap:.8rem;border-bottom:1px solid var(--border)}nav .links.open{display:flex}.hamburger{display:block}}
+
+/* === HERO === */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(139,92,246,.06) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-0.03em}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .subtitle{font-size:1.2rem;color:var(--text2);max-width:600px;margin:0 auto 2.5rem;line-height:1.7}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat .lbl{font-size:.8rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{padding:.8rem 2rem;border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .3s;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(59,130,246,.4)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);background:rgba(59,130,246,.05)}
+
+/* === SECTIONS === */
+section{padding:5rem 0}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2.2rem;font-weight:700;margin-bottom:.5rem}
+.section-header p{color:var(--text2);max-width:600px;margin:0 auto}
+.label{display:inline-block;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05rem;margin-bottom:.5rem}
+
+/* === PROJECT CARDS === */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}
+.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.8rem;transition:all .3s;position:relative;overflow:hidden;cursor:pointer}
+.project-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 40px rgba(59,130,246,.1)}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+.project-card:hover::before{opacity:1}
+.project-card .icon{font-size:2.2rem;margin-bottom:1rem}
+.project-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.4rem}
+.project-card .desc{color:var(--text2);font-size:.9rem;line-height:1.6;margin-bottom:1rem}
+.project-card .tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.tag{padding:.2rem .6rem;border-radius:6px;font-size:.75rem;font-weight:500}
+.tag-ai{background:rgba(139,92,246,.15);color:var(--accent2)}
+.tag-data{background:rgba(6,182,212,.15);color:var(--cyan)}
+.tag-clinical{background:rgba(16,185,129,.15);color:var(--green)}
+.tag-pharma{background:rgba(245,158,11,.15);color:var(--orange)}
+.tag-platform{background:rgba(236,72,153,.15);color:var(--pink)}
+.project-card .meta{display:flex;justify-content:space-between;align-items:center}
+.project-card .meta .stat{font-size:.8rem;color:var(--text2)}
+.project-card .meta .stat strong{color:var(--accent)}
+.project-card .arrow{color:var(--accent);font-size:1.2rem;transition:transform .2s}
+.project-card:hover .arrow{transform:translateX(4px)}
+
+/* === ECOSYSTEM === */
+.ecosystem{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.eco-item{text-align:center;padding:2rem 1rem}
+.eco-item .num{font-size:3rem;font-weight:800;margin-bottom:.3rem}
+.eco-item .lbl{color:var(--text2);font-size:.9rem}
+.eco-item:nth-child(1) .num{color:var(--accent)}
+.eco-item:nth-child(2) .num{color:var(--accent2)}
+.eco-item:nth-child(3) .num{color:var(--cyan)}
+.eco-item:nth-child(4) .num{color:var(--green)}
+@media(max-width:768px){.eco-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* === PIPELINE === */
+.pipeline{position:relative}
+.pipeline-track{display:flex;gap:0;position:relative;justify-content:center;flex-wrap:wrap}
+.pipeline-step{flex:1;min-width:200px;max-width:250px;text-align:center;padding:2rem 1rem;position:relative}
+.pipeline-step::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:1.5rem;color:var(--accent)}
+.pipeline-step:last-child::after{display:none}
+.pipeline-step .icon{font-size:2.5rem;margin-bottom:.8rem}
+.pipeline-step h4{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+.pipeline-step p{color:var(--text2);font-size:.8rem}
+
+/* === TESTIMONIALS === */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.testimonial{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.testimonial .quote{font-size:.95rem;color:var(--text);line-height:1.7;margin-bottom:1rem;font-style:italic}
+.testimonial .author{display:flex;align-items:center;gap:.8rem}
+.testimonial .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+.testimonial .name{font-weight:600;font-size:.9rem}
+.testimonial .role{color:var(--text2);font-size:.8rem}
+
+/* === CTA === */
+.cta{text-align:center;padding:5rem 0;background:linear-gradient(135deg,rgba(59,130,246,.05),rgba(139,92,246,.05))}
+.cta h2{font-size:2.5rem;font-weight:800;margin-bottom:1rem}
+.cta p{color:var(--text2);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* === FOOTER === */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand .logo{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.footer-brand p{color:var(--text2);font-size:.85rem}
+.footer-col h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05rem;margin-bottom:1rem;color:var(--text)}
+.footer-col a{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid var(--border);color:var(--text2);font-size:.8rem}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+
+/* === FILTER BAR === */
+.filter-bar{display:flex;gap:.8rem;margin-bottom:2rem;flex-wrap:wrap;justify-content:center}
+.filter-btn{padding:.5rem 1.2rem;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;font-size:.85rem;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* === FLOATING NAV (OPC ecosystem) === */
+.floating-nav{position:fixed;bottom:2rem;right:2rem;z-index:99;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:.8rem;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.floating-nav a{display:block;padding:.4rem .8rem;color:var(--text2);font-size:.8rem;border-radius:6px;transition:all .2s}
+.floating-nav a:hover{background:rgba(59,130,246,.1);color:var(--text)}
+.floating-nav .title{font-size:.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:.05rem;padding:.4rem .8rem;border-bottom:1px solid var(--border);margin-bottom:.3rem}
+</style>
+</head>
+<body style="padding-top:56px!important">
+<nav id="opc-nav" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,10,30,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,0.2);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <a href="https://mokangmedical.github.io/opc-homepage/" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="url(#ng1)" stroke-width="2.5"/><path d="M10 16h12M16 10v12" stroke="url(#ng1)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="ng1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#c084fc"/></linearGradient></defs></svg>
+    <span style="background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">MoKangMedical</span>
+  </a>
+  <div style="display:flex;gap:6px;align-items:center">
+    <a href="https://mokangmedical.github.io/opc-homepage/" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px">生态首页</a>
+    <a href="https://github.com/MoKangMedical" target="_blank" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px">GitHub</a>
+    <a href="https://mokangmedical.github.io/opc-alliance/" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:6px 16px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none">OPC Hub</a>
+  </div>
+</nav>
+
+<!-- NAV -->
+<nav>
+<div class="inner">
+<div class="logo">OPC Open Pharma Coalition</div>
+<div class="hamburger" onclick="document.querySelector('.links').classList.toggle('open')">☰</div>
+<div class="links">
+<a href="#projects">Projects</a>
+<a href="#ecosystem">Ecosystem</a>
+<a href="#pipeline">Pipeline</a>
+<a href="https://github.com/MoKangMedical" target="_blank">GitHub</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>AI-Driven<br><span class="gradient">Pharma Innovation</span><br>Ecosystem</h1>
+<p class="subtitle">开放医药联盟 — 汇聚35+前沿AI项目，覆盖药物研发、临床试验、数字疗法、商业智能全链条，构建下一代医药创新基础设施</p>
+<div class="hero-stats">
+<div class="hero-stat"><div class="num">35+</div><div class="lbl">AI Projects</div></div>
+<div class="hero-stat"><div class="num">200K+</div><div class="lbl">Lines of Code</div></div>
+<div class="hero-stat"><div class="num">150+</div><div class="lbl">AI Agents</div></div>
+<div class="hero-stat"><div class="num">10</div><div class="lbl">Research Domains</div></div>
+</div>
+<div class="hero-btns">
+<a href="#projects" class="btn btn-primary">Explore Projects</a>
+<a href="https://github.com/MoKangMedical" target="_blank" class="btn btn-outline">View on GitHub</a>
+</div>
+</div>
+</section>
+
+<!-- ECOSYSTEM STATS -->
+<section class="ecosystem" id="ecosystem">
+<div class="container">
+<div class="section-header">
+<h2>Ecosystem Overview</h2>
+<p>覆盖医药创新全链条的AI技术栈</p>
+</div>
+<div class="eco-grid">
+<div class="eco-item"><div class="num">10</div><div class="lbl">Research Domains</div></div>
+<div class="eco-item"><div class="num">35+</div><div class="lbl">AI Platforms</div></div>
+<div class="eco-item"><div class="num">150+</div><div class="lbl">AI Agents</div></div>
+<div class="eco-item"><div class="num">5</div><div class="lbl">Global Markets</div></div>
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<div class="section-header">
+<h2>Core Projects</h2>
+<p>每一个项目都是独立的AI产品，组合形成完整的医药创新生态</p>
+</div>
+<div class="filter-bar">
+<button class="filter-btn active" onclick="filterProjects('all')">All</button>
+<button class="filter-btn" onclick="filterProjects('drug')">Drug Discovery</button>
+<button class="filter-btn" onclick="filterProjects('clinical')">Clinical</button>
+<button class="filter-btn" onclick="filterProjects('ai')">AI Engine</button>
+<button class="filter-btn" onclick="filterProjects('platform')">Platform</button>
+<button class="filter-btn" onclick="filterProjects('data')">Data & Analytics</button>
+</div>
+<div class="projects-grid" id="projectsGrid">
+
+<!-- DrugMind -->
+<div class="project-card" data-cat="drug ai" onclick="window.open('https://mokangmedical.github.io/DrugMind/','_blank')">
+<div class="icon">💊</div>
+<h3>DrugMind</h3>
+<div class="desc">AI驱动的药物研发全流程平台，集成分子生成、ADMET预测、靶点发现、药物重定位5大Pipeline，66个专业Agent协作</div>
+<div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-pharma">Drug Discovery</span><span class="tag tag-data">Molecular</span></div>
+<div class="meta"><span class="stat">Modules: <strong>5</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- PharmaSim -->
+<div class="project-card" data-cat="drug platform" onclick="window.open('https://mokangmedical.github.io/PharmaSim/','_blank')">
+<div class="icon">🧪</div>
+<h3>PharmaSim</h3>
+<div class="desc">药品市场仿真平台，多Agent模拟真实市场动态，7维专家评估体系，支持中国市场定制化仿真分析</div>
+<div class="tags"><span class="tag tag-pharma">Pharma</span><span class="tag tag-platform">Simulation</span><span class="tag tag-ai">Multi-Agent</span></div>
+<div class="meta"><span class="stat">Agents: <strong>7</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediChat-RD -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/medichat-rd/','_blank')">
+<div class="icon">🏥</div>
+<h3>MediChat-RD</h3>
+<div class="desc">罕见病AI诊疗平台，知识图谱+药物重定位+多Agent会诊，66个专业Skill，覆盖诊断、治疗、随访全流程</div>
+<div class="tags"><span class="tag tag-clinical">Rare Disease</span><span class="tag tag-ai">AI Diagnosis</span><span class="tag tag-data">Knowledge Graph</span></div>
+<div class="meta"><span class="stat">Skills: <strong>66</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Tianyan -->
+<div class="project-card" data-cat="data platform" onclick="window.open('https://mokangmedical.github.io/tianyan/','_blank')">
+<div class="icon">👁️</div>
+<h3>Tianyan 天眼</h3>
+<div class="desc">医药商业智能预测平台，152个测试用例、17个API端点、3个案例（MediSlim/LumiGlow/CloudDoc），支持DeepSeek/MIMO/OpenAI多模型</div>
+<div class="tags"><span class="tag tag-data">Business Intelligence</span><span class="tag tag-ai">Prediction</span><span class="tag tag-platform">Platform</span></div>
+<div class="meta"><span class="stat">Tests: <strong>152</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Digital Sage -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/digital-sage/','_blank')">
+<div class="icon">🧙</div>
+<h3>Digital Sage 智者</h3>
+<div class="desc">100位专家数字人多模态课程系统，HTML+SVG+MP3+Quiz+Certificate完整教学链路，Explorer免费/Pro ¥99/月</div>
+<div class="tags"><span class="tag tag-ai">Digital Human</span><span class="tag tag-platform">Education</span></div>
+<div class="meta"><span class="stat">Experts: <strong>100</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Virtual Cell -->
+<div class="project-card" data-cat="drug ai data" onclick="window.open('https://mokangmedical.github.io/virtual-cell/','_blank')">
+<div class="icon">🧫</div>
+<h3>VirtualCell</h3>
+<div class="desc">AI驱动的单细胞模拟与药物靶点发现平台，交互式Benchmark Leaderboard，热力图可视化，支持Cell Annotation/Perturbation预测</div>
+<div class="tags"><span class="tag tag-ai">Single Cell</span><span class="tag tag-data">Benchmark</span><span class="tag tag-pharma">Target Discovery</span></div>
+<div class="meta"><span class="stat">Models: <strong>20+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- NarrowGate -->
+<div class="project-card" data-cat="platform" onclick="window.open('https://mokangmedical.github.io/narrowgate/','_blank')">
+<div class="icon">🚪</div>
+<h3>NarrowGate</h3>
+<div class="desc">医药创业评估与决策平台，AI驱动的项目筛选、风险评估、商业可行性分析，集成SecondMe数字分身</div>
+<div class="tags"><span class="tag tag-platform">Decision</span><span class="tag tag-ai">Assessment</span></div>
+<div class="meta"><span class="stat">Models: <strong>5</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Cloud Memorial -->
+<div class="project-card" data-cat="platform" onclick="window.open('https://mokangmedical.github.io/cloud-memorial/','_blank')">
+<div class="icon">🕯️</div>
+<h3>念念 Eterna</h3>
+<div class="desc">数字纪念平台，AI驱动的生命故事记录、数字分身生成、智能追思，温暖科技守护记忆</div>
+<div class="tags"><span class="tag tag-platform">Memorial</span><span class="tag tag-ai">Digital Twin</span></div>
+<div class="meta"><span class="stat">Features: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- ChroniCare -->
+<div class="project-card" data-cat="clinical platform" onclick="window.open('https://mokangmedical.github.io/chronicdiseasemanagement/','_blank')">
+<div class="icon">📋</div>
+<h3>ChroniCare OS</h3>
+<div class="desc">慢病智枢管理系统，12功能区块、40患者/5医院/15医生demo数据，FastAPI后端32路由，完整CRM+随访+用药管理</div>
+<div class="tags"><span class="tag tag-clinical">Chronic Care</span><span class="tag tag-platform">Management</span></div>
+<div class="meta"><span class="stat">Routes: <strong>32</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Kondratiev Wave -->
+<div class="project-card" data-cat="data" onclick="window.open('https://mokangmedical.github.io/kondratiev-wave/','_blank')">
+<div class="icon">📊</div>
+<h3>Kondratiev Wave</h3>
+<div class="desc">康波周期分析课程体系，21课5阶段完整学习路径，经济周期理论与医药产业投资策略结合</div>
+<div class="tags"><span class="tag tag-data">Economics</span><span class="tag tag-platform">Education</span></div>
+<div class="meta"><span class="stat">Courses: <strong>21</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- OPC Alliance -->
+<div class="project-card" data-cat="platform" onclick="window.open('https://mokangmedical.github.io/opc-alliance/','_blank')">
+<div class="icon">🤝</div>
+<h3>OPC Alliance</h3>
+<div class="desc">创业者联盟平台，AI匹配、项目孵化、资源对接、SecondMe数字分身集成，构建医药创业生态圈</div>
+<div class="tags"><span class="tag tag-platform">Alliance</span><span class="tag tag-ai">Matching</span></div>
+<div class="meta"><span class="stat">Members: <strong>50+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- OPC Marketplace -->
+<div class="project-card" data-cat="platform" onclick="window.open('https://mokangmedical.github.io/opc-marketplace/','_blank')">
+<div class="icon">🛒</div>
+<h3>OPC Marketplace</h3>
+<div class="desc">医药AI产品市场，揭榜挂帅模式、政府采购对接、SuperAgent智能推荐，连接供需双方</div>
+<div class="tags"><span class="tag tag-platform">Marketplace</span><span class="tag tag-ai">SuperAgent</span></div>
+<div class="meta"><span class="stat">Products: <strong>20+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Global Aging -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/global-aging-data-to-lancet-global-health/','_blank')">
+<div class="icon">🌍</div>
+<h3>Global Aging → Lancet</h3>
+<div class="desc">全球老龄化数据分析平台，Plotly.js交互式KM曲线+森林图，7个数据集，PICO框架，直通Lancet论文</div>
+<div class="tags"><span class="tag tag-data">Research</span><span class="tag tag-clinical">Epidemiology</span></div>
+<div class="meta"><span class="stat">Datasets: <strong>7</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- SEER Oncology -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/seer-data-to-top-oncology-journal/','_blank')">
+<div class="icon">🔬</div>
+<h3>SEER → Oncology</h3>
+<div class="desc">SEER肿瘤数据分析平台，从数据清洗到顶级期刊发表的完整工作流，Python 7536行+53测试用例</div>
+<div class="tags"><span class="tag tag-data">Cancer Data</span><span class="tag tag-clinical">Oncology</span></div>
+<div class="meta"><span class="stat">Tests: <strong>53</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Oncology Global -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/oncology-global-data-to-lancet/','_blank')">
+<div class="icon">🎯</div>
+<h3>Oncology Global → Lancet</h3>
+<div class="desc">全球肿瘤数据→Lancet级论文平台，多源数据融合、统计分析、论文生成一体化</div>
+<div class="tags"><span class="tag tag-data">Global Data</span><span class="tag tag-clinical">Publication</span></div>
+<div class="meta"><span class="stat">Sources: <strong>5+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Clinical Trials Insight -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/global-clinical-trials-insight-and-commentary-platform-overview/','_blank')">
+<div class="icon">📋</div>
+<h3>Clinical Trials Insight</h3>
+<div class="desc">全球临床试验洞察平台，AI驱动的试验数据分析与评论，覆盖NEJM/Lancet/JAMA/BMJ/Annals五大期刊</div>
+<div class="tags"><span class="tag tag-data">Clinical Data</span><span class="tag tag-clinical">AI Analysis</span></div>
+<div class="meta"><span class="stat">Journals: <strong>5</strong></span><span class="arrow">→</span></div>
+
+
+<!-- VoiceHealth -->
+<div class="project-card" data-cat="ai clinical" onclick="window.open('https://mokangmedical.github.io/voicehealth/','_blank')">
+<div class="icon">🎤</div>
+<h3>VoiceHealth</h3>
+<div class="desc">AI声纹健康检测平台，通过语音分析实现健康早筛，FastAPI后端+微信小程序，8个数据库表、20+API接口</div>
+<div class="tags"><span class="tag tag-ai">Voice AI</span><span class="tag tag-clinical">Health Screening</span></div>
+<div class="meta"><span class="stat">APIs: <strong>20+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Biostats -->
+<div class="project-card" data-cat="data" onclick="window.open('https://mokangmedical.github.io/Biostats/','_blank')">
+<div class="icon">📊</div>
+<h3>Biostats</h3>
+<div class="desc">生物统计分析平台，覆盖生存分析、回归模型、样本量计算、Meta分析等核心统计方法</div>
+<div class="tags"><span class="tag tag-data">Statistics</span><span class="tag tag-clinical">Biostatistics</span></div>
+<div class="meta"><span class="stat">Methods: <strong>15+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MetaForge -->
+<div class="project-card" data-cat="data ai" onclick="window.open('https://mokangmedical.github.io/metaforge/','_blank')">
+<div class="icon">🔬</div>
+<h3>MetaForge</h3>
+<div class="desc">Meta分析全流程平台，森林图/漏斗图/亚组分析一键生成，符合Cochrane/PRISMA标准</div>
+<div class="tags"><span class="tag tag-data">Meta-Analysis</span><span class="tag tag-ai">Automation</span></div>
+<div class="meta"><span class="stat">Charts: <strong>6</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- DrugClip -->
+<div class="project-card" data-cat="drug ai" onclick="window.open('https://mokangmedical.github.io/drugclip-benchmark/','_blank')">
+<div class="icon">💊</div>
+<h3>DrugClip Benchmark</h3>
+<div class="desc">AI虚拟筛选基准平台，DrugCLIP深度学习模型对比传统方法，高通量分子筛选优化</div>
+<div class="tags"><span class="tag tag-ai">Deep Learning</span><span class="tag tag-pharma">Virtual Screening</span></div>
+<div class="meta"><span class="stat">Models: <strong>10+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- NHANES -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/nhanes-to-lancet/','_blank')">
+<div class="icon">📈</div>
+<h3>NHANES → Lancet</h3>
+<div class="desc">NHANES健康调查数据分析平台，从数据清洗到Lancet级论文的完整科研工作流</div>
+<div class="tags"><span class="tag tag-data">NHANES</span><span class="tag tag-clinical">Epidemiology</span></div>
+<div class="meta"><span class="stat">Datasets: <strong>5+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- HEOR -->
+<div class="project-card" data-cat="data platform" onclick="window.open('https://mokangmedical.github.io/heor-modeling-platform/','_blank')">
+<div class="icon">💰</div>
+<h3>HEOR Modeling</h3>
+<div class="desc">卫生经济学与结果研究平台，成本效益分析、预算影响分析、Markov模型构建</div>
+<div class="tags"><span class="tag tag-data">HEOR</span><span class="tag tag-platform">Modeling</span></div>
+<div class="meta"><span class="stat">Models: <strong>5</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Lancet Research -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/lancet-research-platform/','_blank')">
+<div class="icon">📝</div>
+<h3>Lancet Research</h3>
+<div class="desc">柳叶刀级医学研究平台，从数据采集到论文撰写的全流程AI辅助</div>
+<div class="tags"><span class="tag tag-data">Research</span><span class="tag tag-clinical">Publication</span></div>
+<div class="meta"><span class="stat">Workflows: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- AI Health Platform -->
+<div class="project-card" data-cat="ai clinical" onclick="window.open('https://mokangmedical.github.io/ai-health-platform/','_blank')">
+<div class="icon">🤖</div>
+<h3>AI Health Platform</h3>
+<div class="desc">综合AI健康检测平台，多模态健康数据分析、风险评估、个性化健康方案</div>
+<div class="tags"><span class="tag tag-ai">Multi-Modal</span><span class="tag tag-clinical">Health</span></div>
+<div class="meta"><span class="stat">Modules: <strong>10+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- PharmaSpark -->
+<div class="project-card" data-cat="drug ai" onclick="window.open('https://mokangmedical.github.io/pharmaspark/','_blank')">
+<div class="icon">⚡</div>
+<h3>PharmaSpark</h3>
+<div class="desc">AI药物发现加速平台，分子生成、靶点预测、化合物优化一站式服务</div>
+<div class="tags"><span class="tag tag-pharma">Drug Discovery</span><span class="tag tag-ai">AI</span></div>
+<div class="meta"><span class="stat">Tools: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- HealthGuard -->
+<div class="project-card" data-cat="clinical platform" onclick="window.open('https://mokangmedical.github.io/healthguard-opc/','_blank')">
+<div class="icon">🛡️</div>
+<h3>HealthGuard</h3>
+<div class="desc">健康守护平台，智能健康监测、风险预警、家庭医生AI助手</div>
+<div class="tags"><span class="tag tag-clinical">Health Monitor</span><span class="tag tag-ai">AI Assistant</span></div>
+<div class="meta"><span class="stat">Features: <strong>12</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- PilotStone -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/pilot-stone-prediction/','_blank')">
+<div class="icon">✈️</div>
+<h3>PilotStone</h3>
+<div class="desc">飞行员尿石症风险评估系统，AI驱动的航空医学健康风险预测</div>
+<div class="tags"><span class="tag tag-clinical">Aviation Med</span><span class="tag tag-ai">Risk Prediction</span></div>
+<div class="meta"><span class="stat">Accuracy: <strong>96%</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- AgriMind -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/agri-mind/','_blank')">
+<div class="icon">🌾</div>
+<h3>AgriMind 农智云</h3>
+<div class="desc">AI驱动的智慧种植平台，气候数据分析、病虫害防治、灌溉优化、市场价格预测</div>
+<div class="tags"><span class="tag tag-ai">AgriTech</span><span class="tag tag-platform">Smart Farming</span></div>
+<div class="meta"><span class="stat">Regions: <strong>28</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediSlim -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/MediSlim/','_blank')">
+<div class="icon">⚖️</div>
+<h3>MediSlim</h3>
+<div class="desc">AI智能减重管理平台，个性化饮食/运动方案，GLP-1类药物辅助决策</div>
+<div class="tags"><span class="tag tag-clinical">Weight Loss</span><span class="tag tag-ai">GLP-1</span></div>
+<div class="meta"><span class="stat">Users: <strong>5K+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- OpenClaw -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/openclaw-medical-harness/','_blank')">
+<div class="icon">🔧</div>
+<h3>OpenClaw Harness</h3>
+<div class="desc">医疗AI Agent编排框架，5步Harness流水线+MCP工具+多Agent协作</div>
+<div class="tags"><span class="tag tag-ai">Agent</span><span class="tag tag-platform">Framework</span></div>
+<div class="meta"><span class="stat">Agents: <strong>66</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Minder -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/minder/','_blank')">
+<div class="icon">🧠</div>
+<h3>Minder</h3>
+<div class="desc">AI驱动的知识管理平台，知识图谱、智能搜索、自动标签、团队协作</div>
+<div class="tags"><span class="tag tag-ai">Knowledge</span><span class="tag tag-platform">Management</span></div>
+<div class="meta"><span class="stat">Features: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediPharma -->
+<div class="project-card" data-cat="drug platform" onclick="window.open('https://mokangmedical.github.io/medi-pharma/','_blank')">
+<div class="icon">💉</div>
+<h3>MediPharma</h3>
+<div class="desc">医药智能平台，靶点发现、临床试验优化、市场准入分析、竞品情报监控</div>
+<div class="tags"><span class="tag tag-pharma">Pharma</span><span class="tag tag-ai">Intelligence</span></div>
+<div class="meta"><span class="stat">Modules: <strong>6</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MingEvidence -->
+<div class="project-card" data-cat="data clinical" onclick="window.open('https://mokangmedical.github.io/mingevidence/','_blank')">
+<div class="icon">📚</div>
+<h3>MingEvidence</h3>
+<div class="desc">循证医学研究平台，AI文献筛选、质量评估、数据提取、GRADE证据分级</div>
+<div class="tags"><span class="tag tag-data">Evidence</span><span class="tag tag-clinical">EBM</span></div>
+<div class="meta"><span class="stat">Tools: <strong>6</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MedRoundtable -->
+<div class="project-card" data-cat="clinical ai" onclick="window.open('https://mokangmedical.github.io/medroundtable/','_blank')">
+<div class="icon">👨‍⚕️</div>
+<h3>MedRoundtable</h3>
+<div class="desc">多Agent虚拟医学专家圆桌讨论平台，鉴别诊断、治疗方案、文献检索一体化</div>
+<div class="tags"><span class="tag tag-clinical">Diagnosis</span><span class="tag tag-ai">Multi-Agent</span></div>
+<div class="meta"><span class="stat">Experts: <strong>12</strong></span><span class="arrow">→</span></div>
+</div>
+
+
+<!-- MedResearchCollab -->
+<div class="project-card" data-cat="platform ai" onclick="window.open('https://mokangmedical.github.io/med-research-collab/','_blank')">
+<div class="icon">🤝</div>
+<h3>MedResearchCollab</h3>
+<div class="desc">医学研究协作平台，智能数据分析、团队协作、项目管理、文献管理一体化，加速科研产出</div>
+<div class="tags"><span class="tag tag-platform">Collaboration</span><span class="tag tag-ai">AI Research</span></div>
+<div class="meta"><span class="stat">Teams: <strong>500+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MedicalHarness -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/medical-harness/','_blank')">
+<div class="icon">🔧</div>
+<h3>MedicalHarness</h3>
+<div class="desc">医疗AI Agent编排框架，5步Harness流水线+MCP工具集成+多Agent协作，构建可靠的医疗AI系统</div>
+<div class="tags"><span class="tag tag-ai">Agent Framework</span><span class="tag tag-platform">Orchestration</span></div>
+<div class="meta"><span class="stat">Agents: <strong>66</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- Evox -->
+<div class="project-card" data-cat="ai drug" onclick="window.open('https://mokangmedical.github.io/evox/','_blank')">
+<div class="icon">🧬</div>
+<h3>Evox</h3>
+<div class="desc">进化算法优化平台，基因表达分析、蛋白质进化模拟、药物分子优化，基于自然选择原理</div>
+<div class="tags"><span class="tag tag-ai">Evolution</span><span class="tag tag-pharma">Optimization</span></div>
+<div class="meta"><span class="stat">Algorithms: <strong>12</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- DarwinFramework -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/darwin-framework/','_blank')">
+<div class="icon">🦎</div>
+<h3>Darwin Framework</h3>
+<div class="desc">进化优化框架，支持Prompt进化、代码优化、架构搜索，三重进化层自适应优化</div>
+<div class="tags"><span class="tag tag-ai">Evolution</span><span class="tag tag-platform">Framework</span></div>
+<div class="meta"><span class="stat">Layers: <strong>3</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- KnowHealth -->
+<div class="project-card" data-cat="clinical platform" onclick="window.open('https://mokangmedical.github.io/KnowHealth/','_blank')">
+<div class="icon">📖</div>
+<h3>KnowHealth</h3>
+<div class="desc">健康知识管理平台，医学知识图谱、智能问答、个性化健康建议、iOS原生应用</div>
+<div class="tags"><span class="tag tag-clinical">Health</span><span class="tag tag-platform">iOS</span></div>
+<div class="meta"><span class="stat">Features: <strong>15</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediIntelCloud -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/medintel-cloud/','_blank')">
+<div class="icon">☁️</div>
+<h3>MediIntel Cloud</h3>
+<div class="desc">医药云端智能平台，AI驱动的医药数据分析、市场情报、竞品监控、决策支持</div>
+<div class="tags"><span class="tag tag-ai">Cloud AI</span><span class="tag tag-pharma">Intelligence</span></div>
+<div class="meta"><span class="stat">Modules: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MediVisualArtist -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/medivisual-artist/','_blank')">
+<div class="icon">🎨</div>
+<h3>MediVisual Artist</h3>
+<div class="desc">医学可视化创作平台，AI驱动的医学图像处理、3D重建、数据可视化、科普素材生成</div>
+<div class="tags"><span class="tag tag-ai">Visualization</span><span class="tag tag-platform">Creative</span></div>
+<div class="meta"><span class="stat">Tools: <strong>10</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- PonderKnowledge -->
+<div class="project-card" data-cat="ai platform" onclick="window.open('https://mokangmedical.github.io/ponder-knowledge-platform/','_blank')">
+<div class="icon">💭</div>
+<h3>Ponder Knowledge</h3>
+<div class="desc">深度知识探索平台，AI驱动的知识推理、概念关联、学习路径规划、智能笔记</div>
+<div class="tags"><span class="tag tag-ai">Knowledge</span><span class="tag tag-platform">Learning</span></div>
+<div class="meta"><span class="stat">Nodes: <strong>10K+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- OPCPlatform -->
+<div class="project-card" data-cat="platform" onclick="window.open('https://mokangmedical.github.io/opc-platform/','_blank')">
+<div class="icon">🏗️</div>
+<h3>OPC Platform</h3>
+<div class="desc">开放医药联盟核心平台，项目管理、成员协作、资源调度、生态治理一体化</div>
+<div class="tags"><span class="tag tag-platform">Platform</span><span class="tag tag-data">Governance</span></div>
+<div class="meta"><span class="stat">Features: <strong>20+</strong></span><span class="arrow">→</span></div>
+</div>
+
+<!-- MetaAnalysisFigures -->
+<div class="project-card" data-cat="data ai" onclick="window.open('https://mokangmedical.github.io/meta-analysis-figures/','_blank')">
+<div class="icon">📊</div>
+<h3>Meta-Analysis Figures</h3>
+<div class="desc">Meta分析图表生成工具，森林图、漏斗图、亚组分析图一键生成，符合Cochrane标准</div>
+<div class="tags"><span class="tag tag-data">Visualization</span><span class="tag tag-clinical">Meta-Analysis</span></div>
+<div class="meta"><span class="stat">Charts: <strong>8</strong></span><span class="arrow">→</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PIPELINE -->
+<section class="ecosystem" id="pipeline">
+<div class="container">
+<div class="section-header">
+<h2>Innovation Pipeline</h2>
+<p>从基础研究到商业落地的完整闭环</p>
+</div>
+<div class="pipeline-track">
+<div class="pipeline-step"><div class="icon">🔬</div><h4>Data & Discovery</h4><p>SEER/NHANES/单细胞数据 → AI分析 → 靶点发现</p></div>
+<div class="pipeline-step"><div class="icon">💊</div><h4>Drug Design</h4><p>DrugMind分子生成 → ADMET预测 → 虚拟筛选</p></div>
+<div class="pipeline-step"><div class="icon">🧪</div><h4>Simulation</h4><p>PharmaSim市场仿真 → 7维评估 → 商业预测</p></div>
+<div class="pipeline-step"><div class="icon">🏥</div><h4>Clinical</h4><p>MediChat诊疗 → ChroniCare管理 → 随访闭环</p></div>
+<div class="pipeline-step"><div class="icon">📊</div><h4>Publication</h4><p>Lancet级论文 → 全球发表 → 学术影响力</p></div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+<div class="container">
+<div class="section-header">
+<h2>What Users Say</h2>
+<p>来自医药研究者和创业者的真实反馈</p>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial">
+<div class="quote">"DrugMind帮我节省了6个月的药物筛选时间，分子生成的质量远超预期。"</div>
+<div class="author"><div class="avatar">L</div><div><div class="name">Dr. Li Wei</div><div class="role">药物化学研究员</div></div></div>
+</div>
+<div class="testimonial">
+<div class="quote">"PharmaSim的市场仿真结果与实际上市后数据高度吻合，决策价值巨大。"</div>
+<div class="author"><div class="avatar">Z</div><div><div class="name">Zhang Min</div><div class="role">药企BD总监</div></div></div>
+</div>
+<div class="testimonial">
+<div class="quote">"SEER平台让我从数据清洗到论文投稿只用了2周，效率提升10倍。"</div>
+<div class="author"><div class="avatar">W</div><div><div class="name">Dr. Wang</div><div class="role">肿瘤科医生</div></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<div class="container">
+<h2>Join the Revolution</h2>
+<p>加入OPC开放医药联盟，与全球医药创新者共建下一代AI基础设施</p>
+<div class="hero-btns">
+<a href="https://github.com/MoKangMedical" target="_blank" class="btn btn-primary">Explore on GitHub</a>
+<a href="https://mokangmedical.github.io/opc-alliance/" class="btn btn-outline">Join Alliance</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo">OPC Open Pharma Coalition</div>
+<p>AI驱动的开放医药创新生态系统<br>Building the future of pharma innovation</p>
+</div>
+<div class="footer-col">
+<h4>Discovery</h4>
+<a href="https://mokangmedical.github.io/DrugMind/">DrugMind</a>
+<a href="https://mokangmedical.github.io/virtual-cell/">VirtualCell</a>
+<a href="https://mokangmedical.github.io/PharmaSim/">PharmaSim</a>
+<a href="https://mokangmedical.github.io/drugclip-benchmark/">DrugClip</a>
+<a href="https://mokangmedical.github.io/pharmaspark/">PharmaSpark</a>
+</div>
+<div class="footer-col">
+<h4>Clinical</h4>
+<a href="https://mokangmedical.github.io/medichat-rd/">MediChat-RD</a>
+<a href="https://mokangmedical.github.io/chronicdiseasemanagement/">ChroniCare</a>
+<a href="https://mokangmedical.github.io/voicehealth/">VoiceHealth</a>
+<a href="https://mokangmedical.github.io/medroundtable/">MedRoundtable</a>
+<a href="https://mokangmedical.github.io/MediSlim/">MediSlim</a>
+</div>
+<div class="footer-col">
+<h4>Research</h4>
+<a href="https://mokangmedical.github.io/seer-data-to-top-oncology-journal/">SEER Oncology</a>
+<a href="https://mokangmedical.github.io/nhanes-to-lancet/">NHANES</a>
+<a href="https://mokangmedical.github.io/heor-modeling-platform/">HEOR</a>
+<a href="https://mokangmedical.github.io/metaforge/">MetaForge</a>
+<a href="https://mokangmedical.github.io/Biostats/">Biostats</a>
+</div>
+<div class="footer-col">
+<h4>Platform</h4>
+<a href="https://mokangmedical.github.io/tianyan/">Tianyan</a>
+<a href="https://mokangmedical.github.io/opc-alliance/">Alliance</a>
+<a href="https://mokangmedical.github.io/opc-marketplace/">Marketplace</a>
+<a href="https://mokangmedical.github.io/digital-sage/">Digital Sage</a>
+<a href="https://mokangmedical.github.io/opc-platform/">OPC Platform</a>
+</div>
+</div>
+<div class="footer-bottom">© 2026 OPC Open Pharma Coalition. All rights reserved. Powered by MoKangMedical.</div>
+</div>
+</footer>
+
+<!-- FLOATING NAV -->
+<div class="floating-nav" id="floatNav">
+<div class="title">OPC Ecosystem</div>
+<a href="https://mokangmedical.github.io/DrugMind/">DrugMind</a>
+<a href="https://mokangmedical.github.io/PharmaSim/">PharmaSim</a>
+<a href="https://mokangmedical.github.io/medichat-rd/">MediChat-RD</a>
+<a href="https://mokangmedical.github.io/tianyan/">Tianyan</a>
+<a href="https://mokangmedical.github.io/digital-sage/">Digital Sage</a>
+<a href="https://mokangmedical.github.io/virtual-cell/">VirtualCell</a>
+<a href="https://mokangmedical.github.io/narrowgate/">NarrowGate</a>
+<a href="https://mokangmedical.github.io/chronicdiseasemanagement/">ChroniCare</a>
+<a href="https://mokangmedical.github.io/kondratiev-wave/">Kondratiev</a>
+<a href="https://mokangmedical.github.io/opc-alliance/">Alliance</a>
+<a href="https://mokangmedical.github.io/opc-marketplace/">Marketplace</a>
+</div>
+
+<script>
+function filterProjects(cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(c=>{
+    if(cat==='all'||c.dataset.cat.includes(cat)){c.style.display=''}else{c.style.display='none'}
+  });
+}
+// Animate stats on scroll
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.num').forEach(n=>{
+        const target=parseInt(n.textContent);
+        if(isNaN(target))return;
+        let current=0;const step=target/30;
+        const timer=setInterval(()=>{current+=step;if(current>=target){n.textContent=target+'+';clearInterval(timer)}else{n.textContent=Math.floor(current)}},30);
+      });
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.eco-grid').forEach(g=>observer.observe(g));
+</script>
+
+    <!-- Stats Section -->
+    <section class="stats-section" style="padding:60px 0;background:linear-gradient(90deg,#6366f1 0%,#8b5cf6 50%,#a855f7 100%);">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;text-align:center;">
+            <div class="stat-item">
+                <div class="stat-value" data-target="14+">14+</div>
+                <div class="stat-label">AI Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="50+">50+</div>
+                <div class="stat-label">Partner Institutions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="100+">100+</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="5">5</div>
+                <div class="stat-label">Target Markets</div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .stat-item{padding:20px;}
+        .stat-value{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,0.3);}
+        .stat-label{font-size:1rem;color:rgba(255,255,255,0.85);font-weight:500;}
+        @media(max-width:768px){.stat-value{font-size:1.8rem;}}
+    </style>
+</body>
+</html>
