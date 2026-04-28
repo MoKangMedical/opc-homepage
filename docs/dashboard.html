@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC Ecosystem Dashboard - Project Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <meta property="og:title" content="OPC Ecosystem Dashboard">
+    <meta property="og:description" content="Real-time overview of 14+ AI healthcare projects in the OPC ecosystem">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a1a;color:#e0e0e0;}
+        .header{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:48px 24px;text-align:center;border-bottom:1px solid rgba(99,102,241,0.2);}
+        .header h1{font-size:2.2rem;background:linear-gradient(90deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .header p{color:#888;margin-top:8px;}
+        .back{display:inline-block;color:#6366f1;text-decoration:none;margin-bottom:16px;}
+        .container{max-width:1200px;margin:0 auto;padding:32px 24px;}
+        .summary-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
+        @media(max-width:768px){.summary-row{grid-template-columns:repeat(2,1fr);}}
+        .summary-card{background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(168,85,247,0.1));border:1px solid rgba(99,102,241,0.2);border-radius:14px;padding:24px;text-align:center;}
+        .summary-card .num{font-size:2.2rem;font-weight:800;background:linear-gradient(90deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .summary-card .lbl{color:#888;font-size:.85rem;margin-top:4px;}
+        .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;}
+        @media(max-width:768px){.charts-grid{grid-template-columns:1fr;}}
+        .chart-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;}
+        .chart-card h3{color:#fff;margin-bottom:16px;font-size:1.1rem;}
+        .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+        .project-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px;transition:transform .3s,border-color .3s;}
+        .project-card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,0.4);}
+        .project-card .name{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:4px;}
+        .project-card .cat{font-size:.8rem;color:#6366f1;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+        .project-card .desc{color:#888;font-size:.88rem;line-height:1.5;margin-bottom:12px;}
+        .project-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+        .project-card .tag{background:rgba(99,102,241,0.15);color:#6366f1;padding:3px 10px;border-radius:20px;font-size:.75rem;}
+        .project-card .link{color:#22d3ee;text-decoration:none;font-size:.85rem;font-weight:600;}
+        .project-card .link:hover{text-decoration:underline;}
+        .status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:600;margin-left:8px;}
+        .status-live{background:rgba(34,197,94,0.15);color:#22c55e;}
+        .status-beta{background:rgba(245,158,11,0.15);color:#f59e0b;}
+        .status-alpha{background:rgba(239,68,68,0.15);color:#ef4444;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back">← Back to OPC Home</a>
+        <h1>OPC Ecosystem Dashboard</h1>
+        <p>Real-time overview of our healthcare AI project portfolio</p>
+    </div>
+    <div class="container">
+        <div class="summary-row">
+            <div class="summary-card"><div class="num">14</div><div class="lbl">Active Projects</div></div>
+            <div class="summary-card"><div class="num">66</div><div class="lbl">AI Agents</div></div>
+            <div class="summary-card"><div class="num">5</div><div class="lbl">Target Markets</div></div>
+            <div class="summary-card"><div class="num">50+</div><div class="lbl">Partner Institutions</div></div>
+        </div>
+        
+        <div class="charts-grid">
+            <div class="chart-card"><h3>Projects by Category</h3><canvas id="catChart"></canvas></div>
+            <div class="chart-card"><h3>Technology Stack Distribution</h3><canvas id="techChart"></canvas></div>
+        </div>
+        
+        <h2 style="color:#fff;margin-bottom:20px;font-size:1.5rem;">Project Portfolio</h2>
+        <div class="project-grid" id="projectGrid"></div>
+    </div>
+    
+    <script>
+        const projects = [
+            {name:"DrugMind",cat:"Drug Discovery",desc:"AI-powered molecular screening with multi-agent architecture. 94% prediction accuracy in lead compound identification.",tags:["Molecular Docking","ADMET","Toxicity","Multi-Agent"],url:"https://mokangmedical.github.io/DrugMind/",status:"live"},
+            {name:"PharmaSim",cat:"Market Intelligence",desc:"7-dimensional pharmaceutical market simulation engine. 92% forecast accuracy across 15+ markets.",tags:["Market Simulation","Pricing","Competitive Analysis"],url:"https://mokangmedical.github.io/PharmaSim/",status:"live"},
+            {name:"MediChat-RD",cat:"Clinical AI",desc:"Rare disease diagnostic platform covering 7,000+ conditions. 89% top-5 diagnostic accuracy.",tags:["Rare Disease","Knowledge Graph","Clinical Decision"],url:"https://mokangmedical.github.io/medichat-rd/",status:"live"},
+            {name:"Virtual Cell",cat:"Computational Biology",desc:"Single-cell simulation platform. 200+ cell types, 94% concordance with wet-lab experiments.",tags:["scRNA-seq","Cell Simulation","Systems Biology"],url:"https://mokangmedical.github.io/virtual-cell/",status:"live"},
+            {name:"Tianyan",cat:"Competitive Intelligence",desc:"Healthcare competitive analysis with 152 test scenarios and real-time monitoring.",tags:["Patent Monitoring","Market Analysis","Due Diligence"],url:"https://mokangmedical.github.io/tianyan/",status:"live"},
+            {name:"ChroniCare",cat:"Patient Care",desc:"Chronic disease management for 15+ conditions. 28% readmission reduction.",tags:["Remote Monitoring","AI Alerts","Patient Dashboard"],url:"https://mokangmedical.github.io/chronicdiseasemanagement/",status:"live"},
+            {name:"Cloud Memorial",cat:"Digital Legacy",desc:"AI-powered digital memorial platform with privacy-first design and AES-256 encryption.",tags:["Digital Legacy","AI Interaction","Privacy"],url:"https://mokangmedical.github.io/cloud-memorial/",status:"live"},
+            {name:"NarrowGate",cat:"Church Management",desc:"Modern church management with 35% attendance increase and 500+ churches served.",tags:["Member Engagement","Event Scheduling","Community"],url:"https://mokangmedical.github.io/narrowgate/",status:"live"},
+            {name:"Digital Sage",cat:"Education",desc:"100+ expert-led multimodal courses with AI teaching assistants.",tags:["AI Education","Multimodal","Course Builder"],url:"https://mokangmedical.github.io/digital-sage/",status:"live"},
+            {name:"OPC Platform",cat:"Collaboration",desc:"Healthcare innovation collaboration hub with 50+ tool integrations.",tags:["Team Collaboration","API","Integrations"],url:"https://mokangmedical.github.io/opc-platform/",status:"live"},
+            {name:"OPC Marketplace",cat:"Commerce",desc:"Two-sided marketplace for healthcare AI tools and services.",tags:["Marketplace","SaaS","Healthcare Tools"],url:"https://mokangmedical.github.io/opc-marketplace/",status:"beta"},
+            {name:"OPC Alliance",cat:"Community",desc:"Network of healthcare innovators, researchers, and technology partners.",tags:["Partnership","Community","Ecosystem"],url:"https://mokangmedical.github.io/opc-alliance/",status:"live"},
+            {name:"DrugClip",cat:"AI Research",desc:"Deep learning virtual screening benchmark platform.",tags:["Virtual Screening","Benchmark","ML"],url:"https://mokangmedical.github.io/drugclip-platform/",status:"beta"},
+            {name:"Kondratiev Wave",cat:"Education",desc:"21-course economic cycle analysis system with 5-phase framework.",tags:["Economics","Cycles","Investment"],url:"https://mokangmedical.github.io/kondratiev-wave/",status:"live"},
+        ];
+        
+        // Category chart
+        const cats = {};
+        projects.forEach(p => { cats[p.cat] = (cats[p.cat]||0) + 1; });
+        new Chart(document.getElementById('catChart'), {
+            type: 'doughnut',
+            data: {labels: Object.keys(cats), datasets: [{data: Object.values(cats), backgroundColor: ['#6366f1','#22d3ee','#f43f5e','#f59e0b','#22c55e','#a855f7','#ec4899','#14b8a6','#f97316'], borderWidth: 0}]},
+            options: {responsive: true, plugins: {legend: {labels: {color: '#ccc', padding: 12}}}}
+        });
+        
+        // Tech chart
+        const techs = {'FastAPI': 8, 'Python': 10, 'JavaScript': 7, 'AI/ML': 9, 'Chart.js': 5, 'REST API': 8};
+        new Chart(document.getElementById('techChart'), {
+            type: 'radar',
+            data: {labels: Object.keys(techs), datasets: [{label: 'Projects Using', data: Object.values(techs), backgroundColor: 'rgba(99,102,241,0.2)', borderColor: '#6366f1', borderWidth: 2, pointBackgroundColor: '#6366f1'}]},
+            options: {responsive: true, scales: {r: {ticks: {color: '#888', backdropColor: 'transparent'}, grid: {color: 'rgba(255,255,255,0.08)'}, pointLabels: {color: '#ccc'}}}, plugins: {legend: {display: false}}}
+        });
+        
+        // Project cards
+        const grid = document.getElementById('projectGrid');
+        const statusColors = {live: 'status-live', beta: 'status-beta', alpha: 'status-alpha'};
+        projects.forEach(p => {
+            grid.innerHTML += `
+                <div class="project-card">
+                    <div class="cat">${p.cat}</div>
+                    <div class="name">${p.name} <span class="status-badge ${statusColors[p.status]}">${p.status.toUpperCase()}</span></div>
+                    <div class="desc">${p.desc}</div>
+                    <div class="tags">${p.tags.map(t=>'<span class="tag">'+t+'</span>').join('')}</div>
+                    <a href="${p.url}" target="_blank" class="link">View Project →</a>
+                </div>`;
+        });
+    </script>
+</body>
+</html>
