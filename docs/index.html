@@ -1,762 +1,137 @@
-     1|<!DOCTYPE html>
-     2|<html lang="en">
-     3|<head>
-     4|<meta charset="UTF-8">
-     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-     6|<title>MoKangMedical — Medical AI Innovation Ecosystem</title>
-     7|<meta name="description" content="35+ open-source medical AI projects spanning drug discovery, clinical intelligence, health analytics, rare diseases, and more. One-stop platform for healthcare AI innovation.">
-     8|<meta property="og:title" content="MoKangMedical OPC Ecosystem">
-     9|<meta property="og:description" content="One-stop medical AI platform with 35+ open-source projects across 7 domains">
-    10|<meta property="og:type" content="website">
-    11|<meta property="og:url" content="https://mokangmedical.github.io/opc-homepage/">
-    12|<meta name="twitter:card" content="summary_large_image">
-    13|<meta name="robots" content="index, follow">
-    14|<link rel="canonical" href="https://mokangmedical.github.io/opc-homepage/">
-    15|<script type="application/ld+json">
-    16|{
-    17|  "@context": "https://schema.org",
-    18|  "@type": "WebSite",
-    19|  "name": "MoKangMedical OPC Ecosystem",
-    20|  "description": "One-stop medical AI platform with 35+ open-source projects",
-    21|  "url": "https://mokangmedical.github.io/opc-homepage/",
-    22|  "provider": {
-    23|    "@type": "Organization",
-    24|    "name": "MoKangMedical",
-    25|    "url": "https://github.com/MoKangMedical"
-    26|  },
-    27|  "potentialAction": {
-    28|    "@type": "SearchAction",
-    29|    "target": "https://github.com/MoKangMedical?q={search_term_string}",
-    30|    "query-input": "required name=search_term_string"
-    31|  }
-    32|}
-    33|</script>
-    34|<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-    35|<link rel="stylesheet" href="shared-design-system.css">
-    36|<style>
-    37|/* === HERO === */
-    38|.hero{padding:6rem 0 4rem;background:linear-gradient(180deg,#0a0a1a 0%,#0f0f2a 100%);position:relative;overflow:hidden}
-    39|.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 30%,rgba(99,102,241,0.12) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(139,92,246,0.08) 0%,transparent 50%);pointer-events:none}
-    40|.hero-inner{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-    41|.hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;color:#fff}
-    42|.hero h1 span{background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    43|.hero-sub{color:rgba(255,255,255,0.7);font-size:1.15rem;line-height:1.7;margin-bottom:2rem;max-width:520px}
-    44|.hero-stats{display:flex;gap:2rem;margin-bottom:2rem}
-    45|.hero-stat{text-align:center}
-    46|.hero-stat strong{display:block;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    47|.hero-stat span{color:rgba(255,255,255,0.5);font-size:0.85rem}
-    48|.hero-code{background:rgba(15,15,40,0.9);border:1px solid rgba(99,102,241,0.2);border-radius:16px;padding:2rem;font-family:'SF Mono',Monaco,monospace;font-size:0.85rem;color:#94a3b8;line-height:1.8;transform:rotate(1deg);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
-    49|.hero-code .ok{color:#10b981}
-    50|.hero-code .hl{color:#818cf8}
-    51|.hero-code .cm{color:#475569}
-    52|
-    53|/* === DOMAINS === */
-    54|.domains{padding:5rem 0;background:#0a0a1a}
-    55|.domains-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
-    56|.section-head{text-align:center;margin-bottom:3rem}
-    57|.section-head h2{font-size:2rem;font-weight:800;color:#fff;margin-bottom:0.75rem}
-    58|.section-head p{color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto}
-    59|.domain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
-    60|.domain-card{background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.15);border-radius:16px;padding:2rem;transition:all 0.3s;cursor:pointer;text-decoration:none;color:#fff;display:block}
-    61|.domain-card:hover{border-color:rgba(99,102,241,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,0.15)}
-    62|.domain-icon{font-size:2.2rem;margin-bottom:1rem}
-    63|.domain-title{font-size:1.2rem;font-weight:700;margin-bottom:0.5rem}
-    64|.domain-desc{color:rgba(255,255,255,0.5);font-size:0.9rem;margin-bottom:1rem;line-height:1.5}
-    65|.domain-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
-    66|.domain-tags span{padding:0.2rem 0.6rem;border-radius:12px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.15);font-size:0.75rem;color:rgba(255,255,255,0.6)}
-    67|
-    68|/* === CHARTS === */
-    69|.charts{padding:5rem 0;background:linear-gradient(180deg,#0a0a1a,#0f0f2a)}
-    70|.charts-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
-    71|.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-    72|.chart-card{background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.15);border-radius:16px;padding:2rem}
-    73|.chart-card h3{color:#fff;font-size:1.1rem;margin-bottom:1rem}
-    74|@media(max-width:768px){.charts-grid{grid-template-columns:1fr}}
-    75|
-    76|/* === FEATURED === */
-    77|.featured{padding:5rem 0;background:#0a0a1a}
-    78|.featured-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
-    79|.featured-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}
-    80|.featured-card{background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.15);border-radius:16px;padding:2rem;transition:all 0.3s;text-decoration:none;color:#fff;display:block}
-    81|.featured-card:hover{border-color:rgba(99,102,241,0.4);transform:translateY(-3px)}
-    82|.featured-card h3{font-size:1.15rem;font-weight:700;margin-bottom:0.5rem}
-    83|.featured-card p{color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.5;margin-bottom:1rem}
-    84|.featured-meta{display:flex;gap:1rem;font-size:0.8rem;color:rgba(255,255,255,0.4)}
-    85|.featured-meta span{display:flex;align-items:center;gap:0.3rem}
-    86|
-    87|/* === CTA === */
-    88|.cta{padding:5rem 0;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1))}
-    89|.cta-inner{max-width:700px;margin:0 auto;text-align:center;padding:0 2rem}
-    90|.cta h2{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:1rem}
-    91|.cta p{color:rgba(255,255,255,0.6);margin-bottom:2rem;font-size:1.1rem}
-    92|.btn-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    93|.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;border-radius:12px;font-weight:600;font-size:1rem;text-decoration:none;transition:all 0.3s}
-    94|.btn-primary{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;box-shadow:0 4px 20px rgba(99,102,241,0.3)}
-    95|.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.4)}
-    96|.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.2)}
-    97|.btn-outline:hover{border-color:rgba(99,102,241,0.5);background:rgba(99,102,241,0.1)}
-    98|
-    99|/* === FOOTER === */
-   100|.footer{padding:3rem 0;background:#080818;border-top:1px solid rgba(99,102,241,0.1);text-align:center}
-   101|.footer p{color:rgba(255,255,255,0.3);font-size:0.85rem}
-   102|.footer-links{display:flex;gap:2rem;justify-content:center;margin-bottom:1rem}
-   103|.footer-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.9rem}
-   104|.footer-links a:hover{color:#818cf8}
-   105|
-   106|/* === NAV === */
-   107|.topnav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,10,30,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,0.15);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
-   108|.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px}
-   109|.topnav-brand svg{width:28px;height:28px}
-   110|.topnav-links{display:flex;gap:6px;align-items:center}
-   111|.topnav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px}
-   112|.topnav-links a:hover{background:rgba(255,255,255,0.05)}
-   113|.topnav-links a.cta-link{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:6px 16px;border-radius:8px;font-weight:600}
-   114|
-   115|@media(max-width:768px){
-   116|  .hero-inner{grid-template-columns:1fr}
-   117|  .hero-code{display:none}
-   118|  .hero-stats{flex-wrap:wrap}
-   119|  .domain-grid{grid-template-columns:1fr}
-   120|  .featured-grid{grid-template-columns:1fr}
-   121|  .topnav-links a:not(.cta-link){display:none}
-   122|}
-   123|</style>
-   124|</head>
-   125|<body style="padding-top:56px;padding-bottom:0;margin:0;background:#0a0a1a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-   126|
-   127|<!-- NAV -->
-   128|<nav class="topnav">
-   129|  <a class="topnav-brand" href="https://mokangmedical.github.io/opc-homepage/">
-   130|    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="url(#g1)" stroke-width="2.5"/><path d="M10 16h12M16 10v12" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#c084fc"/></linearGradient></defs></svg>
-   131|    <span style="background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">MoKangMedical</span>
-   132|  </a>
-   133|  <div class="topnav-links">
-   134|    <a href="features.html">Projects</a>
-   135|    <a href="about.html">About</a>
-   136|    <a href="https://github.com/MoKangMedical">GitHub</a>
-   137|    <a href="https://mokangmedical.github.io/opc-alliance/" class="cta-link">OPC Hub</a>
-   138|  </div>
-   139|</nav>
-   140|
-   141|<!-- HERO -->
-   142|<section class="hero">
-   143|  <div class="hero-inner">
-   144|    <div>
-   145|      <div style="display:inline-block;padding:0.3rem 1rem;border-radius:20px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);font-size:0.85rem;color:#818cf8;margin-bottom:1.5rem">35+ Open Source Projects</div>
-   146|      <h1>Medical AI<br><span>Innovation</span><br>Ecosystem</h1>
-   147|      <p class="hero-sub">One-stop platform for healthcare AI — from drug discovery to clinical deployment, rare disease diagnosis to market simulation. All open source.</p>
-   148|      <div class="hero-stats">
-   149|        <div class="hero-stat"><strong>35+</strong><span>Projects</span></div>
-   150|        <div class="hero-stat"><strong>7</strong><span>Domains</span></div>
-   151|        <div class="hero-stat"><strong>25+</strong><span>Live Pages</span></div>
-   152|        <div class="hero-stat"><strong>100%</strong><span>Open Source</span></div>
-   153|      </div>
-   154|      <div class="btn-group" style="justify-content:flex-start">
-   155|        <a href="features.html" class="btn btn-primary">Explore Projects</a>
-   156|        <a href="https://github.com/MoKangMedical" class="btn btn-outline">GitHub Org</a>
-   157|      </div>
-   158|    </div>
-   159|    <div class="hero-code">
-   160|      <pre><span class="cm"># Quick Start — DrugMind</span>
-   161|$ git clone github.com/MoKangMedical/DrugMind
-   162|$ cd DrugMind && pip install -r requirements.txt
-   163|$ python main.py --target EGFR
-   164|
-   165|<span class="ok">✓ Generating molecular candidates...</span>
-   166|<span class="ok">✓ Found 3 high-affinity compounds</span>
-   167|<span class="ok">✓ ADMET analysis complete</span>
-   168|<span class="hl">→ Lead compound: IC50 = 2.3 nM</span></pre>
-   169|    </div>
-   170|  </div>
-   171|</section>
-   172|
-   173|<!-- DOMAINS -->
-   174|<section class="domains">
-   175|  <div class="domains-inner">
-   176|    <div class="section-head">
-   177|      <h2>7 Specialized Domains</h2>
-   178|      <p>Covering the entire medical AI landscape from molecule to market</p>
-   179|    </div>
-   180|    <div class="domain-grid">
-   181|
-   182|      <a class="domain-card" href="https://mokangmedical.github.io/DrugMind/">
-   183|        <div class="domain-icon">🧬</div>
-   184|        <div class="domain-title">Drug Discovery</div>
-   185|        <div class="domain-desc">AI-driven molecular design, virtual screening, ADMET prediction, and pharmaceutical market simulation</div>
-   186|        <div class="domain-tags"><span>DrugMind</span><span>PharmaSim</span><span>DrugCLIP</span><span>PharmaSpark</span><span>AI4S Agents</span></div>
-   187|      </a>
-   188|
-   189|      <a class="domain-card" href="https://mokangmedical.github.io/medichat-rd/">
-   190|        <div class="domain-icon">🏥</div>
-   191|        <div class="domain-title">Clinical Intelligence</div>
-   192|        <div class="domain-desc">Rare disease diagnosis, weight management, clinical trial analytics, and multi-agent clinical decision support</div>
-   193|        <div class="domain-tags"><span>MediChat-RD</span><span>MediSlim</span><span>Clinical Trials</span><span>MedRoundTable</span><span>NarrowGate</span></div>
-   194|      </a>
-   195|
-   196|      <a class="domain-card" href="https://mokangmedical.github.io/tianyan/">
-   197|        <div class="domain-icon">📊</div>
-   198|        <div class="domain-title">Business Intelligence</div>
-   199|        <div class="domain-desc">China market forecasting, multi-agent population simulation, product launch evaluation, and commercial strategy</div>
-   200|        <div class="domain-tags"><span>Tianyan</span><span>HEOR</span><span>Lancet Platform</span><span>Kondratiev Wave</span></div>
-   201|      </a>
-   202|
-   203|      <a class="domain-card" href="https://mokangmedical.github.io/virtual-cell/">
-   204|        <div class="domain-icon">🔬</div>
-   205|        <div class="domain-title">Research Tools</div>
-   206|        <div class="domain-desc">Single-cell AI, evidence-based medicine, meta-analysis, medical visualization, and lab automation</div>
-   207|        <div class="domain-tags"><span>Virtual Cell</span><span>MingEvidence</span><span>MetaForge</span><span>MedVisual</span><span>LabMind</span></div>
-   208|      </a>
-   209|
-   210|      <a class="domain-card" href="https://mokangmedical.github.io/chronicdiseasemanagement/">
-   211|        <div class="domain-icon">💚</div>
-   212|        <div class="domain-title">Health Management</div>
-   213|        <div class="domain-desc">Chronic disease monitoring, patient engagement, voice health detection, and health knowledge platforms</div>
-   214|        <div class="domain-tags"><span>ChroniCare</span><span>VoiceHealth</span><span>KnowHealth</span><span>HealthGuard</span></div>
-   215|      </a>
-   216|
-   217|      <a class="domain-card" href="https://mokangmedical.github.io/digital-sage/">
-   218|        <div class="domain-icon">🤖</div>
-   219|        <div class="domain-title">AI Infrastructure</div>
-   220|        <div class="domain-desc">Digital human experts, multi-agent systems, evolutionary optimization, and intelligent course generation</div>
-   221|        <div class="domain-tags"><span>Digital Sage</span><span>Darwin</span><span>EvoX</span><span>Hermes Agent</span><span>Multi-Agent</span></div>
-   222|      </a>
-   223|
-   224|      <a class="domain-card" href="https://mokangmedical.github.io/opc-platform/">
-   225|        <div class="domain-icon">🌐</div>
-   226|        <div class="domain-title">Platform & Services</div>
-   227|        <div class="domain-desc">Innovation hub, marketplace, alliance network, digital memorials, and global deployment infrastructure</div>
-   228|        <div class="domain-tags"><span>OPC Platform</span><span>OPC Marketplace</span><span>OPC Alliance</span><span>Eterna</span><span>Cloud Memorial</span></div>
-   229|      </a>
-   230|
-   231|    </div>
-   232|  </div>
-   233|</section>
-   234|
-   235|<!-- CHARTS -->
-   236|<section class="charts">
-   237|  <div class="charts-inner">
-   238|    <div class="section-head">
-   239|      <h2>Ecosystem Analytics</h2>
-   240|      <p>Real-time overview of our growing medical AI ecosystem</p>
-   241|    </div>
-   242|    <div class="charts-grid">
-   243|      <div class="chart-card">
-   244|        <h3>Projects by Domain</h3>
-   245|        <canvas id="domainChart" height="260"></canvas>
-   246|      </div>
-   247|      <div class="chart-card">
-   248|        <h3>Ecosystem Growth (2024-2026)</h3>
-   249|        <canvas id="growthChart" height="260"></canvas>
-   250|      </div>
-   251|    </div>
-   252|  </div>
-   253|</section>
-   254|
-   255|<!-- FEATURED PROJECTS -->
-   256|<section class="featured">
-   257|  <div class="featured-inner">
-   258|    <div class="section-head">
-   259|      <h2>Featured Projects</h2>
-   260|      <p>Our most impactful platforms, ready to explore</p>
-   261|    </div>
-   262|    <div class="featured-grid">
-   263|
-   264|      <a class="featured-card" href="https://mokangmedical.github.io/DrugMind/">
-   265|        <h3>DrugMind</h3>
-   266|        <p>Multi-agent AI platform for drug discovery with molecular docking, ADMET prediction, and virtual screening. 10,847+ molecules analyzed.</p>
-   267|        <div class="featured-meta"><span>6 pages</span><span>Chart.js</span><span>API docs</span></div>
-   268|      </a>
-   269|
-   270|      <a class="featured-card" href="https://mokangmedical.github.io/PharmaSim/">
-   271|        <h3>PharmaSim</h3>
-   272|        <p>Drug market simulation with 7-dimension expert evaluation, pricing analysis, and interactive dashboard for pharmaceutical products.</p>
-   273|        <div class="featured-meta"><span>9 pages</span><span>Radar chart</span><span>Calculator</span></div>
-   274|      </a>
-   275|
-   276|      <a class="featured-card" href="https://mokangmedical.github.io/tianyan/">
-   277|        <h3>Tianyan</h3>
-   278|        <p>China business forecasting via multi-agent population simulation. 10K+ virtual consumers, market trend prediction, 14 API endpoints.</p>
-   279|        <div class="featured-meta"><span>13 pages</span><span>Market charts</span><span>API Explorer</span></div>
-   280|      </a>
-   281|
-   282|      <a class="featured-card" href="https://mokangmedical.github.io/medichat-rd/">
-   283|        <h3>MediChat-RD</h3>
-   284|        <p>Rare disease AI diagnosis platform with knowledge graph, drug repurposing, and multi-agent clinical decision support system.</p>
-   285|        <div class="featured-meta"><span>9 pages</span><span>Disease charts</span><span>66 skills</span></div>
-   286|      </a>
-   287|
-   288|      <a class="featured-card" href="https://mokangmedical.github.io/chronicdiseasemanagement/">
-   289|        <h3>ChroniCare OS</h3>
-   290|        <p>AI-powered chronic disease management with patient monitoring, hospital integration, 40 patients / 5 hospitals demo data.</p>
-   291|        <div class="featured-meta"><span>16 pages</span><span>Dashboard</span><span>FastAPI</span></div>
-   292|      </a>
-   293|
-   294|      <a class="featured-card" href="https://mokangmedical.github.io/digital-sage/">
-   295|        <h3>Digital Sage</h3>
-   296|        <p>100 digital expert courses with AI-generated content, interactive quizzes, certificates, and streak tracking system.</p>
-   297|        <div class="featured-meta"><span>4 pages</span><span>100 courses</span><span>Multi-modal</span></div>
-   298|      </a>
-   299|
-   300|    </div>
-   301|  </div>
-   302|</section>
-   303|
-   304|
-<!-- ALL PROJECTS -->
-<section style="padding:5rem 0">
-<div style="max-width:1200px;margin:0 auto;padding:0 1.5rem">
-<div style="text-align:center;margin-bottom:3rem">
-<h2 style="font-size:2rem;font-weight:700;color:#fff">All Projects</h2>
-<p style="color:rgba(255,255,255,0.5)">Explore our complete ecosystem of 65+ open-source medical AI projects</p>
-</div>
-
-<!-- Filter buttons -->
-<div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem" id="filterBtns">
-<button onclick="filterProjects('all')" class="filter-btn active" style="padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.2);color:#818cf8;cursor:pointer;font-size:.85rem">All</button>
-<button onclick="filterProjects('drug')" class="filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;font-size:.85rem">Drug Discovery</button>
-<button onclick="filterProjects('clinical')" class="filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;font-size:.85rem">Clinical</button>
-<button onclick="filterProjects('health')" class="filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;font-size:.85rem">Health</button>
-<button onclick="filterProjects('research')" class="filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;font-size:.85rem">Research</button>
-<button onclick="filterProjects('platform')" class="filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;font-size:.85rem">Platform</button>
-</div>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem" id="allProjectsGrid">
-<a href="https://mokangmedical.github.io/drugmind/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">DrugMind</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">AI drug discovery pipeline</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">6 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/pharmasim/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">PharmaSim</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Pharmaceutical market simulation</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">9 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/ai4s-drug-agent/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">AI4S Drug Agent</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Autonomous drug discovery agent</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/ai4s-cns-agent/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">AI4S CNS Agent</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">CNS drug discovery AI</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/drugclip-agent/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">DrugCLIP Agent</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Virtual screening agent</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/drugclip-platform/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">DrugCLIP Platform</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Molecular screening cloud</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/drugclip-paper/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">DrugCLIP Paper</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Research benchmarks</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/pharmaspark/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">PharmaSpark</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Drug pipeline analytics</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/medislim/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MediSlim</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Drug slimming analysis</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/medichat-rd/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MediChat-RD</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Rare disease AI diagnosis</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">9 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/chronicare-os/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">ChroniCare OS</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Chronic disease management</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">16 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/medical-multi-agent/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Medical Multi-Agent</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Multi-agent clinical decisions</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/medical-harness/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Medical Harness</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Medical AI testing framework</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/mediguard/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MediGuard</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Patient safety monitoring</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/heor-modeling/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">HEOR Modeling</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Health economics modeling</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">11 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/medroundtable/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MedRoundTable</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Clinical case discussions</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">8 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/tianyan/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Tianyan</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Business intelligence platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">13 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/digital-sage/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Digital Sage</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">100 expert courses</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">4 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/kondratiev-wave/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Kondratiev Wave</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Economic wave theory courses</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">16 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/virtual-cell/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Virtual Cell</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Single-cell AI analysis</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">3 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/darwin-framework/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Darwin Framework</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Evolutionary AI optimization</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/metaforge/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MetaForge</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Meta-analysis toolkit</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/mingevidence/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Mingevidence</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Evidence synthesis</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">3 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/knowhealth/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">KnowHealth</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Health knowledge platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/knowhealth-ios/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">KnowHealth iOS</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Mobile health app</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/voicehealth/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">VoiceHealth</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Voice health detection</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/voicehealth-mini/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">VoiceHealth Mini</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">WeChat health app</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/voicehealth-mini-v2/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">VoiceHealth Mini v2</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">WeChat health app v2</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/agri-mind/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Agri-Mind</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Agricultural AI</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/healthguard-opc/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">HealthGuard OPC</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Health guard platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/opc-platform/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OPC Platform</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Innovation hub</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">46 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/opc-marketplace/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OPC Marketplace</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Project marketplace</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">4 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/opc-alliance/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OPC Alliance</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Alliance network</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/opc-legends/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OPC Legends</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Ecosystem showcase</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/cloud-memorial/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Cloud Memorial</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Digital memorial service</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">3 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/念念-eterna/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">念念-Eterna</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Digital remembrance</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/narrowgate/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">NarrowGate</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Deployment platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">4 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/global-app-starter/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Global App Starter</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">SaaS launch template</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/hermes-agent/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Hermes Agent</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">AI agent framework</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/evoagentx/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">EvoAgentX</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Self-evolving agents</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/opc-sync-hub/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OPC Sync Hub</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Project sync center</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/opc-integrations/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OPC Integrations</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Integration hub</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/biostats/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Biostats</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Biostatistics tools</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/labmind/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">LabMind</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Lab management system</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/ponder-knowledge/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Ponder Knowledge</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Knowledge exploration</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/medresearch-collab/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MedResearch Collab</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Research collaboration</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/medvisual-artist/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MedVisual Artist</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Medical visualization</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">6 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/lancet-research/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Lancet Research</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Research platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/openclaw-harness/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">OpenClaw Harness</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Testing framework</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">4 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/global-aging/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Global Aging</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Aging research data</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/nhanes-to-lancet/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">NHANES to Lancet</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Data pipeline</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/oncology-data/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Oncology Data</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Oncology data analysis</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">4 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/seer-data/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">SEER Data</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Cancer data platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">6 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/global-clinical-trials/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Global Clinical Trials</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Clinical trials overview</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/searxng/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">SearXNG</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Search engine</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">6 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/medintel-cloud/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">MedIntel Cloud</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Medical intelligence</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/medi-pharma/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Medi Pharma</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Pharmaceutical analysis</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/ai-health-platform/" class="proj-card" data-cat="health" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">AI Health Platform</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Health AI platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">3 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/minder/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Minder</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Mind mapping tool</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/meta-analysis-figures/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Meta-Analysis Figures</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Publication figures</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/pilot-stone/" class="proj-card" data-cat="clinical" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Pilot Stone</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Kidney stone prediction</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">2 pages</div>
-</a>
-<a href="https://mokangmedical.github.io/ai4s-rna-protein/" class="proj-card" data-cat="drug" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">AI4S RNA-Protein</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">RNA-protein interaction</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/biostats-/" class="proj-card" data-cat="research" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Biostats-</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Biostatistics platform</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-<a href="https://mokangmedical.github.io/shared-resources/" class="proj-card" data-cat="platform" style="background:rgba(15,15,40,0.6);border:1px solid rgba(99,102,241,0.1);border-radius:12px;padding:1.2rem;text-decoration:none;color:#fff;transition:all .3s;display:block">
-<div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">Shared Resources</div>
-<div style="color:rgba(255,255,255,0.4);font-size:.8rem">Common components</div>
-<div style="color:rgba(99,102,241,0.6);font-size:.75rem;margin-top:.5rem">1 page</div>
-</a>
-</div>
-<div style="text-align:center;margin-top:2rem">
-<button onclick="showMore()" id="showMoreBtn" style="padding:.6rem 1.5rem;border-radius:8px;border:1px solid rgba(99,102,241,0.3);background:transparent;color:#818cf8;cursor:pointer;font-size:.9rem">Show All Projects</button>
-</div>
-</div>
-</section>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MoKangMedical — Medical AI Innovation Ecosystem</title>
+<meta name="description" content="70+ open-source medical AI projects spanning drug discovery, clinical intelligence, health analytics, and more">
+<meta property="og:title" content="MoKangMedical OPC Ecosystem">
+<meta property="og:description" content="One-stop medical AI platform with 70+ open-source projects">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="shared-design-system.css">
 <style>
-.filter-btn.active{background:rgba(99,102,241,0.2)!important;border-color:rgba(99,102,241,0.3)!important;color:#818cf8!important}
-.filter-btn:hover{border-color:rgba(99,102,241,0.3)!important}
-.proj-card:hover{border-color:rgba(99,102,241,0.4)!important;transform:translateY(-2px)}
-.proj-card.hidden{display:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;max-width:1200px;margin:0 auto;padding:0 2rem}
+.hero-left h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem}
+.hero-left h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-right{position:relative}
+.hero-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transform:rotate(2deg)}
+.hero-card pre{font-family:monospace;font-size:0.85rem;color:var(--accent-light);line-height:1.6}
+.domain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.domain-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all 0.3s;cursor:pointer;text-decoration:none;color:var(--text)}
+.domain-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--shadow)}
+.domain-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.domain-icon{font-size:2.5rem}
+.domain-title{font-size:1.3rem;font-weight:700}
+.domain-count{color:var(--text-muted);font-size:0.85rem}
+.domain-projects{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
+.domain-projects a{padding:0.25rem 0.75rem;border-radius:20px;background:var(--bg);border:1px solid var(--border);font-size:0.8rem;color:var(--text-muted);transition:all 0.2s}
+.domain-projects a:hover{border-color:var(--accent);color:var(--accent-light)}
+.cta-section{text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(139,92,246,0.1));border-radius:var(--radius);margin:3rem auto;max-width:1200px}
+.cta-section h2{font-size:2rem;margin-bottom:1rem}
+.cta-section p{color:var(--text-muted);max-width:600px;margin:0 auto 2rem}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-right{display:none}}
 </style>
+</head><body>
+<nav class="eco-nav"><a class="nav-brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
+<div class="nav-links"><a href="index.html" class="active">Home</a><a href="features.html">Projects</a><a href="about.html">About</a><a href="https://github.com/MoKangMedical"><a href="pricing.html">定价</a>
+<a href="https://github.com/MoKangMedical">GitHub</a></div></nav>
 
-<script>
-function filterProjects(cat){
-document.querySelectorAll('.filter-btn').forEach(b=>{b.classList.remove('active');b.style.background='transparent';b.style.borderColor='rgba(255,255,255,0.1)';b.style.color='rgba(255,255,255,0.5)'});
-event.target.classList.add('active');event.target.style.background='rgba(99,102,241,0.2)';event.target.style.borderColor='rgba(99,102,241,0.3)';event.target.style.color='#818cf8';
-document.querySelectorAll('.proj-card').forEach(c=>{if(cat==='all'||c.dataset.cat===cat){c.classList.remove('hidden')}else{c.classList.add('hidden')}});
-}
-function showMore(){const btn=document.getElementById('showMoreBtn');const cards=document.querySelectorAll('.proj-card');if(btn.textContent==='Show All Projects'){cards.forEach(c=>c.classList.remove('hidden'));btn.textContent='Show Less'}else{cards.forEach((c,i)=>{if(i>=20)c.classList.add('hidden')});btn.textContent='Show All Projects'}}
-// Initially hide cards after 20
-document.querySelectorAll('.proj-card').forEach((c,i)=>{if(i>=20)c.classList.add('hidden')});
-</script>
+<section style="padding:6rem 0;background:linear-gradient(180deg,var(--primary) 0%,var(--bg) 100%);position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(59,130,246,0.15) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(139,92,246,0.1) 0%,transparent 50%)"></div>
+<div class="hero-grid" style="position:relative;z-index:1">
+<div class="hero-left">
+<div class="badge">70+ Open Source Projects</div>
+<h1>Medical AI<br><span>Innovation</span><br>Ecosystem</h1>
+<p style="color:var(--text-muted);font-size:1.1rem;margin-bottom:2rem;max-width:500px">One-stop platform for healthcare AI — from drug discovery to clinical deployment, all open source.</p>
+<div class="btn-group" style="justify-content:flex-start">
+<a href="features.html" class="btn btn-primary">Explore Projects</a>
+<a href="https://github.com/MoKangMedical" class="btn btn-outline">GitHub Org</a>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-card">
+<pre><span style="color:var(--text-muted)"># Quick Start</span>
+$ git clone github.com/MoKangMedical/DrugMind
+$ cd DrugMind && pip install -r requirements.txt
+$ python main.py --target EGFR
 
-<!-- CTA -->
-   305|<section class="cta">
-   306|  <div class="cta-inner">
-   307|    <h2>Join the Ecosystem</h2>
-   308|    <p>Explore our open-source projects, contribute to medical AI innovation, and help build the future of healthcare</p>
-   309|    <div class="btn-group">
-   310|      <a href="https://github.com/MoKangMedical" class="btn btn-primary">View on GitHub</a>
-   311|      <a href="features.html" class="btn btn-outline">Browse All Projects</a>
-   312|      <a href="https://mokangmedical.github.io/opc-alliance/" class="btn btn-outline">Join Alliance</a>
-   313|    </div>
-   314|  </div>
-   315|</section>
-   316|
-   317|<!-- FOOTER -->
-   318|
-<section style="text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,rgba(99,102,241,.1),transparent)">
-<h2 style="font-size:1.8rem;margin-bottom:1rem">Ready to get started?</h2>
-<p style="color:#94a3b8;margin-bottom:2rem">Join leading organizations using opc-homepage</p>
-<a href="https://github.com/MoKangMedical/opc-homepage" style="display:inline-block;padding:.8rem 2rem;background:#6366f1;color:#fff;border-radius:8px;font-weight:600;text-decoration:none">Get Started Free</a>
+<span style="color:var(--success)">✓ Generating molecular candidates...</span>
+<span style="color:var(--success)">✓ Found 3 high-affinity compounds</span>
+<span style="color:var(--success)">✓ ADMET analysis complete</span>
+<span style="color:var(--accent-light)">→ Lead compound: IC50 = 2.3 nM</span></pre>
+</div>
+</div>
+</div>
 </section>
-<footer class="footer">
-   319|  <div class="footer-links">
-   320|    <a href="index.html">Home</a>
-   321|    <a href="features.html">Projects</a>
-   322|    <a href="about.html">About</a>
-   323|    <a href="https://github.com/MoKangMedical">GitHub</a>
-   324|    <a href="https://mokangmedical.github.io/opc-alliance/">Alliance</a>
-   325|  </div>
-   326|  <p>&copy; 2025-2026 MoKangMedical. All rights reserved.</p>
-   327|</footer>
-   328|
-   329|<script>
-   330|// Domain Chart
-   331|new Chart(document.getElementById('domainChart'), {
-   332|  type: 'doughnut',
-   333|  data: {
-   334|    labels: ['Drug Discovery', 'Clinical Intelligence', 'Business Intelligence', 'Research Tools', 'Health Management', 'AI Infrastructure', 'Platform & Services'],
-   335|    datasets: [{
-   336|      data: [9, 6, 4, 5, 4, 5, 8],
-   337|      backgroundColor: ['#818cf8', '#c084fc', '#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#3b82f6'],
-   338|      borderColor: '#0a0a1a',
-   339|      borderWidth: 3,
-   340|      hoverOffset: 8
-   341|    }]
-   342|  },
-   343|  options: {
-   344|    responsive: true,
-   345|    plugins: {
-   346|      legend: { position: 'right', labels: { color: '#94a3b8', padding: 12, font: { size: 12 } } },
-   347|      tooltip: { backgroundColor: 'rgba(15,15,40,0.9)', titleColor: '#fff', bodyColor: '#94a3b8', borderColor: 'rgba(99,102,241,0.3)', borderWidth: 1, cornerRadius: 8, padding: 12 }
-   348|    }
-   349|  }
-   350|});
-   351|
-   352|// Growth Chart
-   353|new Chart(document.getElementById('growthChart'), {
-   354|  type: 'line',
-   355|  data: {
-   356|    labels: ['Jan 24', 'Apr 24', 'Jul 24', 'Oct 24', 'Jan 25', 'Apr 25', 'Jul 25', 'Oct 25', 'Jan 26', 'Apr 26'],
-   357|    datasets: [{
-   358|      label: 'Projects',
-   359|      data: [5, 8, 12, 16, 20, 25, 28, 32, 35, 38],
-   360|      borderColor: '#818cf8',
-   361|      backgroundColor: 'rgba(129,140,248,0.1)',
-   362|      fill: true,
-   363|      tension: 0.4,
-   364|      pointRadius: 4,
-   365|      pointBackgroundColor: '#818cf8'
-   366|    }, {
-   367|      label: 'Live Pages',
-   368|      data: [3, 5, 8, 11, 15, 19, 22, 26, 30, 35],
-   369|      borderColor: '#c084fc',
-   370|      backgroundColor: 'rgba(192,132,252,0.05)',
-   371|      fill: true,
-   372|      tension: 0.4,
-   373|      pointRadius: 4,
-   374|      pointBackgroundColor: '#c084fc'
-   375|    }]
-   376|  },
-   377|  options: {
-   378|    responsive: true,
-   379|    scales: {
-   380|      x: { grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#64748b', font: { size: 11 } } },
-   381|      y: { grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#64748b' } }
-   382|    },
-   383|    plugins: {
-   384|      legend: { labels: { color: '#94a3b8', padding: 16, font: { size: 12 } } },
-   385|      tooltip: { backgroundColor: 'rgba(15,15,40,0.9)', titleColor: '#fff', bodyColor: '#94a3b8', borderColor: 'rgba(99,102,241,0.3)', borderWidth: 1, cornerRadius: 8, padding: 12 }
-   386|    }
-   387|  }
-   388|});
-   389|</script>
-   390|</body>
-   391|
+
+<section class="section">
+<h2 class="section-title">Explore Our Domains</h2>
+<p class="section-desc">7 specialized domains covering the entire medical AI landscape</p>
+<div class="domain-grid">
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">🧬</div><div><div class="domain-title">Drug Discovery</div><div class="domain-count">9 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">AI-driven molecular design, virtual screening, and pharmaceutical market simulation</p>
+<div class="domain-projects"><span>DrugMind</span><span>PharmaSim</span><span>DrugCLIP</span><span>PharmaSpark</span><span>AI4S Agents</span></div>
+</a>
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">🏥</div><div><div class="domain-title">Clinical Intelligence</div><div class="domain-count">6 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">Rare disease diagnosis, weight management, and clinical trial analytics</p>
+<div class="domain-projects"><span>MediChat-RD</span><span>MediSlim</span><span>Clinical Trials</span><span>MedRoundTable</span></div>
+</a>
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">📊</div><div><div class="domain-title">Health Analytics</div><div class="domain-count">6 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">Population health data pipelines and statistical analysis tools</p>
+<div class="domain-projects"><span>NHANES</span><span>SEER</span><span>HEOR</span><span>BioStatS</span><span>Lancet</span></div>
+</a>
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">🔬</div><div><div class="domain-title">Research Tools</div><div class="domain-count">8 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">Evidence-based medicine, meta-analysis, and medical visualization</p>
+<div class="domain-projects"><span>MingEvidence</span><span>MetaForge</span><span>MedVisual</span><span>Minder</span><span>LabMind</span></div>
+</a>
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">🤖</div><div><div class="domain-title">AI Infrastructure</div><div class="domain-count">7 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">Multi-agent systems, evolutionary optimization, and cloud deployment</p>
+<div class="domain-projects"><span>Multi-Agent</span><span>Virtual Cell</span><span>Darwin</span><span>EvoX</span><span>Hermes</span></div>
+</a>
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">💚</div><div><div class="domain-title">Health Tech</div><div class="domain-count">5 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">Voice health detection, health knowledge, and patient engagement</p>
+<div class="domain-projects"><span>VoiceHealth</span><span>KnowHealth</span><span>AI Health</span><span>HealthGuard</span></div>
+</a>
+
+<a class="domain-card fade-up" href="features.html">
+<div class="domain-header"><div class="domain-icon">🌐</div><div><div class="domain-title">Global Platform</div><div class="domain-count">8 projects</div></div></div>
+<p style="color:var(--text-muted);font-size:0.9rem">Business intelligence, chronic disease management, and digital services</p>
+<div class="domain-projects"><span>Tianyan</span><span>NarrowGate</span><span>OPC Platform</span><span>Digital Sage</span><span>Eterna</span></div>
+</a>
+
+</div>
+</section>
+
+<div class="cta-section">
+<h2>Join the Ecosystem</h2>
+<p>Explore our open-source projects, contribute to medical AI innovation, and help build the future of healthcare</p>
+<div class="btn-group">
+<a href="https://github.com/MoKangMedical" class="btn btn-primary">View on <a href="pricing.html">定价</a>
+<a href="https://github.com/MoKangMedical">GitHub</a>
+<a href="features.html" class="btn btn-outline">Browse All Projects</a>
+</div>
+</div>
+
+<section class="section">
+<div class="stats">
+<div><div class="stat-num">70+</div><div class="stat-label">Projects</div></div>
+<div><div class="stat-num">55+</div><div class="stat-label">Live Pages</div></div>
+<div><div class="stat-num">7</div><div class="stat-label">Domains</div></div>
+<div><div class="stat-num">100%</div><div class="stat-label">Open Source</div></div>
+</div>
+</section>
+
+<footer class="footer"><div class="footer-links">
+<a href="index.html">Home</a><a href="features.html">Projects</a><a href="about.html">About</a>
+<a href="https://github.com/MoKangMedical"><a href="pricing.html">定价</a>
+<a href="https://github.com/MoKangMedical">GitHub</a>
+</div><p>&copy; 2025 MoKangMedical. All rights reserved.</p></footer>
+</body></html>
