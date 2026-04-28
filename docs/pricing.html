@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — MoKangMedical OPC Ecosystem</title>
+<meta name="description" content="Explore MoKangMedical OPC ecosystem pricing tiers: Free open source, Pro with priority support, and Enterprise with custom deployments.">
+<link rel="stylesheet" href="shared-design-system.css">
+<style>
+/* Pricing-specific overrides */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+.price-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem 2rem; text-align: center; transition: all 0.3s; position: relative; display: flex; flex-direction: column; }
+.price-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
+.price-card.featured { border-color: var(--accent); box-shadow: 0 0 40px var(--accent-glow); transform: scale(1.04); }
+.price-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+.price-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gradient); color: #fff; padding: 0.3rem 1.2rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.price-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.price-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+.price-card .tier-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5; }
+.price-amount { font-size: 3.2rem; font-weight: 800; margin-bottom: 0.25rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.price-amount .currency { font-size: 1.2rem; vertical-align: super; font-weight: 600; }
+.price-amount .period { font-size: 0.95rem; color: var(--text-muted); -webkit-text-fill-color: var(--text-muted); font-weight: 400; }
+.price-note { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1.5rem; }
+.feature-list { list-style: none; text-align: left; margin: 1.5rem 0; flex-grow: 1; }
+.feature-list li { padding: 0.6rem 0; color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid rgba(51,65,85,0.5); display: flex; align-items: center; gap: 0.6rem; }
+.feature-list li:last-child { border-bottom: none; }
+.feature-list li .check { color: var(--success); font-weight: 700; flex-shrink: 0; }
+.feature-list li .cross { color: #64748b; flex-shrink: 0; }
+.feature-list li.disabled { color: #475569; }
+.price-btn { display: block; width: 100%; padding: 0.85rem; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; border: none; text-align: center; text-decoration: none; margin-top: auto; }
+.price-btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 20px var(--accent-glow); }
+.price-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); color: #fff; }
+.price-btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.price-btn-outline:hover { border-color: var(--accent); color: var(--accent-light); }
+
+/* Comparison table */
+.comparison { max-width: 900px; margin: 0 auto; }
+.comparison table { width: 100%; border-collapse: collapse; }
+.comparison th, .comparison td { padding: 1rem; text-align: center; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+.comparison th { color: var(--text); font-weight: 700; background: var(--bg-card); }
+.comparison th:first-child, .comparison td:first-child { text-align: left; }
+.comparison td { color: var(--text-muted); }
+.comparison td .check { color: var(--success); font-weight: 700; }
+.comparison td .cross { color: #475569; }
+.comparison tr:hover td { background: rgba(59,130,246,0.03); }
+.comparison .highlight-col { background: rgba(59,130,246,0.05); }
+
+/* FAQ */
+.faq-grid { max-width: 800px; margin: 0 auto; }
+.faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1rem; cursor: pointer; transition: all 0.3s; }
+.faq-item:hover { border-color: var(--accent); }
+.faq-item h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0; display: flex; justify-content: space-between; align-items: center; }
+.faq-item h3::after { content: '+'; font-size: 1.3rem; color: var(--accent); transition: transform 0.3s; }
+.faq-item.open h3::after { content: '−'; }
+.faq-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-top: 0.75rem; display: none; }
+.faq-item.open p { display: block; }
+
+/* CTA */
+.cta-section { text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08)); }
+.cta-section h2 { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 0.75rem; }
+.cta-section p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; }
+
+@media (max-width: 768px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .price-card.featured { transform: none; }
+  .price-card.featured:hover { transform: translateY(-6px); }
+  .comparison { overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="eco-nav">
+  <a class="nav-brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Projects</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://github.com/MoKangMedical">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="badge">Simple, Transparent Pricing</span>
+  <h1>Choose Your Plan</h1>
+  <p class="subtitle">Access the full power of the OPC medical AI ecosystem. Start free, scale as you grow.</p>
+</section>
+
+<!-- PRICING TIERS -->
+<section class="section">
+  <div class="pricing-grid">
+
+    <!-- FREE TIER -->
+    <div class="price-card fade-up">
+      <div class="price-icon">🆓</div>
+      <h3>Free</h3>
+      <p class="tier-desc">Perfect for researchers and individual developers exploring medical AI.</p>
+      <div class="price-amount">$0</div>
+      <p class="price-note">Free forever — no credit card required</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Access to all 35+ open-source projects</li>
+        <li><span class="check">✓</span> Full source code on GitHub</li>
+        <li><span class="check">✓</span> Community support via GitHub Issues</li>
+        <li><span class="check">✓</span> Documentation & tutorials</li>
+        <li><span class="check">✓</span> Self-hosted deployment</li>
+        <li><span class="check">✓</span> MIT / Apache 2.0 licenses</li>
+        <li class="disabled"><span class="cross">✗</span> Priority support</li>
+        <li class="disabled"><span class="cross">✗</span> Advanced analytics</li>
+      </ul>
+      <a href="https://github.com/MoKangMedical" class="price-btn price-btn-outline">Get Started on GitHub</a>
+    </div>
+
+    <!-- PRO TIER -->
+    <div class="price-card featured fade-up">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-icon">⚡</div>
+      <h3>Pro</h3>
+      <p class="tier-desc">For teams that need priority support, advanced features, and faster iteration.</p>
+      <div class="price-amount"><span class="currency">$</span>99<span class="period">/mo</span></div>
+      <p class="price-note">Billed annually or $129/month-to-month</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Everything in Free</li>
+        <li><span class="check">✓</span> Priority email & chat support</li>
+        <li><span class="check">✓</span> Advanced analytics dashboard</li>
+        <li><span class="check">✓</span> API access with higher rate limits</li>
+        <li><span class="check">✓</span> Custom model fine-tuning</li>
+        <li><span class="check">✓</span> Team collaboration (up to 10 seats)</li>
+        <li><span class="check">✓</span> Monthly strategy consultation</li>
+        <li class="disabled"><span class="cross">✗</span> Private deployment</li>
+      </ul>
+      <a href="contact.html" class="price-btn price-btn-primary">Start Pro Trial</a>
+    </div>
+
+    <!-- ENTERPRISE TIER -->
+    <div class="price-card fade-up">
+      <div class="price-icon">🏢</div>
+      <h3>Enterprise</h3>
+      <p class="tier-desc">For organizations requiring private deployment, compliance, and dedicated support.</p>
+      <div class="price-amount" style="font-size:2.2rem;line-height:2.5rem;">Custom</div>
+      <p class="price-note">Tailored to your organization's needs</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Everything in Pro</li>
+        <li><span class="check">✓</span> Private cloud / on-premise deployment</li>
+        <li><span class="check">✓</span> Dedicated account manager</li>
+        <li><span class="check">✓</span> HIPAA / GDPR compliance support</li>
+        <li><span class="check">✓</span> Custom integrations & SLAs</li>
+        <li><span class="check">✓</span> Unlimited team seats</li>
+        <li><span class="check">✓</span> White-label options</li>
+        <li><span class="check">✓</span> 24/7 premium support</li>
+      </ul>
+      <a href="contact.html" class="price-btn price-btn-outline">Contact Sales</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section">
+  <h2 class="section-title">Feature Comparison</h2>
+  <p class="section-desc">A detailed look at what each plan includes</p>
+  <div class="comparison">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Free</th>
+          <th class="highlight-col">Pro</th>
+          <th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Open Source Projects</td><td><span class="check">✓</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Community Support</td><td><span class="check">✓</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Documentation Access</td><td><span class="check">✓</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Self-Hosted Deployment</td><td><span class="check">✓</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Priority Support</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Advanced Analytics</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>API Access</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Model Fine-Tuning</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Team Collaboration</td><td><span class="cross">✗</span></td><td class="highlight-col">Up to 10</td><td>Unlimited</td></tr>
+        <tr><td>Private Deployment</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>HIPAA / GDPR Compliance</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Dedicated Account Manager</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>White-Label Options</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>24/7 Support</td><td><span class="cross">✗</span></td><td class="highlight-col"><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <p class="section-desc">Common questions about our pricing and plans</p>
+  <div class="faq-grid">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <h3>Is the Free tier really free forever?</h3>
+      <p>Yes! All our open-source projects are released under MIT or Apache 2.0 licenses. You can use, modify, and deploy them at no cost. The Free tier gives you full access to the source code and community support.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <h3>Can I switch between plans?</h3>
+      <p>Absolutely. You can upgrade from Free to Pro at any time. If you need to move to Enterprise, our sales team will help you transition seamlessly. Downgrading takes effect at the end of your billing cycle.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <h3>What does "custom model fine-tuning" include?</h3>
+      <p>Pro users can fine-tune our AI models on their own datasets through our managed pipeline. This includes training infrastructure, model versioning, and evaluation dashboards. Enterprise users get additional customization options.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <h3>Do you offer academic discounts?</h3>
+      <p>Yes! We offer significant discounts for academic institutions and research organizations. Contact us at contact@mokangmedical.com with your institution details for special pricing.</p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <h3>What compliance standards do you support?</h3>
+      <p>Enterprise tier includes support for HIPAA, GDPR, and other regional healthcare data regulations. We work with your compliance team to ensure all deployments meet your regulatory requirements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Get Started?</h2>
+  <p>Join hundreds of researchers and healthcare organizations using the OPC ecosystem.</p>
+  <div class="btn-group">
+    <a href="https://github.com/MoKangMedical" class="btn btn-primary">Start Free on GitHub</a>
+    <a href="contact.html" class="btn btn-outline">Talk to Sales</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Projects</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://github.com/MoKangMedical">GitHub</a>
+  </div>
+  <p>&copy; 2026 MoKangMedical. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
