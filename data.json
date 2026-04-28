@@ -86,7 +86,8 @@
           "repo": "metaforge",
           "status": "live",
           "tier": "cash-cow",
-          "impact": "45 days -> 1 hour analysis"
+          "impact": "45 days -> 1 hour analysis",
+          "featured": true
         },
         {
           "name": "Biostats",
@@ -102,7 +103,8 @@
           "repo": "mingevidence",
           "status": "live",
           "tier": "growth",
-          "impact": "10x faster evidence mining"
+          "impact": "10x faster evidence mining",
+          "pages_url": "https://mokangmedical.github.io/mingevidence/"
         },
         {
           "name": "MedRoundTable",
@@ -124,14 +126,16 @@
           "desc": "Automated NHANES analysis → top journal submission",
           "repo": "nhanes-to-lancet",
           "status": "live",
-          "tier": "pipeline"
+          "tier": "pipeline",
+          "pages_url": "https://mokangmedical.github.io/nhanes-to-lancet/"
         },
         {
           "name": "SEER → Oncology",
           "desc": "US cancer data → top oncology journal pipeline",
           "repo": "seer-data-to-top-oncology-journal",
           "status": "live",
-          "tier": "pipeline"
+          "tier": "pipeline",
+          "pages_url": "https://mokangmedical.github.io/seer-data-to-top-oncology-journal/"
         },
         {
           "name": "Global Aging → Lancet",
@@ -206,7 +210,8 @@
           "repo": "PharmaSim",
           "status": "live",
           "tier": "cash-cow",
-          "impact": "Target to approval simulation"
+          "impact": "Target to approval simulation",
+          "pages_url": "https://mokangmedical.github.io/PharmaSim/"
         },
         {
           "name": "PharmaSpark",
@@ -228,7 +233,8 @@
           "repo": "heor-modeling-platform",
           "status": "live",
           "tier": "cash-cow",
-          "impact": "Standardized cost-effectiveness"
+          "impact": "Standardized cost-effectiveness",
+          "pages_url": "https://mokangmedical.github.io/heor-modeling-platform/"
         },
         {
           "name": "AI4S Drug Agent",
@@ -317,14 +323,16 @@
           "repo": "medichat-rd",
           "status": "live",
           "tier": "growth",
-          "impact": "66 skills, rare disease AI"
+          "impact": "66 skills, rare disease AI",
+          "pages_url": "https://mokangmedical.github.io/medichat-rd/"
         },
         {
           "name": "Chronic Disease Mgmt",
           "desc": "HIS-integrated chronic disease management — risk stratification",
           "repo": "chronicdiseasemanagement",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/chronicdiseasemanagement/"
         },
         {
           "name": "HealthGuard OPC",
@@ -391,14 +399,16 @@
           "repo": "digital-sage",
           "status": "live",
           "tier": "cash-cow",
-          "impact": "100 greatest minds"
+          "impact": "100 greatest minds",
+          "pages_url": "https://mokangmedical.github.io/digital-sage/"
         },
         {
           "name": "Cloud Memorial",
           "desc": "AI platform for preserving memories of loved ones",
           "repo": "cloud-memorial",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/cloud-memorial/"
         },
         {
           "name": "Minder",
@@ -413,7 +423,8 @@
           "repo": "narrowgate",
           "status": "live",
           "tier": "growth",
-          "impact": "30-day soul evolution"
+          "impact": "30-day soul evolution",
+          "pages_url": "https://mokangmedical.github.io/narrowgate/"
         }
       ]
     },
@@ -504,14 +515,16 @@
           "repo": "opc-platform",
           "status": "live",
           "tier": "cash-cow",
-          "impact": "312 lessons, 20 courses"
+          "impact": "312 lessons, 20 courses",
+          "pages_url": "https://mokangmedical.github.io/opc-platform/"
         },
         {
           "name": "OPC Marketplace",
           "desc": "Two-sided platform — connecting demand with OPC supply",
           "repo": "opc-marketplace",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/opc-marketplace/"
         },
         {
           "name": "OPC Alliance",
@@ -540,14 +553,16 @@
           "repo": "tianyan",
           "status": "live",
           "tier": "cash-cow",
-          "impact": "10,000+ virtual consumers"
+          "impact": "10,000+ virtual consumers",
+          "pages_url": "https://mokangmedical.github.io/tianyan/"
         },
         {
           "name": "Kondratiev Wave",
           "desc": "Economic cycle investment prediction — long wave theory",
           "repo": "kondratiev-wave",
           "status": "live",
-          "tier": "growth"
+          "tier": "growth",
+          "pages_url": "https://mokangmedical.github.io/kondratiev-wave/"
         },
         {
           "name": "AgriMind",

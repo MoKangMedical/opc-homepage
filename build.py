@@ -45,8 +45,11 @@ def proj_card(p, seg_id):
     impact_html = '<div class="proj-impact">%s</div>' % impact if impact else ''
     status_cls = "live" if p["status"] == "live" else "dev"
     status_txt = "Live" if p["status"] == "live" else "In Dev"
+    pages_url = p.get("pages_url", "")
+    pages_link = (' <a href="%s" class="proj-link proj-link-demo" target="_blank" rel="noopener">Live Demo &rarr;</a>' % pages_url) if pages_url else ''
+    pages_attr = 'true' if pages_url else 'false'
     return (
-        '<div class="proj-card" data-seg="%s" data-tier="%s" data-status="%s" data-name="%s">'
+        '<div class="proj-card" data-seg="%s" data-tier="%s" data-status="%s" data-name="%s" data-pages="%s">'
         '<div class="tier tier-%s">%s</div>'
         '<div class="proj-name">%s</div>'
         '<div class="proj-desc">%s</div>'
@@ -54,14 +57,18 @@ def proj_card(p, seg_id):
         '<div class="proj-meta">%s%s%s</div>'
         '<div class="proj-footer">'
         '<div class="proj-status status-%s"><span class="dot-sm"></span>%s</div>'
+        '<div class="proj-links">'
         '<a href="https://github.com/MoKangMedical/%s" class="proj-link" target="_blank" rel="noopener">GitHub &rarr;</a>'
+        '%s'
+        '</div>'
         '</div></div>'
-    ) % (seg_id, p["tier"], p["status"], p["name"].lower(),
+    ) % (seg_id, p["tier"], p["status"], p["name"].lower(), pages_attr,
          p["tier"], tier_badge(p["tier"]),
          p["name"], p["desc"],
          impact_html,
          stars_html, forks_html, lang_html,
-         status_cls, status_txt, p["repo"])
+         status_cls, status_txt, p["repo"],
+         pages_link)
 
 
 # Build segments HTML
@@ -84,6 +91,37 @@ for seg in data["segments"]:
     ) % (sid, color, seg["name"], seg["nameZh"], len(seg["projects"]), seg["tagline"], cards)
     short_name = seg["name"].split("&")[0].strip()
     nav_links += '<a href="#%s">%s</a>' % (sid, short_name)
+
+# Featured Demos HTML — top live projects with pages_url
+featured_projects = [p for seg in data["segments"] for p in seg["projects"]
+                     if p.get("pages_url") and p["status"] == "live"]
+# Prioritize cash-cow and growth tiers, then pipeline
+tier_order = {"cash-cow": 0, "growth": 1, "pipeline": 2, "moat": 3, "niche": 4, "support": 5}
+featured_projects.sort(key=lambda x: (tier_order.get(x.get("tier", ""), 9), x["name"]))
+# Take top 6
+featured_projects = featured_projects[:6]
+
+featured_html = ""
+fd_colors = ["#6366f1", "#ec4899", "#10b981", "#f59e0b", "#8b5cf6", "#06b6d4"]
+fd_icons = ["&#9670;", "&#9670;", "&#9670;", "&#9670;", "&#9670;", "&#9670;"]
+for i, p in enumerate(featured_projects):
+    c = fd_colors[i % len(fd_colors)]
+    seg_name = next((s["name"].split("&")[0].strip() for s in data["segments"]
+                     if any(sp["repo"] == p["repo"] for sp in s["projects"])), "")
+    featured_html += (
+        '<div class="fd-card" style="--fd-accent:%s">'
+        '<div class="fd-header">'
+        '<div class="fd-dot" style="background:%s"></div>'
+        '<span class="fd-segment">%s</span>'
+        '</div>'
+        '<div class="fd-name">%s</div>'
+        '<div class="fd-desc">%s</div>'
+        '<div class="fd-links">'
+        '<a href="%s" class="fd-btn fd-btn-demo" target="_blank" rel="noopener">Live Demo</a>'
+        '<a href="https://github.com/MoKangMedical/%s" class="fd-btn fd-btn-github" target="_blank" rel="noopener">GitHub</a>'
+        '</div>'
+        '</div>'
+    ) % (c, c, seg_name, p["name"], p["desc"], p["pages_url"], p["repo"])
 
 # Flywheels HTML
 fw_html = ""
@@ -140,6 +178,8 @@ html = html.replace("{{LIVE_COUNT}}", str(live_count))
 html = html.replace("{{TOTAL_STARS}}", str(total_stars))
 html = html.replace("{{TODAY}}", today)
 html = html.replace("{{NAV_LINKS}}", nav_links)
+html = html.replace("{{FEATURED_HTML}}", featured_html)
+html = html.replace("{{FEATURED_COUNT}}", str(len(featured_projects)))
 html = html.replace("{{FW_HTML}}", fw_html)
 html = html.replace("{{SEGMENTS_HTML}}", segments_html)
 html = html.replace("{{FAQ_HTML}}", faq_html)
