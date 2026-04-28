@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPC Open Pharma Coalition — 开放医药联盟</title>
-<meta name="description" content="AI驱动的医药创新生态系统，汇聚15+前沿项目，覆盖药物研发、临床试验、数字疗法全链条">
+<meta name="description" content="AI驱动的医药创新生态系统，汇聚35+前沿项目，覆盖药物研发、临床试验、数字疗法全链条">
 <meta property="og:title" content="OPC Open Pharma Coalition">
 <meta property="og:description" content="AI驱动的医药创新生态系统">
 <meta property="og:type" content="website">
@@ -161,12 +161,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2
 <section class="hero">
 <div class="hero-content">
 <h1>AI-Driven<br><span class="gradient">Pharma Innovation</span><br>Ecosystem</h1>
-<p class="subtitle">开放医药联盟 — 汇聚15+前沿AI项目，覆盖药物研发、临床试验、数字疗法、商业智能全链条，构建下一代医药创新基础设施</p>
+<p class="subtitle">开放医药联盟 — 汇聚35+前沿AI项目，覆盖药物研发、临床试验、数字疗法、商业智能全链条，构建下一代医药创新基础设施</p>
 <div class="hero-stats">
-<div class="hero-stat"><div class="num">15+</div><div class="lbl">AI Projects</div></div>
-<div class="hero-stat"><div class="num">50K+</div><div class="lbl">Lines of Code</div></div>
-<div class="hero-stat"><div class="num">100+</div><div class="lbl">AI Agents</div></div>
-<div class="hero-stat"><div class="num">8</div><div class="lbl">Research Domains</div></div>
+<div class="hero-stat"><div class="num">35+</div><div class="lbl">AI Projects</div></div>
+<div class="hero-stat"><div class="num">200K+</div><div class="lbl">Lines of Code</div></div>
+<div class="hero-stat"><div class="num">150+</div><div class="lbl">AI Agents</div></div>
+<div class="hero-stat"><div class="num">10</div><div class="lbl">Research Domains</div></div>
 </div>
 <div class="hero-btns">
 <a href="#projects" class="btn btn-primary">Explore Projects</a>
@@ -184,7 +184,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 2
 </div>
 <div class="eco-grid">
 <div class="eco-item"><div class="num">6</div><div class="lbl">Research Domains</div></div>
-<div class="eco-item"><div class="num">15+</div><div class="lbl">AI Platforms</div></div>
+<div class="eco-item"><div class="num">35+</div><div class="lbl">AI Platforms</div></div>
 <div class="eco-item"><div class="num">100+</div><div class="lbl">AI Agents</div></div>
 <div class="eco-item"><div class="num">3</div><div class="lbl">Global Markets</div></div>
 </div>
@@ -637,5 +637,35 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:0.3});
 document.querySelectorAll('.eco-grid').forEach(g=>observer.observe(g));
 </script>
+
+    <!-- Stats Section -->
+    <section class="stats-section" style="padding:60px 0;background:linear-gradient(90deg,#6366f1 0%,#8b5cf6 50%,#a855f7 100%);">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;text-align:center;">
+            <div class="stat-item">
+                <div class="stat-value" data-target="14+">14+</div>
+                <div class="stat-label">AI Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="50+">50+</div>
+                <div class="stat-label">Partner Institutions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="100+">100+</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="5">5</div>
+                <div class="stat-label">Target Markets</div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .stat-item{padding:20px;}
+        .stat-value{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,0.3);}
+        .stat-label{font-size:1rem;color:rgba(255,255,255,0.85);font-weight:500;}
+        @media(max-width:768px){.stat-value{font-size:1.8rem;}}
+    </style>
 </body>
 </html>
